@@ -1,15 +1,8 @@
-<nav class="main-nav bg-[#60a151] text-white py-3 sticky top-0">
-    <div class="inner-container  flex items-center justify-between ">
+<nav class="main-nav sticky top-0">
+    <div class="inner-container py-5 flex items-center justify-between ">
 
         <a href="#" class="brand-link block text-2xl">Sanu's Nursery</a>
-        <span class="search-container relative w-[25%]">
-            <input type="text" name="search-plant" id="search-plant"
-                class="rounded-md p-[4px_35px_4px_8px] text-xl text-black w-full" placeholder="Search plants">
-            <span
-                class="icon-container h-[25px] w-[25px] flex items-center justify-center absolute top-[50%] right-[6px] translate-y-[-50%]">
-                <fa-icon [icon]="faSearch" class="text-black"></fa-icon>
-            </span>
-        </span>
+        
         <ul class="nav-list flex items-center text-xl">
             <li class="nav-item">
                 <a href="#" class="nav-link flex px-3">Home</a>
@@ -24,6 +17,11 @@
                 <a href="#" class="nav-link flex px-3">Contact</a>
             </li>
         </ul>
-
+        <button class="search-container relative]">
+            <span
+                class="icon-container h-[25px] w-[25px] flex items-center justify-center">
+                <fa-icon [icon]="faSearch" class=""></fa-icon>
+            </span>
+        </button>
     </div>
 </nav>

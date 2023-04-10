@@ -3,31 +3,44 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
 }
 
+.wrapper {
+    // background: #56ab2f;
+    // background: -webkit-linear-gradient(to top, #a8e063, #56ab2f);
+    // background: linear-gradient(to top, #a8e063, #56ab2f);
+    // background: -webkit-linear-gradient(to bottom, #0e3201, #56ab2f);
 
-.inner-container{
+    color: #000;
+}
+
+.inner-container {
     max-width: 100%;
     padding-left: 40px;
     padding-right: 40px;
     margin: 0 auto;
 }
 
+.content{
+    background-image: url("./assets/images/hero.jpg");
+    background-size: cover;
+    background-position: center center;
+}
 
-@media screen and (max-width: 620px){
-    .inner-container{
+
+@media screen and (max-width: 620px) {
+    .inner-container {
         padding-left: 15px;
         padding-left: 15px;
     }
 }
 
-@media screen and (min-width: 1156px){
-    .inner-container{
+@media screen and (min-width: 1156px) {
+    .inner-container {
         max-width: 1156px;
         padding-left: 0;
         padding-right: 0;
     }
 }
-
