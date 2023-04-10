@@ -2,3 +2,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.inner-container{
+    max-width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width: 620px){
+    .inner-container{
+        padding-left: 15px;
+        padding-left: 15px;
+    }
+}
+
+@media screen and (min-width: 1156px){
+    .inner-container{
+        max-width: 1156px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
