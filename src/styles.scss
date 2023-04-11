@@ -7,6 +7,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.company-name{
+    // font-family: 'Cookie', cursive;
+    font-family: 'Courgette', cursive;
+}
+
 .wrapper {
     // background: #56ab2f;
     // background: -webkit-linear-gradient(to top, #a8e063, #56ab2f);
@@ -30,7 +35,8 @@ body {
 }
 
 section{
-    height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
+    height: 100%;
 }
 
 
