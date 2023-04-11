@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/interface/product';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class HomeComponent implements OnInit {
 
   constructor(private product: ProductService) { }
-  plants?: any[];
+  plants?: Product[];
   limit:number = 8;
 
   ngOnInit(): void {

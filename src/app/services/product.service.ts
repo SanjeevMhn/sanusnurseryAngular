@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, take } from 'rxjs';
+import { Product } from '../interface/product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class ProductService {
 
   }
 
-  getAllPlants(): Observable<any[]> {
-    return this.http.get<any[]>('/assets/json/plants.json');
+  getAllPlants(): Observable<Product[]> {
+    return this.http.get<Product[]>('/assets/json/plants.json');
   }
 
-  getPlants(limit: number): Observable<any[]> {
-    return this.http.get<any[]>('/assets/json/plants.json').pipe(
+  getPlants(limit: number): Observable<Product[]> {
+    return this.http.get<Product[]>('/assets/json/plants.json').pipe(
       take(limit)
     );
   }

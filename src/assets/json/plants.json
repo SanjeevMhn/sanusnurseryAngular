@@ -3,7 +3,7 @@
         "name": "AloeVera Plant",
         "price": "Rs. 100",
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1EA2gYCkXkySG1w4QT0QgYrR-9GwSmvn3=w1366-h695-iv3" 
+        "img": "https://drive.google.com/uc?id=1EA2gYCkXkySG1w4QT0QgYrR-9GwSmvn3"
     },
     {
         "name": "Snapdragon Flower (Vayaguta phool)",
@@ -21,7 +21,8 @@
         "name": "Avocado Fruit Plant",
         "price": "Rs. 300",
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1E7mcscKGR6U9n8lPTuE9W_hXzHG-T89A"
+        "img": "https://drive.google.com/uc?id=1F8EM8PBAtTFiy2T5zR4wpbKmrvlwo2bJ"
+
     },
     {
         "name": "Banana Plant",
