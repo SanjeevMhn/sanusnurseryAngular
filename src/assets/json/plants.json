@@ -2,191 +2,229 @@
     {
         "name": "AloeVera Plant",
         "price": "Rs. 100",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1EA2gYCkXkySG1w4QT0QgYrR-9GwSmvn3=w1366-h695-iv3" 
     },
     {
         "name": "Snapdragon Flower (Vayaguta phool)",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FTh8NE1R94OZuZPiX0M-L2i8ggbUBPbI"
     },
     {
         "name": "Arrowhead Plant",
         "price": "Rs. 200",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1E7mcscKGR6U9n8lPTuE9W_hXzHG-T89A"
     },
     {
         "name": "Avocado Fruit Plant",
         "price": "Rs. 300",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1E7mcscKGR6U9n8lPTuE9W_hXzHG-T89A"
     },
     {
         "name": "Banana Plant",
         "price": "Rs. 100",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1E3KXTnvCDpa7pf3B4VZ_Nb43pGQLxGTX"
     },
     {
         "name": "Brocolli Plant",
         "price": "Rs. 10",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1x5TsmsTJ0NG0DWel98vnZMpx76XOMPOv"
     },
     {
         "name": "Cacti Plant",
         "price": "Rs 700",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1E4zrQppD5_o8JUXoVLF8jR1PBjLCSdQk"
     },
     {
         "name": "Carnation Flower",
         "price": "Rs. 100",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FVne2DQg80jyh1smKR7VmSrXIpxSv3Kx"
     },
     {
         "name": "Cauliflower Plant (in cup)",
         "price": "Rs. 10",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1-2u5j2pSrSU0LVmMm7QXhL42tr1aBAJc"
     },
     {
         "name": "Cauliflower Plant (no cup)",
         "price": "Rs. 3",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1-2u5j2pSrSU0LVmMm7QXhL42tr1aBAJc"
     },
     {
         "name": "Celosia Flower",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1EhjqZsSSxDYBJhhDRhKUphr4DwbI7TEa"
     },
     {
         "name": "Coffee Plant",
         "price": "Rs. 300",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1Ev9BJRNX2a-l4pBAasAlGxZA_Nc1YbV1"
     },
     {
         "name": "Crassula Plant",
         "price": "Rs. 200",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1EFP0s5kNmXsHZEg5K4U-xhcAaYrGWKeN"
     },
     {
         "name": "Curryleaf Plant",
         "price": "Rs. 200",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1EuH2wVkXduNn4ISm5PaNRFe9XwXTwWxt"
     },
     {
         "name": "Dhupi Plant",
         "price": "Rs. 300",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1F6OQXj9tudBaEIvY5LuwX2peyFiE7nge"
     },
     {
         "name": "Dianthus Flower",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FicH8nUD0G4FWKqTsv9fdoo1lRvUD5KV"
     },
     {
         "name": "Dragon Fruit Plant",
         "price": "Rs. 250",
+        "type": "Fruit",
         "img": "https://drive.google.com/uc?id=1F2XM-m0sNzc3OhY9eNGoh8GEZx-R5FIi"
     },
     {
         "name": "Gazania Flower",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1Fii3-8oKVF-_xuTfP8LMyXLNumUU_u-v"
     },
     {
         "name": "Gerenium Flower",
         "price": "Rs. 50",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1EKAhZKVf9lMoyp2UcQvxirSPYnwJ2sqz"
     },
     {
         "name": "Gerenium Flower (red)",
         "price": "Rs. 50",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1DZSx3aooSutE6d8DXGcvePs856FNh6RF"
     },
     {
         "name": "Godawari Flower (long)",
         "price": "Rs. 100",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1F9jrYFRmoh2b2S3GDHPeyJRcn3hBufde"
     },
     {
         "name": "Godawari Flower (miniature)",
         "price": "Rs. 100",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FOjPoYWTsAFsPs0MdbdiqOBWSvzxP-fZ"
     },
     {
         "name": "Green Cardamon Plant",
         "price": "Rs. 300",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1EyLWutFk50aXX2YcW0i9091LuKMoJnNF"
     },
     {
         "name": "Guava Plant",
         "price": "Rs. 100",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1F6ikYChv3gPUHQIbYCGF5ckMALEKge7Z"
     },
     {
         "name": "Hibiscus Flower",
         "price": "Rs. 100",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1EiTxUn3mhXEkRb7R2UQxUbM3lMA4QOOI"
     },
     {
         "name": "Indra Kamal Flower",
         "price": "Rs. 100",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1Ef71EW85zqY-whlqSCU49dnyKDEpUsSj"
     },
     {
         "name": "Lemon Plant",
         "price": "Rs. 500",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1F8Obr1moeGO6bwtdlKEIttMluV0h7u4k"
     },
     {
         "name": "Muntala Fruit",
         "price": "Rs. 600",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1EHXS5IlhJTCFXjCyMnJ49ZXxqM5uo-JB"
     },
     {
         "name": "Onion Plant",
         "price": "Rs. 1",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1Drj_HF-PkfkzGZ8cWlzumiXL7uaVJdM3"
     },
     {
         "name": "Orchid Plant",
         "price": "Rs. 1000",
+        "type": "plant",
         "img": "https://drive.google.com/uc?id=1E7ZOJPLtALygdQt1D6sOfYA_akbmCoqG"
     },
     {
         "name": "Pitunia Flower",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FT0zC1DDS4-ZKafo3ZLYW9EIgM6rFria"
     },
     {
         "name": "Rose Flower (Dutch)",
         "price": "Rs. 300",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1FD-BEQ6KXJUdUPx9AOc3vSJ6xqLDFBrK"
     },
     {
         "name": "Salvia Flower (Orange)",
         "price": "Rs. 50",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1DperQZFIEjN1ThPYfsJoHxRhiyIkhubG"
     },
     {
         "name": "Salvia Flower (Dark Purple)",
         "price": "Rs. 50",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1DgSkmYf39duEYNLux_xxHhl0vMUV1oT-"
     },
     {
         "name": "Salvia Flower (Light Purple)",
         "price": "Rs. 50",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1DcLo5l5IGPFt0l60aW6TmpkZBDk3yVZY"
     },
     {
         "name": "Marigold Flower",
         "price": "Rs. 40",
+        "type": "flower",
         "img": "https://drive.google.com/uc?id=1E3E8xkfDEdA-iCA32NulzIZivZv35OAm"
     },
     {
         "name": "Spinach Plant (in cup)",
         "price": "Rs. 10",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1ClKepnzZX3lF6bNNNk-_Dzo55X2Rpu5_"
     },
     {
         "name": "Spinach Plant (no cup)",
         "price": "Rs. 3",
+        "type": "vegetable",
         "img": "https://drive.google.com/uc?id=1fZkb8kTQc02XfQ2d2hNNVK_TL5KYIG3t"
     }
 
