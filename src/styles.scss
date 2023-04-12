@@ -8,20 +8,15 @@ body {
 }
 
 .company-name{
-    // font-family: 'Cookie', cursive;
     font-family: 'Courgette', cursive;
 }
 
 .wrapper {
-    // background: #56ab2f;
-    // background: -webkit-linear-gradient(to top, #a8e063, #56ab2f);
-    // background: linear-gradient(to top, #a8e063, #56ab2f);
-    // background: -webkit-linear-gradient(to bottom, #0e3201, #56ab2f);
-
     color: #000;
 }
 
 .inner-container {
+    height: 100%;
     max-width: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -35,15 +30,48 @@ body {
 }
 
 section{
-    min-height: calc(100vh - 72px);
-    height: 100%;
+    background-color: #e1e1e1;
 }
 
+.static-section{
+    // min-height: calc(100vh - 72px);
+    height: calc(100vh - 72px);
+    // position: relative;
+}
+
+.dynamic-section{
+    min-height: calc(100vh - 72px);
+}
+
+.grid-list{
+    display: flex;
+    flex-wrap: wrap;
+    .grid-list-item{
+        flex: 0 0 calc(100% / 3);
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px){
+    .grid-list{
+        .grid-list-item{
+            flex: 0 0 calc(100%/2);
+        }
+    }
+}
 
 @media screen and (max-width: 620px) {
     .inner-container {
         padding-left: 15px;
-        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .grid-list{
+        .grid-list-item{
+            flex: 0 0 100%;
+        }
     }
 }
 
@@ -52,5 +80,10 @@ section{
         max-width: 1156px;
         padding-left: 0;
         padding-right: 0;
+    }
+    .grid-list{
+        .grid-list-item{
+            flex: 0 0 calc(100%/4);
+        }
     }
 }

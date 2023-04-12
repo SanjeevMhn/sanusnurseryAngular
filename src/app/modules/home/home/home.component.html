@@ -1,10 +1,10 @@
-<section class="intro-section content flex items-center">
-    <div class="inner-container h-full">
+<section class="intro-section static-section content">
+    <div class="inner-container flex items-center">
         <article class="intro-section-content w-[50%]">
             <div class="text-content mb-[30px]">
-                <p class="text-xl text-[#175f0f]">Hello, welcome to</p>
+                <p class="text-lg text-[#175f0f]">Hello, welcome to</p>
                 <h2 class="text-[60px] company-name">Sanus's Nursery</h2>
-                <p class="text-xl">
+                <p class="text-lg">
                     We specilize in growing plants ranging from vegetables, fruits to flowers and everything in between.
                     We sell greminated plants which is ready for you to plant directly.
                 </p>
@@ -16,13 +16,13 @@
     </div>
 </section>
 
-<section class="product-section bg-[#e1e1e1] overflow-y-auto">
+<section class="product-section dynamic-section overflow-y-auto">
     <div class="inner-container h-full flex items-center justify-center">
         <article class="product-list-container py-[60px] w-full">
             <h2 class="text-5xl pb-[40px] text-center">Our Products</h2>
-            <ul class="product-list grid-list flex flex-wrap w-full pb-[40px]">
-                <li class="product-list-item flex-[0_0_calc(100%)] md:flex-[0_0_calc(100%/2)] lg:flex-[0_0_calc(100%/3)] xl:flex-[0_0_calc(100%/4)]" *ngFor="let item of plants | slice:0:limit">
-                    <a class="product-list-link p-3 h-full w-full flex justify-center">
+            <ul class="product-list grid-list w-full pb-[40px]">
+                <li class="product-list-item grid-list-item" *ngFor="let item of plants">
+                    <a [routerLink]="['product/',item.id]" class="product-list-link p-3 h-full w-full flex justify-center">
                         <div class="inner-card-container w-full bg-[#fff] max-w-[335px]">
                             <div class="product-img w-full h-[250px] bg-slate-400">
                                 <img src={{item.img}} alt="product-img" class="h-full w-full object-contain">
