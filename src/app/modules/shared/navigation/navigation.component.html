@@ -1,4 +1,4 @@
-<nav class="contact-us bg-[#175f0f] text-white">
+<nav class="contact-us bg-primary text-white">
     <div class="inner-container flex justify-end py-2">
         <div class="contact-data">
             <span class="label-text pr-3">
@@ -13,10 +13,10 @@
     </div>
 
 </nav>
-<nav class="main-nav sticky top-0 bg-[#e1e1e1] shadow-lg">
+<nav class="main-nav sticky top-0 bg-[#e1e1e1] shadow-lg z-10">
     <div class="inner-container py-5 flex items-center justify-between ">
 
-    <a href="#" class="brand-link block text-2xl company-name">Sanu's Nursery</a>
+        <a routerLink="/home" class="brand-link block text-2xl company-name">Sanu's Nursery</a>
 
         <ul class="nav-list flex items-center text-lg">
             <li class="nav-item">
@@ -32,10 +32,22 @@
                 <a href="#" class="nav-link flex px-3">Contact</a>
             </li>
         </ul>
-        <button class="search-container relative]">
-            <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
-                <fa-icon [icon]="faSearch" class=""></fa-icon>
-            </span>
-        </button>
+        <ul class="user-actions-list flex items-center">
+            <li class="user-actions-item px-2">
+                <button class="search-container relative">
+                    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
+                        <fa-icon [icon]="faSearch" class=""></fa-icon>
+                    </span>
+                </button>
+            </li>
+            <div class="user-actions-item px-2">
+                <button class="cart-container relative">
+                    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
+                        <fa-icon [icon]="faCartShopping" class=""></fa-icon>
+                    </span>
+                </button>
+            </div>
+        </ul>
+
     </div>
 </nav>

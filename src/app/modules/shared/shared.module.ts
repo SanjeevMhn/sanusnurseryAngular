@@ -5,12 +5,14 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductcardComponent } from './productcard/productcard.component';
 
 
 @NgModule({
   declarations: [
     NavigationComponent,
-    FooterComponent
+    FooterComponent,
+    ProductcardComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavigationComponent,
     FooterComponent,
     FontAwesomeModule,
+    ProductcardComponent,
   ]
 })
 export class SharedModule { }

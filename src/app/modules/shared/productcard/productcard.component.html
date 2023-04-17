@@ -1,0 +1,11 @@
+<a [routerLink]="['/home/product/',item.id]" class="product-list-link p-3 h-full w-full flex justify-center">
+    <div class="inner-card-container w-full bg-[#fff] max-w-[335px]">
+        <div class="product-img w-full h-[250px] bg-slate-400">
+            <img src={{item.img}} alt="product-img" class="h-full w-full object-contain">
+        </div>
+        <div class="product-details px-[25px] py-[5px]">
+            <h5 class="product-name text-base">{{item.name}}</h5>
+            <h6 class="product-price text-lg text-primary">Rs.&nbsp;{{item.price}}</h6>
+        </div>
+    </div>
+</a>

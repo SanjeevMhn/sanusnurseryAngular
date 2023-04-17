@@ -28,4 +28,11 @@ export class ProductService {
     )
   }
 
+  getPlantFromType(type: string, id: number): Observable<Product[]>{
+    return this.http.get<Product[]>('/assets/json/plants.json').pipe(
+      map(x => x.filter(x => x.type === type)),
+      map(x => x.filter(x => x.id !== id))
+    )
+  }
+
 }
