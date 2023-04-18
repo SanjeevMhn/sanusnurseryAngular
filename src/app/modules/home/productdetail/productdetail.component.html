@@ -59,7 +59,7 @@
                     <fa-icon [icon]="faChevronRight"></fa-icon>
                 </button>
                 <ul class="product-list grid-list-nowrap w-full" #scrollContainer>
-                    <li class="product-list-item grid-list-item" *ngFor="let item of relatedProducts">
+                    <li class="product-list-item grid-list-item" *ngFor="let item of relatedProducts" (click)="reload()">
                         <app-productcard [item]="item"></app-productcard>
                     </li>
                 </ul>

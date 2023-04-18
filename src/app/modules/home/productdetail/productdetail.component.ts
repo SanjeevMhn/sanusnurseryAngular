@@ -76,4 +76,9 @@ export class ProductdetailComponent implements OnInit {
     this.renderer.setProperty(this.scrollContainer?.nativeElement,'scrollLeft',this.scrollContainer?.nativeElement.scrollLeft + 290);
   }
 
+  reload():void{
+    const getId = Number(this.route.snapshot.paramMap.get('id'));
+    this.getProduct(getId);
+  }
+
 }
