@@ -2,6 +2,9 @@
     <div class="inner-container">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
+                <a routerLink="/" class="breadcrumb-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
                 <a routerLink="/home/products" class="breadcrumb-link">Products</a>
             </li>
             <li class="breadcrumb-item">
@@ -52,10 +55,10 @@
         <article class="related-products py-[80px]">
             <h2 class="text-4xl pb-[40px] text-center">Related Products</h2>
             <div class="related-products-container">
-                <button class="scroll-btn scroll-left" (click)="scrollLeft()">
+                <button class="scroll-btn scroll-left circle-button" (click)="scrollLeft()">
                     <fa-icon [icon]="faChevronLeft"></fa-icon>
                 </button>
-                <button class="scroll-btn scroll-right" (click)="scrollRight()">
+                <button class="scroll-btn scroll-right circle-button" (click)="scrollRight()">
                     <fa-icon [icon]="faChevronRight"></fa-icon>
                 </button>
                 <ul class="product-list grid-list-nowrap w-full" #scrollContainer>
