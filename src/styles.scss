@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./vars";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-$theme: #175f0f;
 
 .text-primary {
     color: $theme;
@@ -71,17 +72,9 @@ section {
 
     .scroll-btn {
         position: absolute;
-        background-color: $theme;
-        color: #fff;
-        height: 35px;
-        width: 35px;
-        border-radius: 50%;
         top: 50%;
         transform: translateY(-50%);
         z-index: 100;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
 
         &.scroll-left {
             left: -35px;
@@ -111,7 +104,7 @@ section {
 .breadcrumb-list {
     display: flex;
     align-items: center;
-    padding: 30px 0;
+    padding: 15px 0;
 
     .breadcrumb-item {
         position: relative;
@@ -120,6 +113,7 @@ section {
             display: flex;
             padding: 0 15px;
             font-size: 14px;
+            text-transform: capitalize;
         }
 
         &::after {
@@ -142,6 +136,25 @@ section {
             }
         }
     }
+}
+
+.circle-button,.circle-outline-button {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-button{
+    background-color: $theme;
+    color: #fff;
+}
+
+.circle-outline-button{
+    border: 1px solid $theme;
+    color: $theme;
 }
 
 
