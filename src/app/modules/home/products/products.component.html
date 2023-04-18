@@ -9,7 +9,7 @@
             </li>
         </ul>
         <div class="wrapper flex pb-[15px]">
-            <aside class="sidenav px-[15px] pt-[12px]">
+            <aside class="sidenav px-[15px] hidden md:block">
                 <h2 class="text-xl pb-4">Categories</h2>
                 <ul class="categories-list">
                     <li class="category-item">
@@ -35,10 +35,33 @@
                 </ul>
             </aside>
             <article class="products-list-container flex-grow">
-                <div class="filter-container flex justify-end">
+                <div class="filter-container flex flex-col items-center md:flex-row md:justify-end">
+                    <ul class="categories-list-sp flex flex-wrap md:hidden">
+                        <li class="category-item">
+                            <a [routerLink]="['/home/products/',]" class="category-link flex px-[10px]"
+                                [ngClass]="defaultLinkActive ? 'active' : '' ">All</a>
+                        </li>
+                        <li class="category-item" (click)="reload()">
+                            <a [routerLink]="['/home/products/','flower']" routerLinkActive="active"
+                                class="category-link flex px-[10px]">Flower</a>
+                        </li>
+                        <li class="category-item" (click)="reload()">
+                            <a [routerLink]="['/home/products/','fruit']" routerLinkActive="active"
+                                class="category-link flex px-[10px]">Fruit</a>
+                        </li>
+                        <li class="category-item" (click)="reload()">
+                            <a [routerLink]="['/home/products/','plant']" routerLinkActive="active"
+                                class="category-link flex px-[10px]">Plant</a>
+                        </li>
+                        <li class="category-item" (click)="reload()">
+                            <a [routerLink]="['/home/products/','vegetable']" routerLinkActive="active"
+                                class="category-link flex px-[10px]">Vegetable</a>
+                        </li>
+                    </ul>
                     <div class="group">
                         <label for="list-filter" class="pr-2">Sort By:</label>
-                        <select name="list-filter" id="list-filter" class="filter-list" (change)="changeFilterData($event)">
+                        <select name="list-filter" id="list-filter" class="filter-list"
+                            (change)="changeFilterData($event)">
                             <option value="default">Best Match</option>
                             <option value="priceLowToHigh">Price low to high </option>
                             <option value="priceHighToLow">Price high to low </option>
@@ -51,14 +74,19 @@
                         <app-productcard [item]="item"></app-productcard>
                     </li>
                 </ul>
-                <div class="pagination-section py-[8px] flex justify-end itemd-center">
-                    <button class="circle-button" (click)="prevPage()">
-                        <fa-icon [icon]="faChevronLeft"></fa-icon>
-                    </button>
-                    <span class="circle-outline-button mx-2">{{currentPage}}</span>
-                    <button class="circle-button" (click)="nextPage()">
-                        <fa-icon [icon]="faChevronRight"></fa-icon>
-                    </button>
+                <div class="pagination-section py-[8px] flex justify-between">
+                    <div class="showing-page text-sm flex items-center">
+                        Showing {{currentPage}} of {{totalPages}} pages
+                    </div>
+                    <div class="pagination-actions flex items-center">
+                        <button class="circle-button" (click)="prevPage()">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>
+                        </button>
+                        <span class="circle-outline-button mx-2">{{currentPage}}</span>
+                        <button class="circle-button" (click)="nextPage()">
+                            <fa-icon [icon]="faChevronRight"></fa-icon>
+                        </button>
+                    </div>
                 </div>
             </article>
         </div>

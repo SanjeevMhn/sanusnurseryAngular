@@ -1,19 +1,36 @@
 @import "/src/_vars";
 
-.categories-list{
-    .category-item{
+.categories-list {
+    .category-item {
         margin-bottom: 4px;
-        &:last-child{
+
+        &:last-child {
             margin-bottom: 0;
         }
-        .category-link{
+
+        .category-link {
             border-radius: 100vh;
+
             &:hover,
-            &.active{
+            &.active {
                 background-color: $theme;
                 color: #fff;
             }
-            
+
         }
+    }
+}
+
+.categories-list-sp {
+    padding-bottom: 15px;
+    .category-link {
+        border-radius: 100vh;
+
+        &:hover,
+        &.active {
+            background-color: $theme;
+            color: #fff;
+        }
+
     }
 }

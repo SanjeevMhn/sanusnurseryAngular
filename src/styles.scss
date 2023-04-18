@@ -98,6 +98,7 @@ section {
 
     .grid-list-item {
         flex: 0 0 calc(100% / 4);
+        max-width: 290px;
     }
 }
 
@@ -105,6 +106,8 @@ section {
     display: flex;
     align-items: center;
     padding: 15px 0;
+    white-space: nowrap;
+    overflow-y: auto;
 
     .breadcrumb-item {
         position: relative;
@@ -138,7 +141,8 @@ section {
     }
 }
 
-.circle-button,.circle-outline-button {
+.circle-button,
+.circle-outline-button {
     height: 35px;
     width: 35px;
     border-radius: 50%;
@@ -147,19 +151,20 @@ section {
     justify-content: center;
 }
 
-.circle-button{
+.circle-button {
     background-color: $theme;
     color: #fff;
 }
 
-.circle-outline-button{
+.circle-outline-button {
     border: 1px solid $theme;
     color: $theme;
 }
 
-
 @media screen and (max-width: 768px) {
-    .grid-list {
+
+    .grid-list,
+    .grid-list-nowrap {
         .grid-list-item {
             flex: 0 0 calc(100%/2);
         }
@@ -172,7 +177,8 @@ section {
         padding-right: 15px;
     }
 
-    .grid-list {
+    .grid-list,
+    .grid-list-nowrap {
         .grid-list-item {
             flex: 0 0 100%;
         }
@@ -192,3 +198,18 @@ section {
         }
     }
 }
+
+@media screen and (max-width: 1300px) {
+    .related-products-container {
+        .scroll-btn {
+            &.scroll-left {
+                left: -7.5px;
+            }
+
+            &.scroll-right {
+                right: -7.5px;
+            }
+        }
+    }
+}
+
