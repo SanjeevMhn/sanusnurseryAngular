@@ -58,15 +58,15 @@
                                 class="category-link flex px-[10px]">Vegetable</a>
                         </li>
                     </ul>
-                    <div class="group">
+                    <form [formGroup]="sortForm">
                         <label for="list-filter" class="pr-2">Sort By:</label>
                         <select name="list-filter" id="list-filter" class="filter-list"
-                            (change)="changeFilterData($event)">
+                            (change)="changeFilterData($event)" formControlName="sortSelect" #sortSelect>
                             <option value="default">Best Match</option>
                             <option value="priceLowToHigh">Price low to high </option>
                             <option value="priceHighToLow">Price high to low </option>
                         </select>
-                    </div>
+                    </form>
 
                 </div>
                 <ul class="grid-list w-full">

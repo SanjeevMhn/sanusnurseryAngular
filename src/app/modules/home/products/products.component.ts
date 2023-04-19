@@ -3,6 +3,7 @@ import { Product } from 'src/app/interface/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -23,31 +24,36 @@ export class ProductsComponent implements OnInit {
   sortBy: string = 'default';
   categories: string[] = ['', 'flower', 'plant', 'vegetable'];
   defaultLinkActive: boolean = true;
-  listFilterItem?:Event;
-  filter?:string;
+  listFilterItem?: Event;
+  filter?: string;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  public sortForm!: FormGroup;
+
+  constructor(private route: ActivatedRoute, private productService: ProductService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.sortForm = this.fb.group({
+      sortSelect: ['default']
+    })
     this.productType = this.route.snapshot.paramMap.get('type')!;
-    if(this.productType !== null){
+    if (this.productType !== null) {
       this.defaultLinkActive = !this.defaultLinkActive;
     }
     this.getProducts(this.productType);
     this.filterData(this.filter!);
   }
 
-  filterData(filter:string):Product[]{
-    if(filter === 'priceLowToHigh'){
-      return this.products!.sort((a,b) => a.price - b.price);
-    }else if(filter === 'priceHighToLow'){
-      return this.products!.sort((a,b) => b.price - a.price);
-    }else{
+  filterData(filter: string): Product[] {
+    if (filter === 'priceLowToHigh') {
+      return this.products!.sort((a, b) => a.price - b.price);
+    } else if (filter === 'priceHighToLow') {
+      return this.products!.sort((a, b) => b.price - a.price);
+    } else {
       return this.products!;
     }
   }
 
-  changeFilterData(e:any){
+  changeFilterData(e: any) {
     this.filterData(String(e.target.value));
   }
 
@@ -99,5 +105,6 @@ export class ProductsComponent implements OnInit {
     const getType = this.route.snapshot.paramMap.get('type')!;
     this.getProducts(getType);
     this.currentPage = 1;
+    this.sortForm.controls['sortSelect'].reset('default');
   }
 }
