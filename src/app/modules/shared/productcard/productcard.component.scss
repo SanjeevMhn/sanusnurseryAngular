@@ -1,0 +1,62 @@
+@import "/src/_vars";
+
+.product-list-link {
+    position: relative;
+
+    // overflow: hidden;
+    .card-ribbon {
+        position: absolute;
+        color: #fff;
+        // padding: 5px 32px;
+        // transform: rotate(-45deg);
+        overflow: hidden;
+        top: 0px;
+        left: 0px;
+        height: 130px;
+        width: 150px;
+
+        .msg {
+            position: absolute;
+            background-color: $theme;
+            padding: 5px 10px;
+            transform: rotate(-45deg);
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            top: 25px;
+            left: -35px;
+            z-index: 10;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 85%;
+                height: 5px;
+                // background-color: #000;
+                top: 28px;
+                left: 12px;
+                box-shadow: 0 5px 5px #000;
+            }
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            background-color: $theme;
+            filter: contrast(300%);
+            display: block;
+            height: 12px;
+            width: 12px;
+        }
+
+        &::before {
+            top: 0;
+            right: 45px;
+        }
+
+        &::after {
+            bottom: 24px;
+            left: 0;
+        }
+    }
+}

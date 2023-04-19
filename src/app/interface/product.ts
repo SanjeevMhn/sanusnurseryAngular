@@ -4,4 +4,5 @@ export interface Product {
     price: number,
     type: string,
     img: string,
+    inStock: boolean,
 }

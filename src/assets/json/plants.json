@@ -4,28 +4,32 @@
         "name": "AloeVera Plant",
         "price": 100,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1EA2gYCkXkySG1w4QT0QgYrR-9GwSmvn3"
+        "img": "https://drive.google.com/uc?id=1EA2gYCkXkySG1w4QT0QgYrR-9GwSmvn3",
+        "inStock": true
     },
     {
         "id": 2,
         "name": "Snapdragon Flower (Vayaguta phool)",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FTh8NE1R94OZuZPiX0M-L2i8ggbUBPbI"
+        "img": "https://drive.google.com/uc?id=1FTh8NE1R94OZuZPiX0M-L2i8ggbUBPbI",
+        "inStock": true
     },
     {
         "id": 3,
         "name": "Arrowhead Plant",
         "price": 200,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1E7mcscKGR6U9n8lPTuE9W_hXzHG-T89A"
+        "img": "https://drive.google.com/uc?id=1E7mcscKGR6U9n8lPTuE9W_hXzHG-T89A",
+        "inStock": true
     },
     {
         "id": 4,
         "name": "Avocado Fruit Plant",
         "price": 300,
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1F8EM8PBAtTFiy2T5zR4wpbKmrvlwo2bJ"
+        "img": "https://drive.google.com/uc?id=1F8EM8PBAtTFiy2T5zR4wpbKmrvlwo2bJ",
+        "inStock": true
 
     },
     {
@@ -33,238 +37,272 @@
         "name": "Banana Plant",
         "price": 100,
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1E3KXTnvCDpa7pf3B4VZ_Nb43pGQLxGTX"
+        "img": "https://drive.google.com/uc?id=1E3KXTnvCDpa7pf3B4VZ_Nb43pGQLxGTX",
+        "inStock": true
     },
     {
         "id": 6,
         "name": "Brocolli Plant",
         "price": 10,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1x5TsmsTJ0NG0DWel98vnZMpx76XOMPOv"
+        "img": "https://drive.google.com/uc?id=1x5TsmsTJ0NG0DWel98vnZMpx76XOMPOv",
+        "inStock": false
     },
     {
         "id": 7,
         "name": "Cacti Plant",
         "price": 700,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1E4zrQppD5_o8JUXoVLF8jR1PBjLCSdQk"
+        "img": "https://drive.google.com/uc?id=1E4zrQppD5_o8JUXoVLF8jR1PBjLCSdQk",
+        "inStock": true
     },
     {
         "id": 8,
         "name": "Carnation Flower",
         "price": 100,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FVne2DQg80jyh1smKR7VmSrXIpxSv3Kx"
+        "img": "https://drive.google.com/uc?id=1FVne2DQg80jyh1smKR7VmSrXIpxSv3Kx",
+        "inStock": false
     },
     {
         "id": 9,
         "name": "Cauliflower Plant (in cup)",
         "price": 10,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1-2u5j2pSrSU0LVmMm7QXhL42tr1aBAJc"
+        "img": "https://drive.google.com/uc?id=1-2u5j2pSrSU0LVmMm7QXhL42tr1aBAJc",
+        "inStock": false
     },
     {
         "id": 10,
         "name": "Cauliflower Plant (no cup)",
         "price": 3,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1I_Fcy2vSEXsqBd6WpaKvDdOV9fCGgl2a"
+        "img": "https://drive.google.com/uc?id=1I_Fcy2vSEXsqBd6WpaKvDdOV9fCGgl2a",
+        "inStock": true
     },
     {
         "id": 11,
         "name": "Celosia Flower",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1EhjqZsSSxDYBJhhDRhKUphr4DwbI7TEa"
+        "img": "https://drive.google.com/uc?id=1EhjqZsSSxDYBJhhDRhKUphr4DwbI7TEa",
+        "inStock": true
     },
     {
         "id": 12,
         "name": "Coffee Plant",
         "price": 300,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1Ev9BJRNX2a-l4pBAasAlGxZA_Nc1YbV1"
+        "img": "https://drive.google.com/uc?id=1Ev9BJRNX2a-l4pBAasAlGxZA_Nc1YbV1",
+        "inStock": true
     },
     {
         "id": 13,
         "name": "Crassula Plant",
         "price": 200,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1EFP0s5kNmXsHZEg5K4U-xhcAaYrGWKeN"
+        "img": "https://drive.google.com/uc?id=1EFP0s5kNmXsHZEg5K4U-xhcAaYrGWKeN",
+        "inStock": true
     },
     {
         "id": 14,
         "name": "Curryleaf Plant",
         "price": 200,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1EuH2wVkXduNn4ISm5PaNRFe9XwXTwWxt"
+        "img": "https://drive.google.com/uc?id=1EuH2wVkXduNn4ISm5PaNRFe9XwXTwWxt",
+        "inStock": true
     },
     {
         "id": 15,
         "name": "Dhupi Plant",
         "price": 300,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1F6OQXj9tudBaEIvY5LuwX2peyFiE7nge"
+        "img": "https://drive.google.com/uc?id=1F6OQXj9tudBaEIvY5LuwX2peyFiE7nge",
+        "inStock": true
     },
     {
         "id": 16,
         "name": "Dianthus Flower",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FicH8nUD0G4FWKqTsv9fdoo1lRvUD5KV"
+        "img": "https://drive.google.com/uc?id=1FicH8nUD0G4FWKqTsv9fdoo1lRvUD5KV",
+        "inStock": true
     },
     {
         "id": 17,
         "name": "Dragon Fruit Plant",
         "price": 250,
         "type": "Fruit",
-        "img": "https://drive.google.com/uc?id=1F2XM-m0sNzc3OhY9eNGoh8GEZx-R5FIi"
+        "img": "https://drive.google.com/uc?id=1F2XM-m0sNzc3OhY9eNGoh8GEZx-R5FIi",
+        "inStock": true
     },
     {
         "id": 18,
         "name": "Gazania Flower",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1Fii3-8oKVF-_xuTfP8LMyXLNumUU_u-v"
+        "img": "https://drive.google.com/uc?id=1Fii3-8oKVF-_xuTfP8LMyXLNumUU_u-v",
+        "inStock": true
     },
     {
         "id": 19,
         "name": "Gerenium Flower",
         "price": 50,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1EKAhZKVf9lMoyp2UcQvxirSPYnwJ2sqz"
+        "img": "https://drive.google.com/uc?id=1EKAhZKVf9lMoyp2UcQvxirSPYnwJ2sqz",
+        "inStock": true
     },
     {
         "id": 20,
         "name": "Gerenium Flower (red)",
         "price": 50,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1DZSx3aooSutE6d8DXGcvePs856FNh6RF"
+        "img": "https://drive.google.com/uc?id=1DZSx3aooSutE6d8DXGcvePs856FNh6RF",
+        "inStock": true
     },
     {
         "id": 21,
         "name": "Godawari Flower (long)",
         "price": 100,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1F9jrYFRmoh2b2S3GDHPeyJRcn3hBufde"
+        "img": "https://drive.google.com/uc?id=1F9jrYFRmoh2b2S3GDHPeyJRcn3hBufde",
+        "inStock": true
     },
     {
         "id": 22,
         "name": "Godawari Flower (miniature)",
         "price": 100,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FOjPoYWTsAFsPs0MdbdiqOBWSvzxP-fZ"
+        "img": "https://drive.google.com/uc?id=1FOjPoYWTsAFsPs0MdbdiqOBWSvzxP-fZ",
+        "inStock": true
     },
     {
         "id": 23,
         "name": "Green Cardamon Plant",
         "price": 300,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1EyLWutFk50aXX2YcW0i9091LuKMoJnNF"
+        "img": "https://drive.google.com/uc?id=1EyLWutFk50aXX2YcW0i9091LuKMoJnNF",
+        "inStock": true
     },
     {
         "id": 24,
         "name": "Guava Plant",
         "price": 100,
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1F6ikYChv3gPUHQIbYCGF5ckMALEKge7Z"
+        "img": "https://drive.google.com/uc?id=1F6ikYChv3gPUHQIbYCGF5ckMALEKge7Z",
+        "inStock": true
     },
     {
         "id": 25,
         "name": "Hibiscus Flower",
         "price": 100,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1EiTxUn3mhXEkRb7R2UQxUbM3lMA4QOOI"
+        "img": "https://drive.google.com/uc?id=1EiTxUn3mhXEkRb7R2UQxUbM3lMA4QOOI",
+        "inStock": true
     },
     {
         "id": 26,
         "name": "Indra Kamal Flower",
         "price": 100,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1Ef71EW85zqY-whlqSCU49dnyKDEpUsSj"
+        "img": "https://drive.google.com/uc?id=1Ef71EW85zqY-whlqSCU49dnyKDEpUsSj",
+        "inStock": true
     },
     {
         "id": 27,
         "name": "Lemon Plant",
         "price": 500,
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1F8Obr1moeGO6bwtdlKEIttMluV0h7u4k"
+        "img": "https://drive.google.com/uc?id=1F8Obr1moeGO6bwtdlKEIttMluV0h7u4k",
+        "inStock": true
     },
     {
         "id": 28,
         "name": "Muntala Fruit",
         "price": 600,
         "type": "fruit",
-        "img": "https://drive.google.com/uc?id=1EHXS5IlhJTCFXjCyMnJ49ZXxqM5uo-JB"
+        "img": "https://drive.google.com/uc?id=1EHXS5IlhJTCFXjCyMnJ49ZXxqM5uo-JB",
+        "inStock": false    
     },
     {
         "id": 29,
         "name": "Onion Plant",
         "price": 1,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1Drj_HF-PkfkzGZ8cWlzumiXL7uaVJdM3"
+        "img": "https://drive.google.com/uc?id=1Drj_HF-PkfkzGZ8cWlzumiXL7uaVJdM3",
+        "inStock": false
     },
     {
         "id": 30,
         "name": "Orchid Plant",
         "price": 1000,
         "type": "plant",
-        "img": "https://drive.google.com/uc?id=1E7ZOJPLtALygdQt1D6sOfYA_akbmCoqG"
+        "img": "https://drive.google.com/uc?id=1E7ZOJPLtALygdQt1D6sOfYA_akbmCoqG",
+        "inStock": true
     },
     {
         "id": 31,
         "name": "Pitunia Flower",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FT0zC1DDS4-ZKafo3ZLYW9EIgM6rFria"
+        "img": "https://drive.google.com/uc?id=1FT0zC1DDS4-ZKafo3ZLYW9EIgM6rFria",
+        "inStock": true
     },
     {
         "id": 32,
         "name": "Rose Flower (Dutch)",
         "price": 300,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1FD-BEQ6KXJUdUPx9AOc3vSJ6xqLDFBrK"
+        "img": "https://drive.google.com/uc?id=1FD-BEQ6KXJUdUPx9AOc3vSJ6xqLDFBrK",
+        "inStock": true
     },
     {
         "id": 33,
         "name": "Salvia Flower (Orange)",
         "price": 50,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1DperQZFIEjN1ThPYfsJoHxRhiyIkhubG"
+        "img": "https://drive.google.com/uc?id=1DperQZFIEjN1ThPYfsJoHxRhiyIkhubG",
+        "inStock": true
     },
     {
         "id": 34,
         "name": "Salvia Flower (Dark Purple)",
         "price": 50,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1DgSkmYf39duEYNLux_xxHhl0vMUV1oT-"
+        "img": "https://drive.google.com/uc?id=1DgSkmYf39duEYNLux_xxHhl0vMUV1oT-",
+        "inStock": true
     },
     {
         "id": 35,
         "name": "Salvia Flower (Light Purple)",
         "price": 50,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1DcLo5l5IGPFt0l60aW6TmpkZBDk3yVZY"
+        "img": "https://drive.google.com/uc?id=1DcLo5l5IGPFt0l60aW6TmpkZBDk3yVZY",
+        "inStock": true
     },
     {
         "id": 36,
         "name": "Marigold Flower",
         "price": 40,
         "type": "flower",
-        "img": "https://drive.google.com/uc?id=1E3E8xkfDEdA-iCA32NulzIZivZv35OAm"
+        "img": "https://drive.google.com/uc?id=1E3E8xkfDEdA-iCA32NulzIZivZv35OAm",
+        "inStock": true
     },
     {
         "id": 37,
         "name": "Spinach Plant (in cup)",
         "price": 10,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1ClKepnzZX3lF6bNNNk-_Dzo55X2Rpu5_"
+        "img": "https://drive.google.com/uc?id=1ClKepnzZX3lF6bNNNk-_Dzo55X2Rpu5_",
+        "inStock": true
     },
     {
         "id": 38,
         "name": "Spinach Plant (no cup)",
         "price": 3,
         "type": "vegetable",
-        "img": "https://drive.google.com/uc?id=1fZkb8kTQc02XfQ2d2hNNVK_TL5KYIG3t"
+        "img": "https://drive.google.com/uc?id=1fZkb8kTQc02XfQ2d2hNNVK_TL5KYIG3t",
+        "inStock": true
     }
 
 ]
