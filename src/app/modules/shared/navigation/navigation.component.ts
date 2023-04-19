@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faSearch, faPhone, faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,9 +13,14 @@ export class NavigationComponent implements OnInit {
   faCartShopping = faCartShopping;
   faBars = faBars;
 
+  @Output() toggleSideNav = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onToggleSideNav(){
+    this.toggleSideNav.emit()
+  }
 }

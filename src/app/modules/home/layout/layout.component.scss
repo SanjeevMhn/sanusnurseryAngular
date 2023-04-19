@@ -1,0 +1,13 @@
+@import "/src/vars";
+
+.menu-list {
+    .menu-list-link {
+        border-radius: 100vh;
+        margin-bottom: 5px;
+
+        &.active {
+            background-color: $theme;
+            color: #fff;
+        }
+    }
+}

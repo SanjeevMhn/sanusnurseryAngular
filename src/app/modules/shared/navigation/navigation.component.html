@@ -1,14 +1,16 @@
-<nav class="contact-us bg-primary text-white hidden md:block">
-    <div class="inner-container flex justify-end py-2">
-        <div class="contact-data">
-            <span class="label-text pr-3">
+<nav class="contact-us bg-primary text-white block">
+    <div class="inner-container flex md:justify-end py-2">
+        <div class="contact-data flex flex-col md:flex-row">
+            <div class="label-text pr-3">
                 Call Us
-            </span>
-            <span class="contact">
-                <fa-icon [icon]="faPhone"></fa-icon>
-                <span class="phone-num pl-2">+9779851243855 ,</span>
-                <span class="phone-num pl-2">+9779841218573</span>
-            </span>
+            </div>
+            <div class="contact">
+                <span class="icon-container">
+                    <fa-icon [icon]="faPhone"></fa-icon>
+                </span>
+                <a href="tel:+9779851243855" class="phone-num px-2">+9779851243855, </a>
+                <a href="tel:+9779841218573" class="phone-num">+9779841218573</a>
+            </div>
         </div>
     </div>
 
@@ -29,7 +31,7 @@
                 <a href="#" class="nav-link flex px-3">About</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link flex px-3">Contact</a>
+                <a routerLink="/home/contact" routerLinkActive="active" class="nav-link flex px-3">Contact</a>
             </li>
         </ul>
         <ul class="user-actions-list hidden md:flex items-center">
@@ -48,7 +50,7 @@
                 </button>
             </div>
         </ul>
-        <button type="button" class="icon-container md:hidden">
+        <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
             <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                 <fa-icon [icon]="faBars" class="flex items-center text-lg"></fa-icon>
             </span>

@@ -1,8 +1,34 @@
-<div class="wrapper h-auto relative">
-    <!-- <div class="offscreen-sidenav p-[15px] absolute top-0 right-0 bottom-0 bg-[#e1e1e1] shadow-2xl w-[75vw] z-[100]">
+<div class="wrapper h-auto" [ngClass]="showSideNav ? 'fixed' : 'relative'">
+    <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[130] justify-end"
+        [ngClass]="showSideNav ? 'flex' : 'hidden'">
+        <nav class="offscreen-sidenav-container w-full h-full bg-[#e1e1e1] p-[15px]">
+            <div class="top-content flex justify-between">
+                <button class="circle-button" (click)="toggleSideNav()" type="button">
+                    <fa-icon [icon]="faClose"></fa-icon>
+                </button>
+                <button class="circle-outline-button" (click)="toggleSideNav()" type="button">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </button>
+            </div>
+            <ul class="menu-list py-[45px]">
+                <li class="menu-list-item">
+                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Home</a>
+                </li>
+                <li class="menu-list-item">
+                    <a routerLink="/home/products" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Products</a>
+                </li>
+                <li class="menu-list-item">
+                    <a routerLink="/home/about" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">About</a>
+                </li>
+                <li class="menu-list-item">
+                    <a routerLink="/home/contact" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Contact</a>
+                </li>
+                
+            </ul>
 
-    </div> -->
-    <app-navigation></app-navigation>
+        </nav>
+    </div>
+    <app-navigation (toggleSideNav)="toggleSideNav()"></app-navigation>
     <main class="main-content h-auto">
         <router-outlet></router-outlet>
     </main>
