@@ -3,9 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, take, map, filter } from 'rxjs';
 import { Product } from '../interface/product';
 
+const baseUrl = './assets/json/plants.json';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
   constructor(private http: HttpClient) {
@@ -13,23 +16,23 @@ export class ProductService {
   }
 
   getAllPlants(): Observable<Product[]> {
-    return this.http.get<Product[]>('/assets/json/plants.json');
+    return this.http.get<Product[]>(baseUrl);
   }
 
   getPlants(limit: number): Observable<Product[]> {
-    return this.http.get<Product[]>('/assets/json/plants.json').pipe(
+    return this.http.get<Product[]>(baseUrl).pipe(
       map(x => x.slice(0,limit))
     );
   }
 
   getPlantFromId(id: number): Observable<Product[]>{
-    return this.http.get<Product[]>('/assets/json/plants.json').pipe(
+    return this.http.get<Product[]>(baseUrl).pipe(
       map(x => x.filter(x => x.id === id))
     )
   }
 
   getPlantFromType(type: string, id?: number): Observable<Product[]>{
-    return this.http.get<Product[]>('/assets/json/plants.json').pipe(
+    return this.http.get<Product[]>(baseUrl).pipe(
       map(x => x.filter(x => x.type === type)),
       map(x => x.filter(x => x.id !== id))
     )
