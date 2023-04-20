@@ -26,6 +26,7 @@ export class ProductdetailComponent implements OnInit {
   getRelatedProductsSubscription?: Subscription;
 
   selectedProductImage = '';
+  inStock?:boolean;
 
   @ViewChild('scrollContainer',{static: false}) scrollContainer?: ElementRef;
 
@@ -42,6 +43,7 @@ export class ProductdetailComponent implements OnInit {
       next: (data) => {
         this.productDetail = data[0];
         this.selectedProductImage = this.productDetail.img;
+        this.inStock = this.productDetail.inStock;
         this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
       },
       error: (err) => {

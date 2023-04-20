@@ -1,4 +1,4 @@
-<div class="wrapper h-auto" [ngClass]="showSideNav ? 'fixed' : 'relative'">
+<div class="wrapper h-auto w-full" [ngClass]="showSideNav || showSearch ? 'fixed' : 'relative'">
     <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[130] justify-end"
         [ngClass]="showSideNav ? 'flex' : 'hidden'">
         <nav class="offscreen-sidenav-container w-full h-full bg-[#e1e1e1] p-[15px]">
@@ -6,13 +6,13 @@
                 <button class="circle-button" (click)="toggleSideNav()" type="button">
                     <fa-icon [icon]="faClose"></fa-icon>
                 </button>
-                <button class="circle-outline-button" (click)="toggleSideNav()" type="button">
+                <!-- <button class="circle-outline-button" (click)="toggleSideNav()" type="button">
                     <fa-icon [icon]="faSearch"></fa-icon>
-                </button>
+                </button> -->
             </div>
             <ul class="menu-list py-[45px]">
                 <li class="menu-list-item">
-                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Home</a>
+                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]" [ngClass]="defaultLinkActive ? 'active' : ''" (click)="toggleSideNav()">Home</a>
                 </li>
                 <li class="menu-list-item">
                     <a routerLink="/home/products" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Products</a>
@@ -28,7 +28,31 @@
 
         </nav>
     </div>
-    <app-navigation (toggleSideNav)="toggleSideNav()"></app-navigation>
+    <div class="search-modal-container absolute h-screen w-full top-0 right-0 bottom-0 bg-[#0909097a] z-[130] p-[20px] items-center md:justify-center" [ngClass]="showSearch ? 'flex' : 'hidden' ">
+        <div class="search-modal w-full h-[65%] md:max-w-[740px] md:max-h-[625px] md:w-[75%] rounded-[10px] bg-[#efefef] p-[15px] flex flex-col relative">
+            <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]" (click)="toggleSearch()" type="button">
+                <fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
+            </button>
+            <form [formGroup]="searchForm" class="seach-plants py-[15px]">
+                <div class="form-group flex">
+                    <label for="search-text" class="search-text pr-[12px] flex items-center">
+                        <fa-icon [icon]="faSearch"></fa-icon> 
+                    </label>
+                    <input type="text" name="search-text" id="search-text" class="form-control flex-grow p-[5px]" placeholder="Search Plants" formControlName="searchText" (input)="search($event)">
+                </div>
+            </form>
+            <div class="search-result overflow-y-auto">
+                <ul class="search-result-list">
+                    <li class="search-result-item" *ngFor="let item of searchResults">
+                        <a [routerLink]="['/home/product/', item.id]" class="search-result-link flex p-[5px_10px]" (click)="toggleSearch()">
+                            {{item.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()"></app-navigation>
     <main class="main-content h-auto">
         <router-outlet></router-outlet>
     </main>

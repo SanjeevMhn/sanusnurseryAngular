@@ -38,6 +38,20 @@ export class ProductService {
     )
   }
 
+  searchPlants(searchText: string): Product[]{
+
+    let results:Product[] = [];
+    this.http.get<Product[]>(baseUrl).forEach((obj) => {
+      obj.map((obj)=>{
+        if(obj.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1){
+          results.push(obj)
+        }
+      })
+    })
+
+    return results;
+  }
+
 
 
 }

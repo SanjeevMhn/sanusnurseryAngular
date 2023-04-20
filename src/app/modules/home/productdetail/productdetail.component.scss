@@ -1,0 +1,51 @@
+@import '/src/vars';
+
+
+.product-detail-card {
+    position: relative;
+
+    .card-ribbion {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 200px;
+        width: 200px;
+        overflow: hidden;
+
+        .label-text {
+            display: block;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            background-color: $theme;
+            padding: 5px 15px;
+            color: #fff;
+            top: 40px;
+            right: 42px;
+            transform: rotate(-45deg);
+            z-index: 10;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 15px;
+            width: 15px;
+            background-color: $theme;
+            filter: contrast(300%);
+
+        }
+
+        &:before {
+            right: 61px;
+            top: 0;
+        }
+
+        &:after {
+            left: 0;
+            bottom: 61px;
+        }
+    }
+}

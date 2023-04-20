@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { debounceTime, filter } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ProductService } from 'src/app/services/product.service';
+import { Subject } from 'rxjs';
+import { Product } from 'src/app/interface/product';
 
 @Component({
   selector: 'app-layout',
@@ -9,16 +15,61 @@ import { faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 export class LayoutComponent implements OnInit {
 
   showSideNav: boolean = false;
+  showSearch: boolean = false;
   faClose = faClose;
   faSearch = faSearch;
-  defaultLinkActive:boolean = true;
+  defaultLinkActive: boolean = false;
 
-  constructor() { }
+  searchForm!: FormGroup;
+  private searchSubject = new Subject<string>();
+  searchResults?: Product[];
 
-  ngOnInit(): void {}
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private product: ProductService) { }
 
-  toggleSideNav(){
+  ngOnInit(): void {
+
+    this.searchSubject.pipe(
+      debounceTime(800)
+    ).subscribe((searchText: string) => {
+      this.searchResults = this.product.searchPlants(searchText);
+      console.log(this.searchResults);
+    })
+
+    this.searchForm = this.fb.group({
+      searchText: ['']
+    })
+    this.onRouteChanges();
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.onRouteChanges();
+    })
+  }
+
+  onRouteChanges() {
+    const currentUrl = this.router.url;
+    if (currentUrl !== '/home') {
+      this.defaultLinkActive = false;
+    } else {
+      this.defaultLinkActive = true;
+    }
+  }
+
+  search(event: any) {
+    if (event.target.value !== '' || event.target.value === null) {
+      this.searchSubject.next(event.target.value)
+      console.log(event.target.value);
+    }
+  }
+
+  toggleSideNav() {
     this.showSideNav = !this.showSideNav;
+  }
+
+  toggleSearch() {
+    this.showSearch = !this.showSearch;
+    this.searchForm.controls['searchText'].reset('');
+    this.searchResults = [];
   }
 
 }

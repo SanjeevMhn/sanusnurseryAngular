@@ -34,27 +34,34 @@
                 <a routerLink="/home/contact" routerLinkActive="active" class="nav-link flex px-3">Contact</a>
             </li>
         </ul>
-        <ul class="user-actions-list hidden md:flex items-center">
+        <ul class="user-actions-list flex items-center">
             <li class="user-actions-item px-2">
-                <button class="search-container relative">
+                <button class="search-container relative" (click)="onToggleSearch()">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faSearch" class=""></fa-icon>
                     </span>
                 </button>
             </li>
-            <div class="user-actions-item px-2">
+            <li class="user-actions-item px-2">
                 <button class="cart-container relative">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faCartShopping" class=""></fa-icon>
                     </span>
                 </button>
-            </div>
+            </li>
+            <li class="user-actions-item px-2 md:hidden">
+                <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
+                    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
+                        <fa-icon [icon]="faBars" class="flex items-center text-lg"></fa-icon>
+                    </span>
+                </button>
+            </li>
         </ul>
-        <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
+        <!-- <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
             <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                 <fa-icon [icon]="faBars" class="flex items-center text-lg"></fa-icon>
             </span>
-        </button>
+        </button> -->
 
     </div>
 </nav>

@@ -14,6 +14,7 @@ export class NavigationComponent implements OnInit {
   faBars = faBars;
 
   @Output() toggleSideNav = new EventEmitter();
+  @Output() toggleSearch = new EventEmitter();
 
   constructor() { }
 
@@ -22,5 +23,9 @@ export class NavigationComponent implements OnInit {
 
   onToggleSideNav(){
     this.toggleSideNav.emit()
+  }
+
+  onToggleSearch(){
+    this.toggleSearch.emit()
   }
 }
