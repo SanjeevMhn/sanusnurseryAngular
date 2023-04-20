@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
 import { faPlus, faMinus, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-productdetail',
@@ -21,6 +22,11 @@ export class ProductdetailComponent implements OnInit {
   faChevronLeft = faChevronLeft;
   faChevronRight = faChevronRight;
 
+  getPlantFromIdSubscription?: Subscription;
+  getRelatedProductsSubscription?: Subscription;
+
+  selectedProductImage = '';
+
   @ViewChild('scrollContainer',{static: false}) scrollContainer?: ElementRef;
 
   constructor(private route: ActivatedRoute, private product: ProductService, private renderer: Renderer2, private router: Router) { }
@@ -31,9 +37,11 @@ export class ProductdetailComponent implements OnInit {
   }
 
   getProduct(id: number):void {
-    this.product.getPlantFromId(id).subscribe({
+    this.getPlantFromIdSubscription = this.product.getPlantFromId(id)
+    .subscribe({
       next: (data) => {
-        this.productDetail = data[0]
+        this.productDetail = data[0];
+        this.selectedProductImage = this.productDetail.img;
         this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
       },
       error: (err) => {
@@ -43,7 +51,7 @@ export class ProductdetailComponent implements OnInit {
   }
 
   getRelatedProducts(type: string, id:number):void{
-    this.product.getPlantFromType(type,id).subscribe({
+    this.getRelatedProductsSubscription = this.product.getPlantFromType(type,id).subscribe({
       next: (data) => {
         this.relatedProducts = data;
         console.log(this.relatedProducts);
@@ -54,6 +62,12 @@ export class ProductdetailComponent implements OnInit {
       }
     })
   }
+
+  ngOnDestroy(): void{
+    this.getPlantFromIdSubscription?.unsubscribe();
+    this.getRelatedProductsSubscription?.unsubscribe();
+  }
+
 
 
   increaseQuantity():void{
@@ -77,6 +91,7 @@ export class ProductdetailComponent implements OnInit {
   }
 
   reload():void{
+    this.selectedProductImage = '';
     const getId = Number(this.route.snapshot.paramMap.get('id'));
     this.getProduct(getId);
   }
