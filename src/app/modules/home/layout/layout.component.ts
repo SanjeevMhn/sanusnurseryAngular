@@ -32,7 +32,7 @@ export class LayoutComponent implements OnInit {
       debounceTime(800)
     ).subscribe((searchText: string) => {
       this.searchResults = this.product.searchPlants(searchText);
-      console.log(this.searchResults);
+      // console.log(this.searchResults);
     })
 
     this.searchForm = this.fb.group({
@@ -58,7 +58,7 @@ export class LayoutComponent implements OnInit {
   search(event: any) {
     if (event.target.value !== '' || event.target.value === null) {
       this.searchSubject.next(event.target.value)
-      console.log(event.target.value);
+      // console.log(event.target.value);
     }
   }
 

@@ -26,76 +26,80 @@ export class ProductdetailComponent implements OnInit {
   getRelatedProductsSubscription?: Subscription;
 
   selectedProductImage = '';
-  inStock?:boolean;
+  inStock?: boolean;
 
-  @ViewChild('scrollContainer',{static: false}) scrollContainer?: ElementRef;
+  @ViewChild('scrollContainer', { static: false }) scrollContainer?: ElementRef;
 
-  constructor(private route: ActivatedRoute, private product: ProductService, private renderer: Renderer2, private router: Router) { }
+  constructor(private route: ActivatedRoute, private product: ProductService, private renderer: Renderer2, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.getProduct(this.productId);
   }
 
-  getProduct(id: number):void {
+  getProduct(id: number): void {
     this.getPlantFromIdSubscription = this.product.getPlantFromId(id)
-    .subscribe({
-      next: (data) => {
-        this.productDetail = data[0];
-        this.selectedProductImage = this.productDetail.img;
-        this.inStock = this.productDetail.inStock;
-        this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
-      },
-      error: (err) => {
-        console.error(err)
-      }
-    })
+      .subscribe({
+        next: (data) => {
+          this.productDetail = data[0];
+          this.selectedProductImage = this.productDetail.img;
+          this.inStock = this.productDetail.inStock;
+          this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
   }
 
-  getRelatedProducts(type: string, id:number):void{
-    this.getRelatedProductsSubscription = this.product.getPlantFromType(type,id).subscribe({
+  getRelatedProducts(type: string, id: number): void {
+    this.getRelatedProductsSubscription = this.product.getPlantFromType(type, id).subscribe({
       next: (data) => {
         this.relatedProducts = data;
-        console.log(this.relatedProducts);
+        // console.log(this.relatedProducts);
       },
       error: (err) => {
         console.error(err);
-        
+
       }
     })
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.getPlantFromIdSubscription?.unsubscribe();
     this.getRelatedProductsSubscription?.unsubscribe();
   }
 
 
 
-  increaseQuantity():void{
+  increaseQuantity(): void {
     this.productQuantity++;
   }
 
-  decreaseQuantity():void{
-    if(this.productQuantity !== 0){
+  decreaseQuantity(): void {
+    if (this.productQuantity !== 0) {
       this.productQuantity--;
-    }else{
+    } else {
       this.productQuantity = 0;
     }
   }
 
-  scrollLeft():void{
-    this.renderer.setProperty(this.scrollContainer?.nativeElement,'scrollLeft',this.scrollContainer?.nativeElement.scrollLeft - 290);
+  scrollLeft(): void {
+    this.renderer.setProperty(this.scrollContainer?.nativeElement, 'scrollLeft', this.scrollContainer?.nativeElement.scrollLeft - 290);
   }
 
-  scrollRight():void{
-    this.renderer.setProperty(this.scrollContainer?.nativeElement,'scrollLeft',this.scrollContainer?.nativeElement.scrollLeft + 290);
+  scrollRight(): void {
+    this.renderer.setProperty(this.scrollContainer?.nativeElement, 'scrollLeft', this.scrollContainer?.nativeElement.scrollLeft + 290);
   }
 
-  reload():void{
+  reload(): void {
     this.selectedProductImage = '';
-    const getId = Number(this.route.snapshot.paramMap.get('id'));
-    this.getProduct(getId);
+    // const getId = Number(this.route.snapshot.paramMap.get('id'));
+    // this.getProduct(getId);
   }
 
 }

@@ -63,7 +63,7 @@ export class ProductsComponent implements OnInit {
         next: (data) => {
           this.products = data;
           this.totalPages = Math.ceil(this.products.length / this.pageSize);
-          console.log(this.products);
+          // console.log(this.products);
         },
         error: (err) => {
           console.error(err);
@@ -74,7 +74,7 @@ export class ProductsComponent implements OnInit {
         next: (data) => {
           this.products = data;
           this.totalPages = Math.ceil(this.products.length / this.pageSize);
-          console.log(this.products);
+          // console.log(this.products);
         },
         error: (err) => {
           console.error(err);

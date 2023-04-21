@@ -21,28 +21,28 @@ export class ProductService {
 
   getPlants(limit: number): Observable<Product[]> {
     return this.http.get<Product[]>(baseUrl).pipe(
-      map(x => x.slice(0,limit))
+      map(x => x.slice(0, limit))
     );
   }
 
-  getPlantFromId(id: number): Observable<Product[]>{
+  getPlantFromId(id: number): Observable<Product[]> {
     return this.http.get<Product[]>(baseUrl).pipe(
       map(x => x.filter(x => x.id === id))
     )
   }
 
-  getPlantFromType(type: string, id?: number): Observable<Product[]>{
+  getPlantFromType(type: string, id?: number): Observable<Product[]> {
     return this.http.get<Product[]>(baseUrl).pipe(
       map(x => x.filter(x => x.type === type)),
       map(x => x.filter(x => x.id !== id))
     )
   }
 
-  searchPlants(searchText: string): Product[]{
+  searchPlants(searchText: string): Product[] {
 
-    let results:Product[] = [];
+    let results: Product[] = [];
     this.http.get<Product[]>(baseUrl).forEach((obj) => {
-      obj.map((obj)=>{
+      obj.map((obj) => {
         if(obj.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1){
           results.push(obj)
         }

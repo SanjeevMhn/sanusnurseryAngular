@@ -10,6 +10,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes,{
     scrollPositionRestoration: 'top',
     anchorScrolling: 'enabled',
+    onSameUrlNavigation: 'reload'
   })],
   exports: [RouterModule]
 })

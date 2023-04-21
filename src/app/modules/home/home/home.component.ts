@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     this.product.getPlants(this.limit).subscribe({
       next: (data) => {
         this.plants = data
-        console.log(this.plants)
+        // console.log(this.plants)
       },
       error: (err) => {
         console.error(err)
