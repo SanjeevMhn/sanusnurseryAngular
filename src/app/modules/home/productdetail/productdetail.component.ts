@@ -4,6 +4,8 @@ import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
 import { faPlus, faMinus, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/interface/cart-item';
 
 @Component({
   selector: 'app-productdetail',
@@ -26,11 +28,15 @@ export class ProductdetailComponent implements OnInit {
   getRelatedProductsSubscription?: Subscription;
 
   selectedProductImage = '';
-  inStock?: boolean;
+  inStock?: boolean = false;
 
   @ViewChild('scrollContainer', { static: false }) scrollContainer?: ElementRef;
 
-  constructor(private route: ActivatedRoute, private product: ProductService, private renderer: Renderer2, private router: Router) {
+  constructor(private route: ActivatedRoute, 
+              private product: ProductService, 
+              private renderer: Renderer2, 
+              private router: Router,
+              private cart: CartService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
     }
@@ -100,6 +106,14 @@ export class ProductdetailComponent implements OnInit {
     this.selectedProductImage = '';
     // const getId = Number(this.route.snapshot.paramMap.get('id'));
     // this.getProduct(getId);
+  }
+
+  addToCart(): void{
+    let cartItem: CartItem = {
+      ...this.productDetail!,
+      quantity: this.productQuantity
+    };
+    this.cart.addToCart(cartItem);
   }
 
 }

@@ -24,7 +24,10 @@ export class LayoutComponent implements OnInit {
   private searchSubject = new Subject<string>();
   searchResults?: Product[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private product: ProductService) { }
+  constructor(private route: ActivatedRoute, 
+              private router: Router, 
+              private fb: FormBuilder, 
+              private product: ProductService) { }
 
   ngOnInit(): void {
 

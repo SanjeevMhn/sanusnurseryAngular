@@ -132,7 +132,7 @@
         "id": 17,
         "name": "Dragon Fruit Plant",
         "price": 250,
-        "type": "Fruit",
+        "type": "fruit",
         "img": "https://drive.google.com/uc?id=1F2XM-m0sNzc3OhY9eNGoh8GEZx-R5FIi",
         "inStock": true
     },

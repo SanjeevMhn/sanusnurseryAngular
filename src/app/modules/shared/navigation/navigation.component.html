@@ -43,11 +43,12 @@
                 </button>
             </li>
             <li class="user-actions-item px-2">
-                <button class="cart-container relative">
+                <a routerLink="/home/cart" class="cart-container relative">
+                    <span class="cart-item-num absolute bg-primary h-[18px] w-[18px] rounded-full flex items-center justify-center top-[calc(calc(12px/2)*-1)] right-[calc(12px*-1)] text-white text-[10px] leading-3 p-[5px]">{{cartList.length}}</span>
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faCartShopping" class=""></fa-icon>
                     </span>
-                </button>
+                </a>
             </li>
             <li class="user-actions-item px-2 md:hidden">
                 <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">

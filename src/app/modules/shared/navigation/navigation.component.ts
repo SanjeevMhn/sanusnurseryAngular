@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faSearch, faPhone, faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Product } from 'src/app/interface/product';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,13 +14,15 @@ export class NavigationComponent implements OnInit {
   faPhone = faPhone;
   faCartShopping = faCartShopping;
   faBars = faBars;
+  cartList: Product[] = [];
 
   @Output() toggleSideNav = new EventEmitter();
   @Output() toggleSearch = new EventEmitter();
 
-  constructor() { }
+  constructor(private cart: CartService) { }
 
   ngOnInit(): void {
+    this.getCartData();
   }
 
   onToggleSideNav(){
@@ -27,5 +31,16 @@ export class NavigationComponent implements OnInit {
 
   onToggleSearch(){
     this.toggleSearch.emit()
+  }
+
+  getCartData():void{
+    this.cart.getCartDetails().subscribe({
+      next: (data) => {
+        this.cartList = data
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
   }
 }
