@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    <app-contact-header class="homepage-contact-us" *ngIf="showContactUs"></app-contact-header>
     <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()"></app-navigation>
     <main class="main-content h-auto">
         <router-outlet></router-outlet>

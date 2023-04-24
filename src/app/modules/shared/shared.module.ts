@@ -6,13 +6,15 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductcardComponent } from './productcard/productcard.component';
+import { ContactHeaderComponent } from './contact-header/contact-header.component';
 
 
 @NgModule({
   declarations: [
     NavigationComponent,
     FooterComponent,
-    ProductcardComponent
+    ProductcardComponent,
+    ContactHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { ProductcardComponent } from './productcard/productcard.component';
     FooterComponent,
     FontAwesomeModule,
     ProductcardComponent,
+    ContactHeaderComponent,
   ]
 })
 export class SharedModule { }

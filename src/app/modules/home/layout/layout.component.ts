@@ -19,6 +19,7 @@ export class LayoutComponent implements OnInit {
   faClose = faClose;
   faSearch = faSearch;
   defaultLinkActive: boolean = false;
+  public showContactUs: boolean = true;
 
   searchForm!: FormGroup;
   private searchSubject = new Subject<string>();
@@ -53,8 +54,10 @@ export class LayoutComponent implements OnInit {
     const currentUrl = this.router.url;
     if (currentUrl !== '/home') {
       this.defaultLinkActive = false;
+      this.showContactUs = false;
     } else {
       this.defaultLinkActive = true;
+      this.showContactUs = true;
     }
   }
 
