@@ -1,0 +1,102 @@
+@import "/src/vars";
+
+.cart-items-table {
+    width: 100%;
+    border-collapse: seperate;
+
+    thead {
+        tr {
+            background-color: #efefef !important;
+        }
+    }
+
+    tr {
+        .close-btn-sp{
+            display: none;
+        }
+        &:nth-child(even) {
+            background-color: #efefef;
+        }
+
+        &:nth-child(odd) {
+            background-color: #bdbdbd;
+        }
+    }
+
+    th,
+    td {
+        padding: 5px 12px;
+
+        &[data-name="price"],
+        &[data-name="total"] {
+            text-align: right;
+        }
+
+        &[data-name="name"] {
+            text-align: left;
+        }
+
+        &[data-name="quantity"],
+        &[data-name="action"] {
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cart-items-table {
+        thead {
+            display: none;
+        }
+
+        tbody {
+            tr {
+                position: relative;
+                .close-btn-sp{
+                    position: absolute;
+                    top: 6px;
+                    right: 6px;
+                    display: flex;
+                }
+                td {
+                    &[data-name="name"] {
+                        padding-top: 20px;
+                    }
+
+                    &:nth-last-child(2) {
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+
+            td {
+                display: block;
+                text-align: center !important;
+
+                &:not([data-name="name"]) {
+                    &:before {
+                        content: attr(data-name) ": ";
+                        text-transform: capitalize;
+                        font-weight: 500;
+                        padding-right: 10px;
+                    }
+                }
+
+                &[data-name="action"] {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px){
+    .cart-details-container{
+        .header-text{
+            padding: 10px!important;
+            // background-color: $theme;
+            background-color: #0F5F2F;
+            color: #fff;
+        }
+    }
+}

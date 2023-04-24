@@ -90,7 +90,7 @@ export class ProductdetailComponent implements OnInit {
     if (this.productQuantity !== 0) {
       this.productQuantity--;
     } else {
-      this.productQuantity = 0;
+      this.productQuantity = 1;
     }
   }
 
@@ -111,7 +111,8 @@ export class ProductdetailComponent implements OnInit {
   addToCart(): void{
     let cartItem: CartItem = {
       ...this.productDetail!,
-      quantity: this.productQuantity
+      quantity: this.productQuantity,
+      total: this.productDetail?.price! * this.productQuantity,
     };
     this.cart.addToCart(cartItem);
   }

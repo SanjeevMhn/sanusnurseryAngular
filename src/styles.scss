@@ -64,6 +64,10 @@ section {
     // min-height: calc(100vh - 72px);
     height: calc(100vh - 72px);
     // position: relative;
+
+    &.only-section{
+        height: calc(100vh - 112px);
+    }
 }
 
 .dynamic-section {
@@ -243,4 +247,8 @@ section {
             }
         }
     }
+}
+
+#checkdv_1{
+    display: none;
 }

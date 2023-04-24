@@ -1,4 +1,4 @@
-<section class="cart-section dynamic-section">
+<section class="cart-section static-section only-section">
     <div class="inner-container">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -9,10 +9,10 @@
             </li>
         </ul>
 
-        <article class="cart-cart h-auto flex flex-col md:flex-row pb-[30px]">
-            <article class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow">
-                <h2 class="text-lg md:text-2xl pb-[15px]">Shopping Cart</h2>
-                <ul class="cart-items-list">
+        <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:flex-row pb-[30px]">
+            <article class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow overflow-y-auto">
+                <h2 class="text-lg md:text-2xl pb-[15px] sticky top-0 bg-[#e1e1e1] z-[10] header-text">Shopping Cart</h2>
+                <!-- <ul class="cart-items-list">
                     <li class="cart-list-item" *ngFor="let item of cartItems">
                         <a class="cart-list-link p-[15px] relative block">
                             <div
@@ -39,7 +39,7 @@
                                             <div class="quantity-setting flex items-center">
                                                 <button
                                                     class="leading-[0] decrease-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                                    type="button">
+                                                    type="button" (click)="decreaseCartItemQuantity(item)">
                                                     <fa-icon [icon]="faMinus"
                                                         class="flex items-center justify-center"></fa-icon>
                                                 </button>
@@ -49,7 +49,7 @@
                                                 </span>
                                                 <button
                                                     class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                                    type="button">
+                                                    type="button" (click)="increaseCartItemQuantity(item)">
                                                     <fa-icon [icon]="faPlus"
                                                         class="flex items-center justify-center"></fa-icon>
                                                 </button>
@@ -61,14 +61,82 @@
                             </div>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
+
+                <table class="cart-items-table">
+                    <thead>
+                        <tr>
+                            <th data-name="name">Product</th>
+                            <th data-name="quantity">Quantity</th>
+                            <th data-name="price">Price</th>
+                            <th data-name="total">Total</th>
+                            <th data-name="action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems">
+                            <button
+                                class="close-btn-sp text-white w-[25px] h-[25px] bg-primary rounded-full inline-flex items-center justify-center"
+                                (click)="removeCartItem(item)">
+                                <fa-icon [icon]="faClose" class="flex items-center justify-center"></fa-icon>
+                            </button>
+                            <td data-name="name">
+                                <div class="inline-flex flex-col items-center lg:flex-row w-full">
+
+                                    <div class="img-container max-w-[175px] xl:max-w-[120px] mx-auto lg:mx-0">
+                                        <img src="{{item.img}}" alt="" class="w-full h-auto object-contain">
+                                    </div>
+                                    <div class="product-info xl:pl-[10px]">
+                                        <div class="name font-[500]">{{item.name}}</div>
+                                        <div class="type text-primary text-[14px]">{{item.type}}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-name="quantity">
+                                <div class="quantity-setting inline-flex items-center">
+                                    <button
+                                        class="leading-[0] decrease-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
+                                        type="button" (click)="decreaseCartItemQuantity(item)">
+                                        <fa-icon [icon]="faMinus" class="flex items-center justify-center"></fa-icon>
+                                    </button>
+                                    <span
+                                        class="product-quantity-data text-lg px-5 w-[35px] flex justify-center items-center">
+                                        {{item.quantity}}
+                                    </span>
+                                    <button
+                                        class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
+                                        type="button" (click)="increaseCartItemQuantity(item)">
+                                        <fa-icon [icon]="faPlus" class="flex items-center justify-center"></fa-icon>
+                                    </button>
+                                </div>
+                            </td>
+                            <td data-name="price">Rs.&nbsp;{{item.price}}</td>
+                            <td data-name="total">Rs.&nbsp;{{item.total}}</td>
+                            <td data-name="action">
+                                <button
+                                    class="close-btn text-white w-[25px] h-[25px] bg-primary rounded-full inline-flex items-center justify-center"
+                                    (click)="removeCartItem(item)">
+                                    <fa-icon [icon]="faClose" class="flex items-center justify-center"></fa-icon>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </article>
             <aside
                 class="total-amount-receipe pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
-                <h2 class="text-lg md:text-2xl pb-[15px]">Total</h2>
-                <div class="receipt-list p-[25px] rounded-[10px] bg-[#efefef]">
-
+                <h2 class="text-lg md:text-2xl pb-[15px] header-text">Cart Summary</h2>
+                <div class="receipt-list-container  p-[25px] rounded-[10px] bg-[#efefef]">
+                <ul class="receipt-list flex w-fill flex-col pb-[45px]">
+                    <li class="receipt-list-item flex">
+                        <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>
+                        <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
+                    </li>
+                </ul>
+                <button type="button" class="mx-auto flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</button>
                 </div>
+
             </aside>
         </article>
     </div>
