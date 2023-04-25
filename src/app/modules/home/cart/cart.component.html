@@ -11,10 +11,12 @@
 
         <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:flex-row md:pb-[30px]">
             <article class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow overflow-y-auto">
-                <div class="title-container flex justify-between  pb-[15px] md:sticky md:top-0 bg-[#e1e1e1] z-[10] header-text">
+                <div
+                    class="title-container flex justify-between  pb-[15px] md:sticky md:top-0 bg-[#e1e1e1] z-[10] header-text">
                     <h2 class="text-lg md:text-2xl">Shopping Cart
                     </h2>
-                    <span class="items-counter text-lg">{{cartItems.length > 1 ? cartItems.length + " items" : cartItems.length === 0 ? cartItems.length + " items" : cartItems.length + " item" }}</span>
+                    <span class="items-counter text-lg">{{cartItems.length > 1 ? cartItems.length + " items" :
+                        cartItems.length === 0 ? cartItems.length + " items" : cartItems.length + " item" }}</span>
                 </div>
 
                 <!-- <ul class="cart-items-list">
@@ -136,8 +138,12 @@
                             <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
                         </li>
                     </ul>
-                    <button type="button"
-                        class="mx-auto flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</button>
+                    <div class="actions-container flex items-center justify-between">
+                        <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
+                        <a routerLink="/home/checkout" role="button"
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</a>
+                    </div>
+
                 </div>
             </article>
             <aside
@@ -150,8 +156,12 @@
                             <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
                         </li>
                     </ul>
-                    <button type="button"
-                        class="mx-auto flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</button>
+                    <div class="actions-container flex justify-between items-center">
+                        <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
+                        <a routerLink="/home/checkout" role="button"
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</a>
+                    </div>
+
                 </div>
 
             </aside>

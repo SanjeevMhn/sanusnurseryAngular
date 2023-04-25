@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { ProductsComponent } from './products/products.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 
 const routes: Routes = [
   { 
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'product/:id', component: ProductdetailComponent },
       { path: 'products/:type', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'cart', component: CartComponent }
+      { path: 'cart', component: CartComponent },
+      { path: 'checkout', component: CheckoutFormComponent }
     ]
   }
 ];
