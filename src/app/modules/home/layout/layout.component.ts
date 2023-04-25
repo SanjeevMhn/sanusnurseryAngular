@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { debounceTime, filter } from 'rxjs';
@@ -20,15 +20,28 @@ export class LayoutComponent implements OnInit {
   faSearch = faSearch;
   defaultLinkActive: boolean = false;
   public showContactUs: boolean = true;
+  showNavbar: boolean = true;
+  previousScrollPosition:number = window.pageYOffset;
+  navbarTop: boolean = false;
 
   searchForm!: FormGroup;
   private searchSubject = new Subject<string>();
   searchResults?: Product[];
 
-  constructor(private route: ActivatedRoute, 
-              private router: Router, 
-              private fb: FormBuilder, 
-              private product: ProductService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+    private product: ProductService) { }
+
+
+  @HostListener('window:scroll',['$event']) 
+    onWindowScroll(){
+      const currentPosition = window.pageYOffset;
+      this.navbarTop = currentPosition > 52;
+      this.showNavbar = currentPosition < this.previousScrollPosition || currentPosition < 72;
+      this.previousScrollPosition = currentPosition;
+    }
+
 
   ngOnInit(): void {
 

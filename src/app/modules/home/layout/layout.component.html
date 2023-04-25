@@ -1,5 +1,5 @@
 <div class="wrapper h-auto w-full" [ngClass]="showSideNav || showSearch ? 'fixed' : 'relative'">
-    <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[130] justify-end"
+    <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[530] justify-end"
         [ngClass]="showSideNav ? 'flex' : 'hidden'">
         <nav class="offscreen-sidenav-container w-full h-full bg-[#e1e1e1] p-[15px]">
             <div class="top-content flex justify-between">
@@ -53,8 +53,8 @@
         </div>
     </div>
     <app-contact-header class="homepage-contact-us" *ngIf="showContactUs"></app-contact-header>
-    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()"></app-navigation>
-    <main class="main-content h-auto">
+    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" *ngIf="showNavbar" class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'" [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
+    <main class="main-content h-auto pt-[72px]">
         <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>

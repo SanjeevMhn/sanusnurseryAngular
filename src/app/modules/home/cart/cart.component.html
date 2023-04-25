@@ -1,4 +1,4 @@
-<section class="cart-section static-section">
+<section class="cart-section dynamic-section">
     <div class="inner-container">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -11,7 +11,7 @@
 
         <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:flex-row md:pb-[30px]">
             <article class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow overflow-y-auto">
-                <div class="title-container flex justify-between  pb-[15px] sticky top-0 bg-[#e1e1e1] z-[10] header-text">
+                <div class="title-container flex justify-between  pb-[15px] md:sticky md:top-0 bg-[#e1e1e1] z-[10] header-text">
                     <h2 class="text-lg md:text-2xl">Shopping Cart
                     </h2>
                     <span class="items-counter text-lg">{{cartItems.length > 1 ? cartItems.length + " items" : cartItems.length === 0 ? cartItems.length + " items" : cartItems.length + " item" }}</span>
@@ -143,7 +143,7 @@
             <aside
                 class="total-amount-receipe hidden md:block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
                 <h2 class="text-lg md:text-2xl pb-[15px] header-text">Cart Summary</h2>
-                <div class="receipt-list-container  p-[25px] rounded-[10px] bg-[#efefef]">
+                <div class="receipt-list-container  p-[25px] rounded-[10px] bg-[#efefef] sticky top-0">
                     <ul class="receipt-list flex w-fill flex-col pb-[45px]">
                         <li class="receipt-list-item flex">
                             <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>

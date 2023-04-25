@@ -87,10 +87,8 @@ export class ProductdetailComponent implements OnInit {
   }
 
   decreaseQuantity(): void {
-    if (this.productQuantity !== 0) {
+    if (this.productQuantity > 1) {
       this.productQuantity--;
-    } else {
-      this.productQuantity = 1;
     }
   }
 
