@@ -90,6 +90,27 @@
     }
 }
 
+.checkout-form{
+    .header-text{
+        font-size: 18px;
+        padding-bottom: 10px;
+        font-weight: 500;
+    }
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+        label{
+            font-weight: 400;
+            font-size: 14.5px;
+        }
+        input{
+            padding: 5px;
+            font-size: 14.5px;
+        }
+    }
+}
+
 @media screen and (max-width: 640px){
     .cart-details-container{
         .header-text{

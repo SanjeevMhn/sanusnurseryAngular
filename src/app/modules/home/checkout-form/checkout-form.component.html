@@ -1,4 +1,4 @@
-<div class="checkoutform-section dynamic-section">
+<div class="checkoutform-section dynamic-section bg-[#e1e1e1]">
     <div class="inner-container">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -11,8 +11,11 @@
                 <a class="breadcrumb-link">Checkout</a>
             </li>
         </ul>
-        <article class="checkoutform-container flex justify-center">
-            <form class="checkoutform px-0 py-[12px] lg:w-[75%] lg:p-[25px] bg-[#e1e1e1] rounded-[10px]">
+        <article class="checkoutform-container flex">
+            <form class="checkoutform px-0 py-[12px] lg:w-[75%] lg:p-[25px] bg-[#efefef] rounded-[10px]">
+                <div class="form-header">
+                    <h2 class="text-lg md:text-2xl pb-[15px] header-text">Checkout Detail</h2>
+                </div>
                 <div class="form-body">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -38,6 +41,25 @@
                     </div>
                 </div>
             </form>
+            <aside
+                class="total-amount-receipe hidden md:block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
+                <!-- <h2 class="text-lg md:text-2xl pb-[15px] header-text">Cart Summary</h2> -->
+                <div class="receipt-list-container  p-[25px] rounded-[10px] bg-[#efefef] sticky top-0">
+                    <ul class="receipt-list flex w-fill flex-col pb-[45px]">
+                        <li class="receipt-list-item flex">
+                            <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>
+                            <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;500 </span>
+                        </li>
+                    </ul>
+                    <div class="actions-container flex justify-between items-center">
+                        <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
+                        <a routerLink="/home/checkout" role="button"
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</a>
+                    </div>
+
+                </div>
+
+            </aside>
         </article>
     </div>
 </div>
