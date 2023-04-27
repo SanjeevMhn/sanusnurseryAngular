@@ -37,6 +37,10 @@ export class CartService {
     return this.cartItems;
   }
 
+  clearCart(){
+    return this.cartItems.next([]);
+  }
+
   decreaseCartItemQuantity(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
     const index = currentCart.findIndex(cart => cart.id === item.id);

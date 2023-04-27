@@ -143,26 +143,25 @@
                             <h2 class="header-text">Checkout Details</h2>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="" placeholder="Your Name" required>
+                                <input type="text" name="name" id="name" class="" placeholder="Your Name" formControlName="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="tel" name="phone" id="phone" class="" placeholder="Your Phone" required>
+                                <input type="tel" name="phone" id="phone" class="" placeholder="Your Phone" formControlName="phone" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="" placeholder="Your Email">
+                                <input type="email" name="email" id="email" class="" placeholder="Your Email" formControlName="email">
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" name="address" id="address" class="" placeholder="Your Address"
-                                    required>
+                                <input type="text" name="address" id="address" class="" placeholder="Your Address" formControlName="address" required>
                             </div>
                         </form>
                         <div class="actions-container flex items-center justify-between">
                             <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
-                            <a routerLink="/home/checkout" role="button"
-                                class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full">Checkout</a>
+                            <button type="button"
+                                class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" (click)="checkout()">Checkout</button>
                         </div>
                     </div>
 

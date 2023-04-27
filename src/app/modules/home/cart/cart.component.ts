@@ -4,7 +4,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -47,33 +47,34 @@ export class CartComponent implements OnInit {
     if (val.name && val.phone && val.address) {
       this.formMessage = '';
       let date = new Date();
-      const formData = new FormData();
-      formData.append('date', date.toISOString())
-      formData.append('name', val.name);
-      formData.append('phone', val.phone);
-      formData.append('email', val.email);
-      formData.append('products', this.cartItems.toString());
-      formData.append('address', val.address);
+      let addDate = {
+        date: String(date),
+        ...val,
+        products: JSON.stringify(this.cartItems),
+        total: this.subTotal,
+      };
 
-      console.log(formData);
-      let headers = new HttpHeaders({'Content-Type': 'application/json'})
-      this.http.post('https://script.google.com/macros/s/AKfycbzAok4kHZD9ZLwfK9lH4Xups1bcldikEmhGjlJdOEhSmH0zCWTL3DTJJznLNQG9lXLQ/exec', formData, {headers}).subscribe({
-        next: (res) => {
-          console.log('successful');
-        },
-        error: (error) => {
-          console.error(error);
-        }
+      let headers = new Headers({
+        'Content-Type': 'application/json'
       })
-      // fetch('https://script.google.com/macros/s/AKfycbwY4CWB9TDZ7P4YV0yivpbsYwKA7mlexuEggXbCPcncECrsPRqokjWYe0WfY9cer0nq/exec',{
-      //   method: "POST",
-      //   body: formData
-      // })
-      // .then((res) => res.json())
-      // .then((data) => console.log(data))
-      // .catch(error => {
-      //   console.error(error)
-      // });
+
+      let url = 'https://script.google.com/macros/s/AKfycbwPfOZOE4TwBHqkremj4Ct1-hoh7GzuBcU90UnpPhfU47e3L_yTfWYxRzpNrgsMrv5x/exec'
+
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: headers,
+        body: JSON.stringify(addDate)
+      })
+        .then(res => {
+          return res.text()
+        })
+        .then(data => {
+          // data ? JSON.parse(data) : {};
+          console.log(data)
+          this.clearCart();
+        })
+        .catch(error => console.error(error));
 
     } else {
       this.formMessage = "Please fill the required fields"
@@ -135,6 +136,13 @@ export class CartComponent implements OnInit {
       this.subTotal = this.subTotal + cart.total;
     });
   }
+
+  clearCart(){
+    this.cartItems = [];
+    this.checkoutForm.reset();
+    this.cartService.clearCart();
+  }
+
 
   ngOnDestroy() {
     this.getItemsSubscription?.unsubscribe();
