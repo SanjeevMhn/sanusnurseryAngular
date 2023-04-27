@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.is-invalid{
+    border: 1px solid red;
+}
+
 
 .text-primary {
     color: $theme;

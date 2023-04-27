@@ -28,6 +28,9 @@ export class CartComponent implements OnInit {
 
   checkoutForm!: FormGroup;
   formMessage?: string;
+  nameField: any;
+  phoneField: any;
+  addressField: any;
 
   constructor(private cartService: CartService, private fb: FormBuilder, private http: HttpClient) { }
 
@@ -39,6 +42,17 @@ export class CartComponent implements OnInit {
       email: ['', [Validators.email]],
       address: ['', [Validators.required, Validators.maxLength(255)]]
     })
+
+    this.nameField = this.checkoutForm.get('name');
+    this.phoneField = this.checkoutForm.get('phone');
+    this.addressField = this.checkoutForm.get('address');
+  }
+
+  getFieldClass(controlName:any){
+    const control = this.checkoutForm.get(controlName)!;
+    return{
+      'is-invalid': control.invalid && control.touched
+    };
   }
 
   checkout() {
@@ -47,8 +61,17 @@ export class CartComponent implements OnInit {
     if (val.name && val.phone && val.address) {
       this.formMessage = '';
       let date = new Date();
+      let formattedDate = date.toLocaleString('en-US',{
+        weekday: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        month: 'long',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      });
       let addDate = {
-        date: String(date),
+        date: String(formattedDate),
         ...val,
         products: JSON.stringify(this.cartItems),
         total: this.subTotal,

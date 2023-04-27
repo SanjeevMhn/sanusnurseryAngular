@@ -3,7 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, take, map, filter } from 'rxjs';
 import { Product } from '../interface/product';
 
-const baseUrl = './assets/json/plants.json';
+// const baseUrl = './assets/json/plants.json';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbyqUmK7xsS47nGiPj3ErkiQ_y4ktMDjDIqbkiXpeh0jF0AuoAyNnDQ0gV-3CyebXgPJ1A/exec';
 
 @Injectable({
   providedIn: 'root'

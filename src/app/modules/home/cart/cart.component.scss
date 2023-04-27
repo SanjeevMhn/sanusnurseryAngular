@@ -103,6 +103,18 @@
         label{
             font-weight: 400;
             font-size: 14.5px;
+            position: relative;
+            &.required-label{
+                &::after{
+                    content: '*';
+                    position: absolute;
+                    color: red;
+                    bottom: 0;
+                    transform: translateY(-50%);
+                    font-size: 14px;
+                    line-height: 1;
+                }
+            }
         }
         input{
             padding: 5px;
@@ -114,7 +126,7 @@
 @media screen and (max-width: 640px){
     .cart-details-container{
         .header-text{
-            padding: 10px!important;
+            padding: 10px 10px 10px 0!important;
             // background-color: $theme;
             // background-color: #0F5F2F;
             // color: #fff;

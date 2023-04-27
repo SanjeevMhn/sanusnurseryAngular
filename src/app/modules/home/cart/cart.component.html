@@ -131,14 +131,14 @@
                     </tbody>
                 </table>
 
-                <div class="cart-total-recipt-sp md:hidden p-[15px] bg-[#e1e1e1]  border-t border-black">
+                <div class="cart-total-recipt-sp hidden p-[15px] bg-[#e1e1e1]  border-t border-black">
                     <ul class="receipt-list flex w-fill flex-col pb-[25px]">
                         <li class="receipt-list-item flex">
                             <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>
                             <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
                         </li>
                     </ul>
-                    <div class="">
+                    <!-- <div class="">
                         <form class="checkout-form pb-[25px]" [formGroup]="checkoutForm">
                             <h2 class="header-text">Checkout Details</h2>
                             <div class="form-group">
@@ -163,39 +163,39 @@
                             <button type="button"
                                 class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" (click)="checkout()">Checkout</button>
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>
             </article>
             <aside
-                class="total-amount-receipe hidden md:block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
-                <h2 class="text-lg md:text-2xl pb-[15px] header-text">Cart Summary</h2>
-                <div class="receipt-list-container  p-[25px] rounded-[10px] bg-[#efefef] sticky top-0">
+                class="total-amount-receipe block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
+                <h2 class="text-lg md:text-2xl pb-[15px] header-text hidden md:block">Cart Summary</h2>
+                <div class="receipt-list-container p-[15px] md:p-[25px] rounded-[10px] bg-[#efefef] sticky top-0">
                     <ul class="receipt-list flex w-fill flex-col">
                         <li class="receipt-list-item flex">
                             <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>
                             <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
                         </li>
                     </ul>
-                    <form class="checkout-form py-[35px]" [formGroup]="checkoutForm">
+                    <form class="checkout-form py-[35px]" [formGroup]="checkoutForm" (submit)="checkout()">
                         <h2 class="header-text">Checkout Details</h2>
                         <p *ngIf="formMessage" class="py-2 text-red-700 font-medium text-md">{{formMessage}}</p>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="name" class="" placeholder="Your Name" formControlName="name" required>
+                            <label for="name" class="required-label">Name</label>
+                            <input type="text" name="name" id="name" class="" [ngClass]="getFieldClass('name')" placeholder="Your Name" formControlName="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" name="phone" id="phone" class="" placeholder="Your Phone" formControlName="phone" required>
+                            <label for="phone" class="required-label">Phone</label>
+                            <input type="tel" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')" placeholder="Your Phone" formControlName="phone" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" class="" placeholder="Your Email" formControlName="email">
                         </div>
                         <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" name="address" id="address" class="" placeholder="Your Address" formControlName="address" required>
+                            <label for="address" class="required-label">Address</label>
+                            <input type="text" name="address" id="address" class="" [ngClass]="getFieldClass('address')" placeholder="Your Address" formControlName="address" required>
                         </div>
                     </form>
                     <div class="actions-container flex justify-between items-center">
