@@ -1,0 +1,27 @@
+.toast-base{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 8px;
+    }
+}
+
+.toast-success{
+    @extend .toast-base;
+    &::before{
+        background-color: #3054d6;
+    }
+}
+
+.toast-error{
+    @extend .toast-base;
+    &::before{
+        background-color: #a40606;
+    }
+}

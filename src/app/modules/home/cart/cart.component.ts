@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     this.checkoutForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
       phone: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required,Validators.email,]],
+      email: ['', [Validators.required, Validators.email,]],
       address: ['', [Validators.required, Validators.maxLength(255)]]
     })
 
@@ -48,20 +48,33 @@ export class CartComponent implements OnInit {
     this.addressField = this.checkoutForm.get('address');
   }
 
-  getFieldClass(controlName:any){
+  getFieldClass(controlName: any) {
     const control = this.checkoutForm.get(controlName)!;
-    return{
+    return {
       'is-invalid': control.invalid && control.touched
     };
   }
 
+  markInvalidField(form: FormGroup){
+    Object.values(form.controls).forEach(control => {
+      control.markAsTouched();
+      control.markAsDirty();
+    })
+  }
+
   checkout() {
-    let val = this.checkoutForm.value;
-    this.formMessage = '';
-    if (val.name && val.phone && val.address) {
+    if (this.checkoutForm.invalid) {
+      this.formMessage = "Please fill the required fields";
+      this.markInvalidField(this.checkoutForm)
+      return;
+    }
+    else {
+      let val = this.checkoutForm.value;
+      // this.formMessage = '';
+      // (val.name && val.phone && val.address && val.email)
       this.formMessage = '';
       let date = new Date();
-      let formattedDate = date.toLocaleString('en-US',{
+      let formattedDate = date.toLocaleString('en-US', {
         weekday: 'short',
         day: 'numeric',
         year: 'numeric',
@@ -99,8 +112,6 @@ export class CartComponent implements OnInit {
         })
         .catch(error => console.error(error));
 
-    } else {
-      this.formMessage = "Please fill the required fields"
     }
   }
 
@@ -160,7 +171,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  clearCart(){
+  clearCart() {
     this.cartItems = [];
     this.checkoutForm.reset();
     this.cartService.clearCart();

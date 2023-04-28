@@ -121,7 +121,7 @@
                     <div class="actions-container flex justify-between items-center">
                         <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
                         <button type="button"
-                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" (click)="checkout()">Checkout</button>
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" [ngClass]="cartItems.length < 1 ? 'disabled' : ''" (click)="checkout()" [disabled]="cartItems.length < 1">Checkout</button>
                     </div>
 
                 </div>
