@@ -31,7 +31,7 @@
                     </div>
                     <div class="product-category pb-[30px]">
                         <span class="label-text pr-[12px] text-lg">Category:</span>
-                        <span class="category-name text-xl">{{productDetail?.type}}</span>
+                        <a [routerLink]="['/home/products/',productDetail?.type]" class="category-name text-xl text-primary">{{productDetail?.type}}</a>
                     </div>
                     <div class="product-quantity flex w-full items-center flex-wrap pb-[30px]">
                         <span class="label-text pr-[12px] text-lg">Quantity</span>

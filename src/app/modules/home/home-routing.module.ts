@@ -17,7 +17,6 @@ const routes: Routes = [
       { path: 'products/:type', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'checkout', component: CheckoutFormComponent }
     ]
   }
 ];

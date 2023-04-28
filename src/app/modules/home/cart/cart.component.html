@@ -18,58 +18,6 @@
                     <span class="items-counter text-lg">{{cartItems.length > 1 ? cartItems.length + " items" :
                         cartItems.length === 0 ? cartItems.length + " items" : cartItems.length + " item" }}</span>
                 </div>
-
-                <!-- <ul class="cart-items-list">
-                    <li class="cart-list-item" *ngFor="let item of cartItems">
-                        <a class="cart-list-link p-[15px] relative block">
-                            <div
-                                class="inner-cart-card flex flex-col md:flex-row items-center relative  rounded-[10px] bg-[#efefef] p-[20px] md:p-[15px]">
-                                <button
-                                    class="close-btn text-white w-[25px] h-[25px] bg-primary rounded-full absolute top-[calc(calc(25px/2)*-1)] right-[calc(calc(25px/2)*-1)] flex items-center justify-center"
-                                    (click)="removeCartItem(item)">
-                                    <fa-icon [icon]="faClose" class="flex items-center justify-center"></fa-icon>
-                                </button>
-                                <div class="w-full md:w-[unset] bg-slate-400 flex justify-center">
-                                    <div class="img-container max-w-[235px] md:max-w-[135px] h-auto ">
-                                        <img src="{{item.img}}" alt="" srcset="">
-                                    </div>
-                                </div>
-
-                                <div class="cart-item-data md:pl-[10px] flex-grow w-full">
-                                    <div class="item-data py-[10px] md:py-0">
-                                        <h2 class="item-name text-xl pb-[5px]">{{item.name}}</h2>
-                                        <h2 class="item-price text-primary text-xl pb-[5px]">Rs. {{item.price}}</h2>
-                                        <h6 class="item-category text-base pb-[5px]"><span
-                                                class="label-text pr-[15px]">Category:</span>{{item.type}}</h6>
-                                        <div class="item-quantity flex items-center">
-                                            <span class="label-text pr-[15px]">Quantity:</span>
-                                            <div class="quantity-setting flex items-center">
-                                                <button
-                                                    class="leading-[0] decrease-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                                    type="button" (click)="decreaseCartItemQuantity(item)">
-                                                    <fa-icon [icon]="faMinus"
-                                                        class="flex items-center justify-center"></fa-icon>
-                                                </button>
-                                                <span
-                                                    class="product-quantity-data text-lg px-5 w-[35px] flex justify-center items-center">
-                                                    {{item.quantity}}
-                                                </span>
-                                                <button
-                                                    class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                                    type="button" (click)="increaseCartItemQuantity(item)">
-                                                    <fa-icon [icon]="faPlus"
-                                                        class="flex items-center justify-center"></fa-icon>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul> -->
-
                 <table class="cart-items-table">
                     <thead>
                         <tr>
@@ -138,34 +86,6 @@
                             <span class="data flex-grow font-semibold justify-end">Rs.&nbsp;{{subTotal}}</span>
                         </li>
                     </ul>
-                    <!-- <div class="">
-                        <form class="checkout-form pb-[25px]" [formGroup]="checkoutForm">
-                            <h2 class="header-text">Checkout Details</h2>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="" placeholder="Your Name" formControlName="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="tel" name="phone" id="phone" class="" placeholder="Your Phone" formControlName="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="" placeholder="Your Email" formControlName="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" name="address" id="address" class="" placeholder="Your Address" formControlName="address" required>
-                            </div>
-                        </form>
-                        <div class="actions-container flex items-center justify-between">
-                            <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
-                            <button type="button"
-                                class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" (click)="checkout()">Checkout</button>
-                        </div>
-                    </div> -->
-
-
                 </div>
             </article>
             <aside
@@ -190,8 +110,8 @@
                             <input type="tel" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')" placeholder="Your Phone" formControlName="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="" placeholder="Your Email" formControlName="email">
+                            <label for="email" class="required-label">Email</label>
+                            <input type="email" name="email" id="email" class="" [ngClass]="getFieldClass('email')" placeholder="Your Email" formControlName="email">
                         </div>
                         <div class="form-group">
                             <label for="address" class="required-label">Address</label>

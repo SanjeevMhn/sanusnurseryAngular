@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     this.checkoutForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
       phone: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.required,Validators.email,]],
       address: ['', [Validators.required, Validators.maxLength(255)]]
     })
 
