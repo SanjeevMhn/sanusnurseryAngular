@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { debounceTime, filter } from 'rxjs';

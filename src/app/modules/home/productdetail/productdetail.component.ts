@@ -6,6 +6,8 @@ import { faPlus, faMinus, faChevronLeft, faChevronRight } from '@fortawesome/fre
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/interface/cart-item';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from '../../shared/toast/toast.modal';
 
 @Component({
   selector: 'app-productdetail',
@@ -36,7 +38,8 @@ export class ProductdetailComponent implements OnInit {
               private product: ProductService, 
               private renderer: Renderer2, 
               private router: Router,
-              private cart: CartService) {
+              private cart: CartService,
+              private toastService: ToastService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
     }
@@ -51,7 +54,7 @@ export class ProductdetailComponent implements OnInit {
     this.getPlantFromIdSubscription = this.product.getPlantFromId(id)
       .subscribe({
         next: (data) => {
-          this.productDetail = data[0];
+          this.productDetail = data;
           this.selectedProductImage = this.productDetail.img;
           this.inStock = this.productDetail.inStock;
           this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
@@ -113,6 +116,7 @@ export class ProductdetailComponent implements OnInit {
       total: this.productDetail?.price! * this.productQuantity,
     };
     this.cart.addToCart(cartItem);
+    this.toastService.show("Added to cart",ToastType.success);
   }
 
 }

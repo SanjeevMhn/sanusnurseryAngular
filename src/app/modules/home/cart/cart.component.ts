@@ -5,6 +5,9 @@ import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from '../../shared/toast/toast.modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -32,7 +35,11 @@ export class CartComponent implements OnInit {
   phoneField: any;
   addressField: any;
 
-  constructor(private cartService: CartService, private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private cartService: CartService, 
+              private fb: FormBuilder, 
+              private http: HttpClient,
+              private toastService: ToastService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getCartData();
@@ -66,6 +73,7 @@ export class CartComponent implements OnInit {
     if (this.checkoutForm.invalid) {
       this.formMessage = "Please fill the required fields";
       this.markInvalidField(this.checkoutForm)
+      this.toastService.show('Error while entering form details', ToastType.error)
       return;
     }
     else {
@@ -109,6 +117,8 @@ export class CartComponent implements OnInit {
           // data ? JSON.parse(data) : {};
           console.log(data)
           this.clearCart();
+          this.toastService.show('Order Sent Successfully',ToastType.success);
+          this.router.navigate(['/home/checkout/', {previousRoute: '/home/cart'}]);
         })
         .catch(error => console.error(error));
 

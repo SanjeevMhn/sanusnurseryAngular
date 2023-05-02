@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
     ProductdetailComponent,
     ProductsComponent,
     CartComponent,
-    CheckoutFormComponent
+    CheckoutFormComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
