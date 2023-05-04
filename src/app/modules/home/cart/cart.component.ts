@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CartItem } from 'src/app/interface/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
   deleteItemSubscription?: Subscription;
   increaseQuantitySubscription?: Subscription;
   decreaseQuantitySubscription?: Subscription;
+  setQuantitySubscription?: Subscription;
 
   subTotal: number = 0;
 
@@ -35,11 +36,13 @@ export class CartComponent implements OnInit {
   phoneField: any;
   addressField: any;
 
-  constructor(private cartService: CartService, 
-              private fb: FormBuilder, 
-              private http: HttpClient,
-              private toastService: ToastService,
-              private router: Router) { }
+  @ViewChild('productQuantityInput', { static: false }) productQunatityInput?:ElementRef; 
+
+  constructor(private cartService: CartService,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private toastService: ToastService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getCartData();
@@ -55,6 +58,10 @@ export class CartComponent implements OnInit {
     this.addressField = this.checkoutForm.get('address');
   }
 
+  ngAfterViewInit():void{
+    this.productQunatityInput?.nativeElement.focus();
+  }
+
   getFieldClass(controlName: any) {
     const control = this.checkoutForm.get(controlName)!;
     return {
@@ -62,7 +69,7 @@ export class CartComponent implements OnInit {
     };
   }
 
-  markInvalidField(form: FormGroup){
+  markInvalidField(form: FormGroup) {
     Object.values(form.controls).forEach(control => {
       control.markAsTouched();
       control.markAsDirty();
@@ -75,8 +82,7 @@ export class CartComponent implements OnInit {
       this.markInvalidField(this.checkoutForm)
       this.toastService.show('Error while entering form details', ToastType.error)
       return;
-    }
-    else {
+    }else {
       let val = this.checkoutForm.value;
       // this.formMessage = '';
       // (val.name && val.phone && val.address && val.email)
@@ -117,8 +123,8 @@ export class CartComponent implements OnInit {
           // data ? JSON.parse(data) : {};
           console.log(data)
           this.clearCart();
-          this.toastService.show('Order Sent Successfully',ToastType.success);
-          this.router.navigate(['/home/checkout/', {previousRoute: '/home/cart'}]);
+          this.toastService.show('Order Sent Successfully', ToastType.success);
+          this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
         })
         .catch(error => console.error(error));
 
@@ -187,12 +193,39 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
+  setProductQuantity(event: any, item: CartItem) {
+    let quantity: number = event.target.value;
+    if (quantity > 0 && quantity) {
+      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity).subscribe({
+        next: (data) => {
+          this.cartItems = data;
+          this.calculateSubTotal();
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
+    } else {
+      this.toastService.show("Please add quantity for the product", ToastType.error);
+      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity = 0).subscribe({
+        next: (data) => {
+          this.cartItems = data;
+          this.calculateSubTotal();
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
+    }
+    // console.log(this.productQuantity);
+  }
 
   ngOnDestroy() {
     this.getItemsSubscription?.unsubscribe();
     this.deleteItemSubscription?.unsubscribe();
     this.increaseQuantitySubscription?.unsubscribe();
     this.decreaseQuantitySubscription?.unsubscribe();
+    this.setQuantitySubscription?.unsubscribe();
   }
 
 }

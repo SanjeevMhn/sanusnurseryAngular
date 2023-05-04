@@ -54,10 +54,11 @@
                                         type="button" (click)="decreaseCartItemQuantity(item)">
                                         <fa-icon [icon]="faMinus" class="flex items-center justify-center"></fa-icon>
                                     </button>
-                                    <span
+                                    <!-- <span
                                         class="product-quantity-data text-lg px-5 w-[35px] flex justify-center items-center">
                                         {{item.quantity}}
-                                    </span>
+                                    </span> -->
+                                    <input type="number" name="" id="" [value]="item.quantity" class="hide-arrows product-quantity-num max-w-[80px] px-[8px] h-[25px] mx-[2px] text-center" (change)="setProductQuantity($event,item)" required #productQuantityInput>
                                     <button
                                         class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
                                         type="button" (click)="increaseCartItemQuantity(item)">
@@ -121,7 +122,7 @@
                     <div class="actions-container flex justify-between items-center">
                         <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
                         <button type="button"
-                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" [ngClass]="cartItems.length < 1 ? 'disabled' : ''" (click)="checkout()" [disabled]="cartItems.length < 1">Checkout</button>
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" [ngClass]="cartItems.length < 1 || !subTotal || subTotal === 0 ? 'disabled' : ''" (click)="checkout()" [disabled]="cartItems.length < 1 || !subTotal || subTotal === 0">Checkout</button>
                     </div>
 
                 </div>

@@ -37,7 +37,7 @@ export class CartService {
     return this.cartItems;
   }
 
-  clearCart(){
+  clearCart() {
     return this.cartItems.next([]);
   }
 
@@ -50,7 +50,7 @@ export class CartService {
     const updatedCartObject: CartItem = {
       ...item,
       quantity: updatedQuantity,
-      total: updatedTotal, 
+      total: updatedTotal,
     }
     updatedCart[index] = updatedCartObject
     this.cartItems.next(updatedCart);
@@ -62,11 +62,27 @@ export class CartService {
     const index = currentCart.findIndex(cart => cart.id === item.id);
     const updatedCart = currentCart;
     let updatedQuantity = item.quantity + 1;
-    let updatedTotal = item.price * updatedQuantity; 
+    let updatedTotal = item.price * updatedQuantity;
     const updatedCartObject: CartItem = {
       ...item,
       quantity: updatedQuantity,
-      total: updatedTotal 
+      total: updatedTotal
+    }
+    updatedCart[index] = updatedCartObject
+    this.cartItems.next(updatedCart);
+    return this.cartItems;
+  }
+
+  setCartItemQuantity(item: CartItem, quantity: number): BehaviorSubject<CartItem[]> {
+    const currentCart = this.cartItems.getValue();
+    const index = currentCart.findIndex(cart => cart.id === item.id);
+    const updatedCart = currentCart;
+    let updatedQuantity = quantity;
+    let updatedTotal = item.price * updatedQuantity;
+    const updatedCartObject: CartItem = {
+      ...item,
+      quantity: updatedQuantity,
+      total: updatedTotal
     }
     updatedCart[index] = updatedCartObject
     this.cartItems.next(updatedCart);

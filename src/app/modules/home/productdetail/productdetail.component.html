@@ -40,8 +40,9 @@
                                 (click)="decreaseQuantity()">
                                 <fa-icon [icon]="faMinus"></fa-icon>
                             </button>
-                            <div class="product-quantity-data text-xl px-5 w-[35px] flex justify-center items-center">
-                                {{productQuantity}}</div>
+                            <!-- <div class="product-quantity-data text-xl px-5 w-[35px] flex justify-center items-center">
+                                {{productQuantity}}</div> --> 
+                            <input type="number" name="" id="" [value]="productQuantity" class="hide-arrows product-quantity-num max-w-[80px] px-[8px] h-[40px] mx-[2px] text-xl text-center" (change)="setProductQuantity($event)" required #productQuantityInput>
                             <button class="increase-quantity h-[40px] w-[40px] px-3 py-2 bg-slate-300" type="button"
                                 (click)="increaseQuantity()">
                                 <fa-icon [icon]="faPlus"></fa-icon>

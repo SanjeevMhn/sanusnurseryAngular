@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit , ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -33,14 +33,15 @@ export class ProductdetailComponent implements OnInit {
   inStock?: boolean = false;
 
   @ViewChild('scrollContainer', { static: false }) scrollContainer?: ElementRef;
+  @ViewChild('productQuantityInput', { static: false }) productQuantityInput?: ElementRef<HTMLInputElement>;
 
-  constructor(private route: ActivatedRoute, 
-              private product: ProductService, 
-              private renderer: Renderer2, 
-              private router: Router,
-              private cart: CartService,
-              private toastService: ToastService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+  constructor(private route: ActivatedRoute,
+    private product: ProductService,
+    private renderer: Renderer2,
+    private router: Router,
+    private cart: CartService,
+    private toastService: ToastService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
   }
@@ -48,6 +49,10 @@ export class ProductdetailComponent implements OnInit {
   ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.getProduct(this.productId);
+  }
+
+  ngAfterViewInit():void{
+    this.productQuantityInput?.nativeElement.focus();
   }
 
   getProduct(id: number): void {
@@ -109,14 +114,27 @@ export class ProductdetailComponent implements OnInit {
     // this.getProduct(getId);
   }
 
-  addToCart(): void{
-    let cartItem: CartItem = {
-      ...this.productDetail!,
-      quantity: this.productQuantity,
-      total: this.productDetail?.price! * this.productQuantity,
-    };
-    this.cart.addToCart(cartItem);
-    this.toastService.show("Added to cart",ToastType.success);
+  setProductQuantity(event: any) {
+    this.productQuantity = event.target.value;
+    // console.log(this.productQuantity);
   }
+
+  addToCart(): void {
+    if (this.productQuantity > 0 && this.productQuantity) {
+
+      let cartItem: CartItem = {
+        ...this.productDetail!,
+        quantity: this.productQuantity,
+        total: this.productDetail?.price! * this.productQuantity,
+      };
+      this.cart.addToCart(cartItem);
+      this.toastService.show("Added to cart", ToastType.success);
+    }else{
+
+      this.toastService.show("Please enter product quantity", ToastType.error);
+    }
+  }
+
+
 
 }
