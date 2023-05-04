@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { debounceTime, filter } from 'rxjs';
@@ -12,7 +12,7 @@ import { Product } from 'src/app/interface/product';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export default class LayoutComponent implements OnInit {
 
   showSideNav: boolean = false;
   showSearch: boolean = false;
@@ -21,12 +21,14 @@ export class LayoutComponent implements OnInit {
   defaultLinkActive: boolean = false;
   public showContactUs: boolean = true;
   showNavbar: boolean = true;
-  previousScrollPosition:number = window.pageYOffset;
+  previousScrollPosition: number = window.pageYOffset;
   navbarTop: boolean = false;
 
   searchForm!: FormGroup;
   private searchSubject = new Subject<string>();
   searchResults?: Product[];
+
+  @ViewChild('searchText') searchText?: ElementRef<HTMLInputElement>;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -34,13 +36,13 @@ export class LayoutComponent implements OnInit {
     private product: ProductService) { }
 
 
-  @HostListener('window:scroll',['$event']) 
-    onWindowScroll(){
-      const currentPosition = window.pageYOffset;
-      this.navbarTop = currentPosition > 45;
-      this.showNavbar = currentPosition < this.previousScrollPosition || currentPosition < 72;
-      this.previousScrollPosition = currentPosition;
-    }
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const currentPosition = window.pageYOffset;
+    this.navbarTop = currentPosition > 45;
+    this.showNavbar = currentPosition < this.previousScrollPosition || currentPosition < 72;
+    this.previousScrollPosition = currentPosition;
+  }
 
 
   ngOnInit(): void {
@@ -89,6 +91,12 @@ export class LayoutComponent implements OnInit {
     this.showSearch = !this.showSearch;
     this.searchForm.controls['searchText'].reset('');
     this.searchResults = [];
+
+    setTimeout(() => {
+      this.searchText?.nativeElement.focus()
+    },0)
   }
+
+  
 
 }

@@ -39,7 +39,7 @@
                     <span class="absolute search-text-icon top-[6px] right-[6px] flex items-center">
                         <fa-icon [icon]="faSearch"></fa-icon> 
                     </span>
-                    <input type="text" name="search-text" id="search-text" class="w-full pr-[25px] form-control flex-grow p-[5px]" placeholder="Search Plants" formControlName="searchText" (input)="search($event)">
+                    <input type="text" name="search-text" id="search-text" class="w-full pr-[25px] form-control flex-grow p-[5px]" placeholder="Search Plants" formControlName="searchText" (input)="search($event)" #searchText>
                 </div>
             </form>
             <div class="search-result overflow-y-auto">
