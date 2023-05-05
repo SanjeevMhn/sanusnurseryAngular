@@ -13,7 +13,7 @@ export class CheckoutFormComponent implements OnInit {
   prevRoute?: string | null;
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.paramMap.get('previousRoute'));
+    // console.log(this.route.snapshot.paramMap.get('previousRoute'));
     this.prevRoute = this.route.snapshot.paramMap.get('previousRoute');
     if(this.prevRoute === null){
       this.router.navigate(['/home/']);

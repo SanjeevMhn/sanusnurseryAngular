@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
 import { Router } from '@angular/router';
+import { OrderDetail } from 'src/app/interface/order-detail';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-cart',
@@ -97,9 +99,14 @@ export class CartComponent implements OnInit {
         minute: 'numeric',
         second: 'numeric'
       });
-      let addDate = {
+
+      let orderDetail:OrderDetail = {
+        id: uuid(), 
         date: String(formattedDate),
-        ...val,
+        name: val.name,
+        phone: val.phone,
+        address: val.address,
+        email: val.email,
         products: JSON.stringify(this.cartItems),
         total: this.subTotal,
       };
@@ -108,20 +115,21 @@ export class CartComponent implements OnInit {
         'Content-Type': 'application/json'
       })
 
-      let url = 'https://script.google.com/macros/s/AKfycbwPfOZOE4TwBHqkremj4Ct1-hoh7GzuBcU90UnpPhfU47e3L_yTfWYxRzpNrgsMrv5x/exec'
+      // let url = 'https://script.google.com/macros/s/AKfycbyUmLlDk9Bum4Q3jTgeIOZBQIO6pfuiEIUeLpWWvjvwffHBsgHqrjld99SHZndrGyU/exec';
+      let url = 'https://script.google.com/macros/s/AKfycbzRxAGvcmdWWEKyRU6TUjDH7J5PEauChh1BpFECT9G_7_VDxVkIzYY2Z4jDDRaTwZPb/exec'; 
 
       fetch(url, {
         method: "POST",
         mode: "no-cors",
         headers: headers,
-        body: JSON.stringify(addDate)
+        body: JSON.stringify(orderDetail)
       })
         .then(res => {
           return res.text()
         })
         .then(data => {
           // data ? JSON.parse(data) : {};
-          console.log(data)
+          // console.log(data)
           this.clearCart();
           this.toastService.show('Order Sent Successfully', ToastType.success);
           this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
