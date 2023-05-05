@@ -58,9 +58,9 @@ export class CartComponent implements OnInit {
     this.addressField = this.checkoutForm.get('address');
   }
 
-  ngAfterViewInit():void{
-    this.productQunatityInput?.nativeElement.focus();
-  }
+  // ngAfterViewInit():void{
+  //   this.productQunatityInput?.nativeElement.focus();
+  // }
 
   getFieldClass(controlName: any) {
     const control = this.checkoutForm.get(controlName)!;

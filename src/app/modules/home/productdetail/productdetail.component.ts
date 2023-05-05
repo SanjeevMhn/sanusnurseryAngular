@@ -51,9 +51,9 @@ export class ProductdetailComponent implements OnInit {
     this.getProduct(this.productId);
   }
 
-  ngAfterViewInit():void{
-    this.productQuantityInput?.nativeElement.focus();
-  }
+  // ngAfterViewInit():void{
+  //   this.productQuantityInput?.nativeElement.focus();
+  // }
 
   getProduct(id: number): void {
     this.getPlantFromIdSubscription = this.product.getPlantFromId(id)

@@ -19,7 +19,7 @@ export class CartService {
     const currentCart = this.cartItems.getValue();
 
     if (!currentCart.some(item => item.id === product.id)) {
-      const updatedCart = [...currentCart, product];
+      const updatedCart = [ product,...currentCart];
       this.cartItems.next(updatedCart);
     }
 
