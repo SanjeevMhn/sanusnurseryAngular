@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit , ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -129,7 +129,22 @@ export class ProductdetailComponent implements OnInit {
       };
       this.cart.addToCart(cartItem);
       this.toastService.show("Added to cart", ToastType.success);
-    }else{
+    } else {
+
+      this.toastService.show("Please enter product quantity", ToastType.error);
+    }
+  }
+
+  buyNow(): void {
+    if (this.productQuantity > 0 && this.productQuantity) {
+      let cartItem: CartItem = {
+        ...this.productDetail!,
+        quantity: this.productQuantity,
+        total: this.productDetail?.price! * this.productQuantity,
+      };
+      this.cart.addToCart(cartItem);
+      this.router.navigate(['/home/cart']);
+    } else {
 
       this.toastService.show("Please enter product quantity", ToastType.error);
     }

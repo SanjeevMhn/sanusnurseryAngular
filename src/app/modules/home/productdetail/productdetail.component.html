@@ -54,7 +54,7 @@
                             class="px-[30px] py-[8px] text-lg mb-3 lg:mb-0 lg:mr-3 bg-outline-primary text-primary" [ngClass]="productDetail?.inStock ? '' : 'disabled' " [disabled]="productDetail?.inStock === false" (click)="addToCart()">
                             Add to cart
                         </button>
-                        <button type="button" class="px-[30px] py-[8px] text-lg bg-primary text-white" [ngClass]="productDetail?.inStock ? '' : 'disabled' " [disabled]="productDetail?.inStock === false">Buy Now</button>
+                        <button type="button" class="px-[30px] py-[8px] text-lg bg-primary text-white" [ngClass]="productDetail?.inStock ? '' : 'disabled' " [disabled]="productDetail?.inStock === false" (click)="buyNow()">Buy Now</button>
                     </div>
                 </article>
             </div>
