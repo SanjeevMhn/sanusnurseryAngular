@@ -11,9 +11,10 @@
     }
 
     tr {
-        .close-btn-sp{
+        .close-btn-sp {
             display: none;
         }
+
         &:nth-child(even) {
             background-color: #efefef;
         }
@@ -52,12 +53,14 @@
         tbody {
             tr {
                 position: relative;
-                .close-btn-sp{
+
+                .close-btn-sp {
                     position: absolute;
                     top: 6px;
                     right: 6px;
                     display: flex;
                 }
+
                 td {
                     &[data-name="name"] {
                         padding-top: 20px;
@@ -90,22 +93,25 @@
     }
 }
 
-.checkout-form{
-    .header-text{
+.checkout-form {
+    .header-text {
         font-size: 18px;
         padding-bottom: 10px;
         font-weight: 500;
     }
-    .form-group{
+
+    .form-group {
         display: flex;
         flex-direction: column;
         padding-bottom: 10px;
-        label{
+
+        label {
             font-weight: 400;
             font-size: 14.5px;
             position: relative;
-            &.required-label{
-                &::after{
+
+            &.required-label {
+                &::after {
                     content: '*';
                     position: absolute;
                     color: red;
@@ -116,17 +122,79 @@
                 }
             }
         }
-        input{
+
+        input {
             padding: 5px;
             font-size: 14.5px;
         }
     }
 }
 
-@media screen and (max-width: 640px){
-    .cart-details-container{
-        .header-text{
-            padding: 10px 10px 10px 0!important;
+.receipt-table {
+
+    th,
+    td {
+        text-align: left;
+        padding: 5px;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        &[data-name="sn"] {
+            width: 30px;
+            text-align: center;
+        }
+
+        &[data-name="quantity"] {
+            width: 60px;
+        }
+
+        &[data-name="price"],
+        &[data-name="total"] {
+            text-align: right
+        }
+    }
+
+    thead {
+        border-bottom: 1px solid #000;
+
+    }
+    tfoot{
+        border-top: 1px solid #000;
+    }
+
+    tr {
+
+        th,
+        td {
+            border-right: 1px solid #000;
+
+            &:last-child {
+                border-width: 0;
+            }
+        }
+
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid #000;
+
+            &:last-child {
+                border-width: 0;
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (max-width: 640px) {
+    .cart-details-container {
+        .header-text {
+            padding: 10px 10px 10px 0 !important;
             // background-color: $theme;
             // background-color: #0F5F2F;
             // color: #fff;

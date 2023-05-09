@@ -58,7 +58,9 @@
                                         class="product-quantity-data text-lg px-5 w-[35px] flex justify-center items-center">
                                         {{item.quantity}}
                                     </span> -->
-                                    <input type="number" name="" id="" [value]="item.quantity" class="hide-arrows product-quantity-num max-w-[60px] px-[8px] h-[25px] mx-[2px] text-center" (change)="setProductQuantity($event,item)" required #productQuantityInput>
+                                    <input type="number" name="" id="" [value]="item.quantity"
+                                        class="hide-arrows product-quantity-num max-w-[60px] px-[8px] h-[25px] mx-[2px] text-center"
+                                        (change)="setProductQuantity($event,item)" required #productQuantityInput>
                                     <button
                                         class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
                                         type="button" (click)="increaseCartItemQuantity(item)">
@@ -101,33 +103,89 @@
                     </ul>
                     <form class="checkout-form py-[35px]" [formGroup]="checkoutForm" (submit)="checkout()">
                         <h2 class="header-text">Checkout Details</h2>
-                        <p *ngIf="formMessage" class="py-2 text-red-700 font-medium text-md">{{formMessage}}</p>
+                        <!-- <p *ngIf="formMessage" class="py-2 text-red-700 font-medium text-md">{{formMessage}}</p> -->
                         <div class="form-group">
                             <label for="name" class="required-label">Name</label>
-                            <input type="text" name="name" id="name" class="" [ngClass]="getFieldClass('name')" placeholder="Your Name" formControlName="name" required>
+                            <input type="text" name="name" id="name" class="" [ngClass]="getFieldClass('name')"
+                                placeholder="Your Name" formControlName="name" required>
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorName">
+                                {{errorNameMsg}}
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="phone" class="required-label">Phone</label>
-                            <input type="tel" pattern="[0-9]{10}" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')" placeholder="Your Phone" formControlName="phone" required>
+                            <input type="tel" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')"
+                                placeholder="Your Phone" formControlName="phone" required>
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorPhone">
+                                {{errorPhoneMsg}}
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="email" class="required-label">Email</label>
-                            <input type="email" name="email" id="email" class="" [ngClass]="getFieldClass('email')" placeholder="Your Email" formControlName="email">
+                            <input type="email" name="email" id="email" class="" [ngClass]="getFieldClass('email')"
+                                placeholder="Your Email" formControlName="email">
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorEmail">
+                                {{errorEmailMsg}}
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="address" class="required-label">Address</label>
-                            <input type="text" name="address" id="address" class="" [ngClass]="getFieldClass('address')" placeholder="Your Address" formControlName="address" required>
+                            <input type="text" name="address" id="address" class="" [ngClass]="getFieldClass('address')"
+                                placeholder="Your Address" formControlName="address" required>
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorAddress">
+                                {{errorAddressMsg}}
+                            </div>
                         </div>
                     </form>
                     <div class="actions-container flex justify-between items-center">
                         <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
-                        <button type="button"
-                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full" [ngClass]="cartItems.length < 1 || !subTotal || subTotal === 0 ? 'disabled' : ''" (click)="checkout()" [disabled]="cartItems.length < 1 || !subTotal || subTotal === 0">Checkout</button>
+                        <button type="button" class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full"
+                            [ngClass]="cartItems.length < 1 || !subTotal || subTotal === 0 ? 'disabled' : ''"
+                            (click)="checkout()"
+                            [disabled]="cartItems.length < 1 || !subTotal || subTotal === 0">Checkout</button>
                     </div>
 
                 </div>
 
             </aside>
         </article>
+
+        <article class="receipt-container w-full">
+            <div class="table-responsive overflow-x-auto">
+                <table class="receipt-table border border-black">
+                    <thead>
+                        <tr>
+                            <th data-name="sn">S.N</th>
+                            <th data-name="name">Product</th>
+                            <th data-name="quantity">Quantity</th>
+                            <th data-name="price">Price</th>
+                            <th data-name="total">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems; let i=index">
+                            <td data-name="sn">{{i+1}}</td>
+                            <td data-name="name">{{item.name}}</td>
+                            <td data-name="quantity">{{item.quantity}}</td>
+                            <td data-name="price">{{item.price}}</td>
+                            <td data-name="total">{{item.total}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+
+                            </td>
+                            <td>Sub Total</td>
+                            <td>{{subTotal}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </article>
     </div>
+
 </section>

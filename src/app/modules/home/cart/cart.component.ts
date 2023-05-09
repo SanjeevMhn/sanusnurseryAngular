@@ -38,7 +38,17 @@ export class CartComponent implements OnInit {
   phoneField: any;
   addressField: any;
 
-  @ViewChild('productQuantityInput', { static: false }) productQunatityInput?:ElementRef; 
+  errorName: boolean = false;
+  errorPhone: boolean = false;
+  errorEmail: boolean = false;
+  errorAddress: boolean = false;
+
+  errorNameMsg: string = '';
+  errorPhoneMsg: string = '';
+  errorEmailMsg: string = '';
+  errorAddressMsg: string = '';
+
+  @ViewChild('productQuantityInput', { static: false }) productQunatityInput?: ElementRef;
 
   constructor(private cartService: CartService,
     private fb: FormBuilder,
@@ -49,20 +59,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.getCartData();
     this.checkoutForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(255)]],
-      phone: ['', [Validators.required, Validators.maxLength(10)]],
+      name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      phone: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]{10}')]],
       email: ['', [Validators.required, Validators.email,]],
-      address: ['', [Validators.required, Validators.maxLength(255)]]
+      address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]]
     })
-
-    this.nameField = this.checkoutForm.get('name');
-    this.phoneField = this.checkoutForm.get('phone');
-    this.addressField = this.checkoutForm.get('address');
   }
-
-  // ngAfterViewInit():void{
-  //   this.productQunatityInput?.nativeElement.focus();
-  // }
 
   getFieldClass(controlName: any) {
     const control = this.checkoutForm.get(controlName)!;
@@ -79,12 +81,61 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
+    this.errorName = false;
+    this.errorPhone = false;
+    this.errorEmail = false;
+    this.errorAddress = false;
+ 
     if (this.checkoutForm.invalid) {
-      this.formMessage = "Please fill the required fields";
+
+      //user name validation
+      if (this.checkoutForm.controls['name'].errors?.['required']) {
+        this.errorName = true;
+        this.errorNameMsg = "Please enter your name";
+      }
+      if (this.checkoutForm.controls['name'].errors?.['minlength']) {
+        this.errorName = true
+        this.errorNameMsg = "Invalid name, name should be atleast 5 characters";
+      }
+      if (this.checkoutForm.controls['name'].errors?.['maxlength']) {
+        this.errorName = true
+        this.errorNameMsg = "Invalid name, name should be not more than 50 characters";
+      }
+
+      //user phone number validation
+      if (this.checkoutForm.controls['phone'].errors?.['required']) {
+        this.errorPhone = true;
+        this.errorPhoneMsg = "Please enter phone number";
+      }
+      if (this.checkoutForm.controls['phone'].errors?.['pattern']) {
+        this.errorPhone = true;
+        this.errorPhoneMsg = "Invalid phone number";
+      }
+
+      //user email validation
+      if (this.checkoutForm.controls['email'].errors?.['required']) {
+        this.errorEmail = true;
+        this.errorEmailMsg = "Please enter your email";
+      }
+      if (this.checkoutForm.controls['email'].errors?.['email']) {
+        this.errorEmail = true;
+        this.errorEmailMsg = "Invalid email";
+      }
+
+      //user address validation
+      if (this.checkoutForm.controls['address'].errors?.['required']) {
+        this.errorAddress = true;
+        this.errorAddressMsg = "Please enter your address";
+      }
+      if (this.checkoutForm.controls['address'].errors?.['minlength'] || this.checkoutForm.controls['address'].errors?.['maxlength']) {
+        this.errorAddress = true;
+        this.errorAddressMsg = "Invalid address";
+      }
+
       this.markInvalidField(this.checkoutForm)
       this.toastService.show('Error while entering form details', ToastType.error)
       return;
-    }else {
+    } else {
       let val = this.checkoutForm.value;
       // this.formMessage = '';
       // (val.name && val.phone && val.address && val.email)
@@ -100,8 +151,8 @@ export class CartComponent implements OnInit {
         second: 'numeric'
       });
 
-      let orderDetail:OrderDetail = {
-        id: uuid(), 
+      let orderDetail: OrderDetail = {
+        id: uuid(),
         date: String(formattedDate),
         name: val.name,
         phone: val.phone,
@@ -115,8 +166,7 @@ export class CartComponent implements OnInit {
         'Content-Type': 'application/json'
       })
 
-      // let url = 'https://script.google.com/macros/s/AKfycbyUmLlDk9Bum4Q3jTgeIOZBQIO6pfuiEIUeLpWWvjvwffHBsgHqrjld99SHZndrGyU/exec';
-      let url = 'https://script.google.com/macros/s/AKfycbzRxAGvcmdWWEKyRU6TUjDH7J5PEauChh1BpFECT9G_7_VDxVkIzYY2Z4jDDRaTwZPb/exec'; 
+      let url = 'https://script.google.com/macros/s/AKfycbwmiydpSn6KO_eKGxwAd8x5rGSvdPsj6zTRG5TaCQnjJO835VcWA5W5E4APMc705nio/exec';
 
       fetch(url, {
         method: "POST",
@@ -198,7 +248,7 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.cartItems = [];
     this.checkoutForm.reset();
-    this.cartService.clearCart();
+    // this.cartService.clearCart();
   }
 
   setProductQuantity(event: any, item: CartItem) {

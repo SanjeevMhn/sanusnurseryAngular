@@ -13,39 +13,49 @@
             </div>
             <ul class="menu-list py-[45px]">
                 <li class="menu-list-item">
-                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]" [ngClass]="defaultLinkActive ? 'active' : ''" (click)="toggleSideNav()">Home</a>
+                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]"
+                        [ngClass]="defaultLinkActive ? 'active' : ''" (click)="toggleSideNav()">Home</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/products" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Products</a>
+                    <a routerLink="/home/products" routerLinkActive="active"
+                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Products</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/about" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">About</a>
+                    <a routerLink="/home/about" routerLinkActive="active"
+                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">About</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/contact" routerLinkActive="active" class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Contact</a>
+                    <a routerLink="/home/contact" routerLinkActive="active"
+                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Contact</a>
                 </li>
-                
+
             </ul>
 
         </nav>
     </div>
-    <div class="search-modal-container absolute h-screen w-full top-0 right-0 bottom-0 bg-[#0909097a] z-[700] p-[20px] items-center md:justify-center" [ngClass]="showSearch ? 'flex' : 'hidden' ">
-        <div class="search-modal w-full h-[65%] md:max-w-[740px] md:max-h-[625px] md:w-[75%] rounded-[10px] bg-[#efefef] p-[15px] flex flex-col relative">
-            <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]" (click)="toggleSearch()" type="button">
+    <div class="search-modal-container absolute h-screen w-full top-0 right-0 bottom-0 bg-[#0909097a] z-[700] p-[20px] items-center md:justify-center"
+        [ngClass]="showSearch ? 'flex' : 'hidden' ">
+        <div
+            class="search-modal w-full h-[65%] md:max-w-[740px] md:max-h-[625px] md:w-[75%] rounded-[10px] bg-[#efefef] p-[15px] flex flex-col relative">
+            <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]"
+                (click)="toggleSearch()" type="button">
                 <fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
             </button>
             <form [formGroup]="searchForm" class="seach-plants py-[15px]">
                 <div class="form-group flex relative">
                     <span class="absolute search-text-icon top-[6px] right-[6px] flex items-center">
-                        <fa-icon [icon]="faSearch"></fa-icon> 
+                        <fa-icon [icon]="faSearch"></fa-icon>
                     </span>
-                    <input type="text" name="search-text" id="search-text" class="w-full pr-[25px] form-control flex-grow p-[5px]" placeholder="Search Plants" formControlName="searchText" (input)="search($event)" #searchText>
+                    <input type="text" name="search-text" id="search-text"
+                        class="w-full pr-[25px] form-control flex-grow p-[5px]" placeholder="Search Plants"
+                        formControlName="searchText" (input)="search($event)" #searchText>
                 </div>
             </form>
             <div class="search-result overflow-y-auto">
                 <ul class="search-result-list">
                     <li class="search-result-item" *ngFor="let item of searchResults">
-                        <a [routerLink]="['/home/product/', item.id]" class="search-result-link flex p-[5px_10px]" (click)="toggleSearch()">
+                        <a [routerLink]="['/home/product/', item.id]" class="search-result-link flex p-[5px_10px]"
+                            (click)="toggleSearch()">
                             {{item.name}}
                         </a>
                     </li>
@@ -54,7 +64,9 @@
         </div>
     </div>
     <app-contact-header class="homepage-contact-us" *ngIf="showContactUs"></app-contact-header>
-    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" *ngIf="showNavbar" class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'" [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
+    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" *ngIf="showNavbar"
+        class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
+        [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
     <main class="main-content h-auto pt-[72px]">
         <router-outlet></router-outlet>
     </main>
