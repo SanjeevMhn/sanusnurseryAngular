@@ -21,6 +21,8 @@
     "@fortawesome/angular-fontawesome": "^0.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",

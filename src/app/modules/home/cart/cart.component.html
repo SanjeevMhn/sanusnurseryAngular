@@ -105,11 +105,20 @@
                         <h2 class="header-text">Checkout Details</h2>
                         <!-- <p *ngIf="formMessage" class="py-2 text-red-700 font-medium text-md">{{formMessage}}</p> -->
                         <div class="form-group">
-                            <label for="name" class="required-label">Name</label>
-                            <input type="text" name="name" id="name" class="" [ngClass]="getFieldClass('name')"
-                                placeholder="Your Name" formControlName="name" required>
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorName">
-                                {{errorNameMsg}}
+                            <label for="ftname" class="required-label">First Name</label>
+                            <input type="text" name="ftname" id="name" class="" [ngClass]="getFieldClass('ftname')"
+                                placeholder="Your First Name" formControlName="ftname" required>
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorFtName">
+                                {{errorFtNameMsg}}
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="ltname" class="required-label">Last Name</label>
+                            <input type="text" name="ltname" id="name" class="" [ngClass]="getFieldClass('ltname')"
+                                placeholder="Your Last Name" formControlName="ltname" required>
+                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorLtName">
+                                {{errorLtNameMsg}}
                             </div>
 
                         </div>
@@ -153,37 +162,69 @@
             </aside>
         </article>
 
-        <article class="receipt-container w-full">
-            <div class="table-responsive overflow-x-auto">
-                <table class="receipt-table border border-black">
-                    <thead>
-                        <tr>
-                            <th data-name="sn">S.N</th>
-                            <th data-name="name">Product</th>
-                            <th data-name="quantity">Quantity</th>
-                            <th data-name="price">Price</th>
-                            <th data-name="total">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of cartItems; let i=index">
-                            <td data-name="sn">{{i+1}}</td>
-                            <td data-name="name">{{item.name}}</td>
-                            <td data-name="quantity">{{item.quantity}}</td>
-                            <td data-name="price">{{item.price}}</td>
-                            <td data-name="total">{{item.total}}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3">
+        <article class="receipt-container w-full flex justify-center bg-[#0007] z-[999] absolute top-0 left-0 bottom-0 right-0 h-full overflow-y-auto" [ngClass]="paymentReceipt && showBill ? 'block' : 'hidden' ">
+            <button type="button" class="close-btn w-[35px] h-[35px] absolute top-[20px] right-[20px] rounded-full flex items-center justify-center bg-primary" (click)="closeBill()">
+                <fa-icon [icon]="faClose" class="text-white text-[25px]"></fa-icon>
+            </button>
+            <div class="table-container max-w-[768px] max-h-[842px] w-full p-[15px] md:p-[30px] bg-white" id="payment-receipt">
+                <header class="table-header text-center pb-[25px] md:pb-[50px]">
+                    <h2 class="company-name text-[18px] md:text-[35px]">
+                        Sanu's Nursery
+                    </h2>
+                    <p class="text-[8px] md:text-[15px]">Dhapakhel-24, Lalitpur</p>
+                    <p class="text-[8px] md:text-[15px]">+9779851243855, +9779841218573</p>
+                </header>
+                <div class="customer-info flex flex-wrap w-full pb-[12px] md:pb-[20px] text-[8px] md:text-base">
+                    <div class="customer-info-item flex-[1_0_calc(100%)] pb-[2px] md:pb-2">
+                        <span class="label-text pr-2">Date:</span>
+                        <span class="data">{{ paymentReceipt?.date }}</span>
+                    </div>
+                    <div class="customer-info-item flex-[1_0_calc(100%/2)] pb-[2px] md:pb-2">
+                        <span class="label-text pr-2">Name:</span>
+                        <span class="data break-words">{{ paymentReceipt?.name }}&nbsp;{{ checkoutForm.value.ltname }}</span>
+                    </div>
+                    <div class="customer-info-item flex-[0_0_calc(100%/2)] pb-[2px] md:pb-2">
+                        <span class="label-text pr-2">Phone:</span>
+                        <span class="data">{{ paymentReceipt?.phone }}</span>
+                    </div>
+                    <div class="customer-info-item flex-[0_0_calc(100%/2)] pb-[2px] md:pb-2">
+                        <span class="label-text pr-2">Address:</span>
+                        <span class="data">{{ paymentReceipt?.address }}</span>
+                    </div>
+                </div>
 
-                            </td>
-                            <td>Sub Total</td>
-                            <td>{{subTotal}}</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-border table-responsive overflow-x-auto">
+
+                    <table class="receipt-table w-full text-[8px] md:text-base">
+                        <thead>
+                            <tr>
+                                <th data-name="sn">S.N</th>
+                                <th data-name="name">Product</th>
+                                <th data-name="quantity">Quantity</th>
+                                <th data-name="price">Price</th>
+                                <th data-name="total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of paymentReceipt?.products; let i=index">
+                                <td data-name="sn">{{i+1}}</td>
+                                <td data-name="name">{{item.name}}</td>
+                                <td data-name="quantity">{{item.quantity}}</td>
+                                <td data-name="price">{{item.price}}</td>
+                                <td data-name="total">{{item.total}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">
+
+                                </td>
+                                <td data-name="subtotal" class="font-[700]">Sub Total</td>
+                                <td data-name="subtotal">{{paymentReceipt?.subTotal}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </article>
     </div>

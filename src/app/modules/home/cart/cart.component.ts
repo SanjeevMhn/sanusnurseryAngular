@@ -10,6 +10,16 @@ import { ToastType } from '../../shared/toast/toast.modal';
 import { Router } from '@angular/router';
 import { OrderDetail } from 'src/app/interface/order-detail';
 import { v4 as uuid } from 'uuid';
+import { convertToPdf } from 'src/app/utils/functions/convertToPdf';
+
+interface PaymentBill {
+  date: string | undefined,
+  name: string,
+  phone: number,
+  address: string,
+  products: CartItem[],
+  subTotal: number
+};
 
 @Component({
   selector: 'app-cart',
@@ -38,15 +48,22 @@ export class CartComponent implements OnInit {
   phoneField: any;
   addressField: any;
 
-  errorName: boolean = false;
+  errorFtName: boolean = false;
+  errorLtName: boolean = false;
   errorPhone: boolean = false;
   errorEmail: boolean = false;
   errorAddress: boolean = false;
 
-  errorNameMsg: string = '';
+  errorFtNameMsg: string = '';
+  errorLtNameMsg: string = '';
   errorPhoneMsg: string = '';
   errorEmailMsg: string = '';
   errorAddressMsg: string = '';
+
+  billDate?: string;
+  paymentReceipt?: PaymentBill;
+  showBill: boolean = false
+
 
   @ViewChild('productQuantityInput', { static: false }) productQunatityInput?: ElementRef;
 
@@ -57,9 +74,12 @@ export class CartComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    let date = new Date();
+    this.billDate = `${(1 + date.getMonth()).toString()}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`
     this.getCartData();
     this.checkoutForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      ftname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
+      ltname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
       phone: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]{10}')]],
       email: ['', [Validators.required, Validators.email,]],
       address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]]
@@ -81,25 +101,47 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    this.errorName = false;
+    this.errorFtName = false;
+    this.errorLtName = false;
     this.errorPhone = false;
     this.errorEmail = false;
     this.errorAddress = false;
- 
+
     if (this.checkoutForm.invalid) {
 
       //user name validation
-      if (this.checkoutForm.controls['name'].errors?.['required']) {
-        this.errorName = true;
-        this.errorNameMsg = "Please enter your name";
+      if (this.checkoutForm.controls['ftname'].errors?.['required']) {
+        this.errorFtName = true;
+        this.errorFtNameMsg = "Please enter your name";
       }
-      if (this.checkoutForm.controls['name'].errors?.['minlength']) {
-        this.errorName = true
-        this.errorNameMsg = "Invalid name, name should be atleast 5 characters";
+      if (this.checkoutForm.controls['ftname'].errors?.['minlength']) {
+        this.errorFtName = true
+        this.errorFtNameMsg = "Invalid name, name should be atleast 3 characters";
       }
-      if (this.checkoutForm.controls['name'].errors?.['maxlength']) {
-        this.errorName = true
-        this.errorNameMsg = "Invalid name, name should be not more than 50 characters";
+      if (this.checkoutForm.controls['ftname'].errors?.['maxlength']) {
+        this.errorFtName = true
+        this.errorFtNameMsg = "Invalid name, name should be not more than 50 characters";
+      }
+      if (this.checkoutForm.controls['ftname'].errors?.['pattern']) {
+        this.errorFtName = true
+        this.errorFtNameMsg = "Invalid name, name cannot be only whitespaces";
+      }
+
+      if (this.checkoutForm.controls['ltname'].errors?.['required']) {
+        this.errorLtName = true;
+        this.errorLtNameMsg = "Please enter your last name";
+      }
+      if (this.checkoutForm.controls['ltname'].errors?.['minlength']) {
+        this.errorLtName = true
+        this.errorLtNameMsg = "Invalid name, name should be atleast 3 characters";
+      }
+      if (this.checkoutForm.controls['ltname'].errors?.['maxlength']) {
+        this.errorLtName = true
+        this.errorLtNameMsg = "Invalid name, name should be not more than 50 characters";
+      }
+      if (this.checkoutForm.controls['ltname'].errors?.['pattern']) {
+        this.errorLtName = true
+        this.errorLtNameMsg = "Invalid name, name cannot be only whitespaces";
       }
 
       //user phone number validation
@@ -151,16 +193,32 @@ export class CartComponent implements OnInit {
         second: 'numeric'
       });
 
+      let customerName = `${val.ftname} ${val.ltname}`;
+
       let orderDetail: OrderDetail = {
         id: uuid(),
-        date: String(formattedDate),
-        name: val.name,
+        date: this.billDate,
+        name: customerName,
         phone: val.phone,
         address: val.address,
         email: val.email,
         products: JSON.stringify(this.cartItems),
         total: this.subTotal,
       };
+
+      this.paymentReceipt = {
+        date: this.billDate,
+        name: customerName,
+        phone: val.phone,
+        address: val.address,
+        products: this.cartItems,
+        subTotal: this.subTotal
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      this.showBill = true;
 
       let headers = new Headers({
         'Content-Type': 'application/json'
@@ -180,9 +238,13 @@ export class CartComponent implements OnInit {
         .then(data => {
           // data ? JSON.parse(data) : {};
           // console.log(data)
+
+          const elem = document.getElementById('payment-receipt');
+          convertToPdf(elem!, 'payment_bill.pdf');
+
           this.clearCart();
           this.toastService.show('Order Sent Successfully', ToastType.success);
-          this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
+          // this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
         })
         .catch(error => console.error(error));
 
@@ -248,7 +310,7 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.cartItems = [];
     this.checkoutForm.reset();
-    // this.cartService.clearCart();
+    this.cartService.clearCart();
   }
 
   setProductQuantity(event: any, item: CartItem) {
@@ -276,6 +338,10 @@ export class CartComponent implements OnInit {
       })
     }
     // console.log(this.productQuantity);
+  }
+
+  closeBill() {
+    this.showBill = false;
   }
 
   ngOnDestroy() {

@@ -130,13 +130,17 @@
     }
 }
 
+.table-border{
+    border: 1px solid #000;
+}
+
 .receipt-table {
 
     th,
     td {
         text-align: left;
         padding: 5px;
-        white-space: nowrap;
+        // white-space: nowrap;
     }
 
     th,
@@ -148,10 +152,12 @@
 
         &[data-name="quantity"] {
             width: 60px;
+            text-align: center;
         }
 
         &[data-name="price"],
-        &[data-name="total"] {
+        &[data-name="total"],
+        &[data-name="subtotal"] {
             text-align: right
         }
     }
@@ -191,6 +197,8 @@
 
 
 
+
+
 @media screen and (max-width: 640px) {
     .cart-details-container {
         .header-text {
@@ -201,3 +209,4 @@
         }
     }
 }
+
