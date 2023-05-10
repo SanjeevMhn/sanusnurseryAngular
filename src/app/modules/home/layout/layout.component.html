@@ -67,7 +67,7 @@
     <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" *ngIf="showNavbar"
         class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
         [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
-    <main class="main-content h-auto pt-[72px]">
+    <main class="main-content h-auto pt-[72px] bg-[#e1e1e1]">
         <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>

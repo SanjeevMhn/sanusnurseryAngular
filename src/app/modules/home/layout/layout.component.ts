@@ -39,7 +39,7 @@ export default class LayoutComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     const currentPosition = window.pageYOffset;
-    this.navbarTop = currentPosition > 45;
+    this.navbarTop = currentPosition > 5;
     this.showNavbar = currentPosition < this.previousScrollPosition || currentPosition < 72;
     this.previousScrollPosition = currentPosition;
   }
