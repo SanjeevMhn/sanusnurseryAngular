@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
 
   productType?: string | null;
   products?: Product[];
-  pageSize: number = 8;
+  pageSize: number = 6;
   currentPage: number = 1;
   totalPages?: number;
   sortBy: string = 'default';

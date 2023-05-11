@@ -16,25 +16,25 @@
             </li>
         </ul>
         <article
-            class="product-detail-card md:h-[515px] h-auto p-[15px]">
+            class="product-detail-card md:h-[515px] h-auto" [ngClass]="productDetail?.inStock ? '' : 'p-[15px]'">
             <div class="card-ribbion" [ngClass]="productDetail?.inStock ? 'hidden' : 'block'">
                 <span class="label-text">Out of Stock</span>
             </div>
-            <div class="product-detail-inner flex flex-col items-center md:flex-row md:items-center w-full p-[25px] rounded-[10px] bg-[#efefef] ">
+            <div class="product-detail-inner flex flex-col items-center md:flex-row md:items-center w-full p-[12px] md:p-[25px] rounded-[10px] bg-[#efefef] ">
                 <aside class="product-img-container w-full max-w-[350px] h-auto">
                     <img src={{selectedProductImage}} alt="" class="w-full h-full object-contain">
                 </aside>
-                <article class="product-detail-list md:pl-[25px] pt-[30px] flex-grow flex flex-col w-full">
+                <article class="product-detail-list md:pl-[25px] pt-[12px] md:pt-[30px] flex-grow flex flex-col w-full">
                     <div class="product-name-price flex-[1_0_calc(100%/4)]">
                         <h3 class="text-[22px]">{{productDetail?.name}}</h3>
-                        <h5 class="text-[32px] text-primary">Rs.&nbsp;{{productDetail?.price}}</h5>
+                        <h5 class="text-[25px] md:text-[32px] text-primary">Rs.&nbsp;{{productDetail?.price}}</h5>
                     </div>
-                    <div class="product-category pb-[30px]">
+                    <div class="product-category pb-[10px] md:pb-[30px]">
                         <span class="label-text pr-[12px] text-lg">Category:</span>
                         <a [routerLink]="['/home/products/',productDetail?.type]" class="category-name text-xl text-primary">{{productDetail?.type}}</a>
                     </div>
-                    <div class="product-quantity flex w-full items-center flex-wrap pb-[30px]">
-                        <span class="label-text pr-[12px] text-lg">Quantity</span>
+                    <div class="product-quantity flex w-full items-center flex-wrap pb-[15px] md:pb-[30px]">
+                        <span class="label-text pr-[12px] text-lg">Quantity:</span>
                         <div class="quantity-setting flex items-center">
                             <button class="decrease-quantity h-[40px] w-[40px] px-3 py-2 bg-slate-300" type="button"
                                 (click)="decreaseQuantity()">
