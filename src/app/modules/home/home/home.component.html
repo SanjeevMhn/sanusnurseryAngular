@@ -1,10 +1,10 @@
 <section class="intro-section static-section content">
     <div class="inner-container flex items-center">
         <article class="intro-section-content w-full md:w-[50%]">
-            <div class="text-content mb-[30px]">
-                <p class="text-lg text-primary">Hello, welcome to</p>
-                <h2 class="text-[60px] company-name leading-[1] py-[20px]">Sanus's Nursery</h2>
-                <p class="text-lg">
+            <div class="text-content mb-[15px] md:mb-[30px]">
+                <p class="text-base md:text-lg text-primary">Hello, welcome to</p>
+                <h2 class="text-[35px] md:text-[60px] company-name leading-[1] py-[12px] md:py-[20px]">Sanus's Nursery</h2>
+                <p class="text-base md:text-lg">
                     We specilize in growing plants ranging from vegetables, fruits to flowers and everything in between.
                     We sell greminated plants which is ready for you to plant directly.
                 </p>
@@ -17,8 +17,8 @@
 
 <section class="product-section dynamic-section overflow-y-auto">
     <div class="inner-container h-full flex items-center justify-center">
-        <article class="product-list-container py-[60px] w-full">
-            <h2 class="text-3xl lg:text-4xl pb-[25px] lg:pb-[40px] text-center">Our Products</h2>
+        <article class="product-list-container py-[25px] md:py-[60px] w-full">
+            <h2 class="text-xl md:text-3xl lg:text-4xl pb-[15px] lg:pb-[40px] text-center">Our Products</h2>
             <ul class="product-list grid-list w-full pb-[40px]">
                 <li class="product-list-item grid-list-item" *ngFor="let item of plants">
                     <app-productcard [item]="item"></app-productcard>

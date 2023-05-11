@@ -1,7 +1,7 @@
 <nav class="main-nav fixed bg-[#e1e1e1] shadow-lg z-[500] w-full">
-    <div class="inner-container py-5 flex items-center justify-between ">
+    <div class="inner-container py-4 md:py-5 flex items-center justify-between ">
 
-        <a routerLink="/home" class="brand-link block text-2xl company-name">Sanu's Nursery</a>
+        <a routerLink="/home" class="brand-link block text-xl md:text-2xl company-name">Sanu's Nursery</a>
 
         <ul class="nav-list hidden md:flex items-center text-lg">
             <li class="nav-item">
@@ -18,7 +18,7 @@
             </li>
         </ul>
         <ul class="user-actions-list flex items-center">
-            <li class="user-actions-item px-2">
+            <li class="user-actions-item">
                 <button class="search-container relative" (click)="onToggleSearch()">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faSearch" class=""></fa-icon>
@@ -33,7 +33,7 @@
                     </span>
                 </a>
             </li>
-            <li class="user-actions-item px-2 md:hidden">
+            <li class="user-actions-item pl-2 md:hidden">
                 <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faBars" class="flex items-center text-lg"></fa-icon>
