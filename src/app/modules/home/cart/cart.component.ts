@@ -214,10 +214,11 @@ export class CartComponent implements OnInit {
         products: this.cartItems,
         subTotal: this.subTotal
       }
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      // window.scrollTo({
+      //   top: 0,
+      //   behavior: 'smooth'
+      // });
+      window.scroll(0,0)
       this.showBill = true;
 
       let headers = new Headers({
