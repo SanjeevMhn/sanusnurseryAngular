@@ -153,9 +153,9 @@
                             </div>
                         </div>
                     </form>
-                    <div class="actions-container flex justify-between items-center">
-                        <a routerLink="/home/products" role="button" class="text-primary">Continue Shopping?</a>
-                        <button type="button" class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full"
+                    <div class="actions-container flex flex-col-reverse md:flex-row md:justify-center items-center">
+                        <a routerLink="/home/products" role="button" class="text-primary md:mr-2">Continue Shopping?</a>
+                        <button type="button" class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full mb-4 md:mb-0 md:ml-2"
                             [ngClass]="cartItems.length < 1 || !subTotal || subTotal === 0 ? 'disabled' : ''"
                             (click)="checkout()"
                             [disabled]="cartItems.length < 1 || !subTotal || subTotal === 0">Checkout</button>
