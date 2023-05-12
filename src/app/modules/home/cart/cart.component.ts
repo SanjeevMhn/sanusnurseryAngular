@@ -245,7 +245,7 @@ export class CartComponent implements OnInit {
 
           this.clearCart();
           this.toastService.show('Order Sent Successfully', ToastType.success);
-          // this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
+          this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
         })
         .catch(error => console.error(error));
 
