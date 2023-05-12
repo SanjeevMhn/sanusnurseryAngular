@@ -44,6 +44,33 @@
     }
 }
 
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-group {
+        flex: 0 0 calc(100%);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .form-row {
+        display: flex;
+
+        .form-group {
+            flex: 0 0 calc(100%/2);
+
+            &:nth-child(odd) {
+                padding-right: 10px;
+            }
+
+            &:nth-child(even) {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .cart-items-table {
         thead {
@@ -130,7 +157,7 @@
     }
 }
 
-.table-border{
+.table-border {
     border: 1px solid #000;
 }
 
@@ -166,7 +193,8 @@
         border-bottom: 1px solid #000;
 
     }
-    tfoot{
+
+    tfoot {
         border-top: 1px solid #000;
     }
 
@@ -209,4 +237,3 @@
         }
     }
 }
-

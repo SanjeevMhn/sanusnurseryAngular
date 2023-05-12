@@ -9,8 +9,9 @@
             </li>
         </ul>
 
-        <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:flex-row md:pb-[30px]">
-            <article class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow overflow-y-auto">
+        <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:pb-[30px]">
+            <article
+                class="cart-items-container pb-[10px] md:pb-0 md:pr-[10px] flex-grow overflow-y-auto mb-[15px] md:mb-[35px]">
                 <div
                     class="title-container flex justify-between  pb-[15px] md:sticky md:top-0 bg-[#e1e1e1] z-[10] header-text">
                     <h2 class="text-lg md:text-2xl">Shopping Cart
@@ -91,8 +92,7 @@
                     </ul>
                 </div>
             </article>
-            <aside
-                class="total-amount-receipe block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full md:max-w-[335px] lg:max-w-[450px]">
+            <aside class="total-amount-receipe block pt-[10px] md:pl-[10px] md:pt-0 flex-grow w-full">
                 <h2 class="text-lg md:text-2xl pb-[15px] header-text hidden md:block">Cart Summary</h2>
                 <div class="receipt-list-container p-[15px] md:p-[25px] rounded-[10px] bg-[#efefef] sticky top-0">
                     <ul class="receipt-list flex w-fill flex-col">
@@ -104,48 +104,52 @@
                     <form class="checkout-form py-[35px]" [formGroup]="checkoutForm" (submit)="checkout()">
                         <h2 class="header-text">Checkout Details</h2>
                         <!-- <p *ngIf="formMessage" class="py-2 text-red-700 font-medium text-md">{{formMessage}}</p> -->
-                        <div class="form-group">
-                            <label for="ftname" class="required-label">First Name</label>
-                            <input type="text" name="ftname" id="name" class="" [ngClass]="getFieldClass('ftname')"
-                                placeholder="Your First Name" formControlName="ftname" required>
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorFtName">
-                                {{errorFtNameMsg}}
-                            </div>
+                        <div class="form-row">
 
-                        </div>
-                        <div class="form-group">
-                            <label for="ltname" class="required-label">Last Name</label>
-                            <input type="text" name="ltname" id="name" class="" [ngClass]="getFieldClass('ltname')"
-                                placeholder="Your Last Name" formControlName="ltname" required>
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorLtName">
-                                {{errorLtNameMsg}}
-                            </div>
+                            <div class="form-group">
+                                <label for="ftname" class="required-label">First Name</label>
+                                <input type="text" name="ftname" id="name" class="" [ngClass]="getFieldClass('ftname')"
+                                    placeholder="Your First Name" formControlName="ftname" required>
+                                <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorFtName">
+                                    {{errorFtNameMsg}}
+                                </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="required-label">Phone</label>
-                            <input type="tel" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')"
-                                placeholder="Your Phone" formControlName="phone" required>
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorPhone">
-                                {{errorPhoneMsg}}
                             </div>
+                            <div class="form-group">
+                                <label for="ltname" class="required-label">Last Name</label>
+                                <input type="text" name="ltname" id="name" class="" [ngClass]="getFieldClass('ltname')"
+                                    placeholder="Your Last Name" formControlName="ltname" required>
+                                <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorLtName">
+                                    {{errorLtNameMsg}}
+                                </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="required-label">Email</label>
-                            <input type="email" name="email" id="email" class="" [ngClass]="getFieldClass('email')"
-                                placeholder="Your Email" formControlName="email">
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorEmail">
-                                {{errorEmailMsg}}
                             </div>
+                            <div class="form-group">
+                                <label for="phone" class="required-label">Phone</label>
+                                <input type="tel" name="phone" id="phone" class="" [ngClass]="getFieldClass('phone')"
+                                    placeholder="Your Phone" formControlName="phone" required>
+                                <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorPhone">
+                                    {{errorPhoneMsg}}
+                                </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="required-label">Address</label>
-                            <input type="text" name="address" id="address" class="" [ngClass]="getFieldClass('address')"
-                                placeholder="Your Address" formControlName="address" required>
-                            <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorAddress">
-                                {{errorAddressMsg}}
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="required-label">Email</label>
+                                <input type="email" name="email" id="email" class="" [ngClass]="getFieldClass('email')"
+                                    placeholder="Your Email" formControlName="email">
+                                <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorEmail">
+                                    {{errorEmailMsg}}
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="required-label">Address</label>
+                                <input type="text" name="address" id="address" class=""
+                                    [ngClass]="getFieldClass('address')" placeholder="Your Address"
+                                    formControlName="address" required>
+                                <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorAddress">
+                                    {{errorAddressMsg}}
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -162,11 +166,16 @@
             </aside>
         </article>
 
-        <article class="receipt-container w-full flex justify-center bg-[#0007] z-[999] absolute top-0 left-0 bottom-0 right-0 h-full overflow-y-auto" [ngClass]="paymentReceipt && showBill ? 'block' : 'hidden' ">
-            <button type="button" class="close-btn w-[35px] h-[35px] absolute top-[20px] right-[20px] rounded-full flex items-center justify-center bg-primary" (click)="closeBill()">
+        <article
+            class="receipt-container w-full flex justify-center bg-[#0007] z-[999] absolute top-0 left-0 bottom-0 right-0 h-full overflow-y-auto"
+            [ngClass]="paymentReceipt && showBill ? 'block' : 'hidden' ">
+            <button type="button"
+                class="close-btn w-[35px] h-[35px] absolute top-[20px] right-[20px] rounded-full flex items-center justify-center bg-primary"
+                (click)="closeBill()">
                 <fa-icon [icon]="faClose" class="text-white text-[25px]"></fa-icon>
             </button>
-            <div class="table-container max-w-[768px] max-h-[842px] w-full p-[15px] md:p-[30px] bg-white" id="payment-receipt">
+            <div class="table-container max-w-[768px] max-h-[842px] w-full p-[15px] md:p-[30px] bg-white"
+                id="payment-receipt">
                 <header class="table-header text-center pb-[25px] md:pb-[50px]">
                     <h2 class="company-name text-[18px] md:text-[35px]">
                         Sanu's Nursery
@@ -181,7 +190,8 @@
                     </div>
                     <div class="customer-info-item flex-[1_0_calc(100%/2)] pb-[2px] md:pb-2">
                         <span class="label-text pr-2">Name:</span>
-                        <span class="data break-words">{{ paymentReceipt?.name }}&nbsp;{{ checkoutForm.value.ltname }}</span>
+                        <span class="data break-words">{{ paymentReceipt?.name }}&nbsp;{{ checkoutForm.value.ltname
+                            }}</span>
                     </div>
                     <div class="customer-info-item flex-[0_0_calc(100%/2)] pb-[2px] md:pb-2">
                         <span class="label-text pr-2">Phone:</span>
