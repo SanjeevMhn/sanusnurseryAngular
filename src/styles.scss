@@ -144,6 +144,11 @@ section {
     .breadcrumb-item {
         position: relative;
 
+        &:first-child{
+            .breadcrumb-link{
+                padding-left: 0;
+            }
+        }
         .breadcrumb-link {
             display: flex;
             padding: 0 15px;

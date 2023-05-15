@@ -1,0 +1,53 @@
+<section class="contact-us-section dynamic-section">
+    <div class="inner-container">
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a routerLink="/" class="breadcrumb-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/home/contact" class="breadcrumb-link">Contact</a>
+            </li>
+        </ul>
+
+    <article class="contact-us-form-section p-[15px] md:p-[25px] rounded-[10px] bg-[#efefef] shadow-lg flex h-[calc(100vh-150px)] lg:h-auto">
+
+            <aside class="img-container max-w-[385px] hidden lg:block">
+                <img src={{loginImg}} alt="">
+            </aside>
+            <article class="contact-us-form-container flex-grow w-full lg:pl-[20px] h-auto">
+                <form action="javascript:void(0)" class="contact-us-form h-full flex flex-col" method="POST">
+                    <h2 class="header-text text-[30px] pb-[20px] font-[500]">Contact Us</h2>
+                    <div class="form-row flex flex-col h-[calc(100%-130px)]">
+                        <div class="form-group">
+                            <label for="first_name" class="required-label">First Name</label>
+                            <input type="text" name="first_name" id="first_name" class="form-control"
+                                placeholder="Your First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="required-label">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control"
+                                placeholder="Your Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact" class="required-label">Contact</label>
+                            <input type="tel" name="contact" id="contact" class="form-control"
+                                placeholder="Your Contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="required-label">Email</label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group flex-grow">
+                            <label for="message" class="required-label">Message</label>
+                            <textarea name="message" id="message" class="w-full h-full">Your messages or queries.....</textarea>
+                        </div>
+                    </div>
+                    <div class="actions-container mt-auto">
+                        <button type="submit" class="w-full block bg-primary text-base text-white p-[5px_20px] rounded-[5px] text-center">Get in touch</button>
+                    </div>
+                </form>
+            </article>
+        </article>
+    </div>
+</section>

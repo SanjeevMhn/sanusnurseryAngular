@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductsComponent,
     CartComponent,
     CheckoutFormComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
