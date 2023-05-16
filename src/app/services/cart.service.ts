@@ -61,7 +61,7 @@ export class CartService {
     const currentCart = this.cartItems.getValue();
     const index = currentCart.findIndex(cart => cart.id === item.id);
     const updatedCart = currentCart;
-    let updatedQuantity = item.quantity + 1;
+    let updatedQuantity = Number(item.quantity) + 1;
     let updatedTotal = item.price * updatedQuantity;
     const updatedCartObject: CartItem = {
       ...item,
