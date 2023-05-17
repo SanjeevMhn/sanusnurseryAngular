@@ -8,7 +8,7 @@
                 <a routerLink="/home/contact" class="breadcrumb-link">Contact</a>
             </li>
         </ul>
-        <div class="spacer h-[calc(100vh-30px)] lg:h-auto pb-[30px]">
+        <div class="spacer h-full pb-[30px]">
 
         <article
             class="contact-us-form-section rounded-[10px] bg-[#efefef] shadow-lg flex h-full overflow-hidden">
@@ -20,7 +20,7 @@
                 <form class="contact-us-form h-full flex flex-col" [formGroup]="userMessageForm"
                     (submit)="sendMessage()">
                     <h2 class="header-text text-[20px] md:text-[30px] pb-[12px] md:pb-[20px] font-[500]">Contact Us</h2>
-                    <div class="form-row flex flex-col h-[calc(100%-130px)]">
+                    <div class="form-row flex flex-col h-full mb-[40px]">
                         <div class="form-group">
                             <label for="first_name" class="required-label">First Name</label>
                             <input type="text" name="first_name" id="first_name" class="form-control"
