@@ -14,7 +14,7 @@
             class="contact-us-form-section rounded-[10px] bg-[#efefef] shadow-lg flex h-full overflow-hidden">
 
             <aside class="img-container max-w-[50%] hidden lg:block">
-                <img src={{loginImg}} alt="">
+                <img src={{loginImg}} alt="" class="w-full h-full object-cover">
             </aside>
             <article class="contact-us-form-container flex-grow w-full lg:pl-[20px] h-auto p-[15px] md:p-[25px]">
                 <form class="contact-us-form h-full flex flex-col" [formGroup]="userMessageForm"
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="first_name" class="required-label">First Name</label>
                             <input type="text" name="first_name" id="first_name" class="form-control"
-                                placeholder="Your First Name" formControlName="first_name" required>
+                                placeholder="Your First Name" formControlName="first_name" [ngClass]="errorFtName ? 'is-invalid' : ''" required>
                             <div class="invalid-message text-sm font-medium text-red-700" *ngIf="errorFtName">
                                 {{errorFtNameMsg}}
                             </div>
@@ -32,14 +32,14 @@
                         <div class="form-group">
                             <label for="last_name" class="required-label">Last Name</label>
                             <input type="text" name="last_name" id="last_name" class="form-control"
-                                placeholder="Your Last Name" formControlName="last_name" required>
+                                placeholder="Your Last Name" formControlName="last_name" [ngClass]="errorLtName ? 'is-invalid' : ''" required>
                             <div class="invalid-message text-sm font-medium text-red-700" *ngIf="errorLtName">
                                 {{errorLtNameMsg}}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="required-label">Contact</label>
-                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your Contact" formControlName="phone"
+                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your Contact" formControlName="phone" [ngClass]="errorPhone ? 'is-invalid' : ''"
                                 required>
                             <div class="invalid-message text-sm font-medium text-red-700" *ngIf="errorPhone">
                                 {{errorPhoneMsg}}
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email" class="required-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" formControlName="email"
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" formControlName="email" [ngClass]="errorEmail ? 'is-invalid' : ''"
                                 required>
                             <div class="invalid-message text-sm font-medium text-red-700" *ngIf="errorEmail">
                                 {{errorEmailMsg}}
@@ -56,7 +56,7 @@
                         <div class="form-group flex-grow">
                             <label for="message" class="required-label">Message</label>
                             <textarea name="message" id="message"
-                                class="w-full h-full" formControlName="message" required>Your messages or queries.....</textarea>
+                                class="w-full h-full" formControlName="message" [ngClass]="errorMessage ? 'is-invalid' : ''" required>Your messages or queries.....</textarea>
                             <div class="invalid-message text-sm font-medium text-red-700" *ngIf="errorMessage">
                                 {{errorMessageMsg}}
                             </div>
