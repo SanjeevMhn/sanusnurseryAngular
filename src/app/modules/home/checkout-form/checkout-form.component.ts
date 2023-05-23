@@ -22,7 +22,7 @@ export class CheckoutFormComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(()=>{
-      this.toastService.show("Your order receipt has been downloaded", ToastType.success);
+      this.toastService.show("Your receipt has been downloaded", ToastType.success);
     }, 5000);
     // console.log(this.route.snapshot.paramMap.get('previousRoute'));
     // this.prevRoute = this.route.snapshot.paramMap.get('previousRoute');
