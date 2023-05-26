@@ -5,10 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
-fa-icon{
-    svg{
-        width: 100%;
-        text-align: center;
+.close-btn,
+.close-btn-sp {
+    fa-icon {
+        svg {
+            width: 100%;
+            text-align: center;
+        }
     }
 }
 
