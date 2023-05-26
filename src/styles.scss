@@ -6,10 +6,15 @@
 @tailwind utilities;
 
 
-.hide-arrows::-webkit-inner-spin-button,.hide-arrows::-webkit-outer-spin-button{
+.hide-arrows::-webkit-inner-spin-button,
+.hide-arrows::-webkit-outer-spin-button{
     display: none;
     margin: 0;
     pointer-events: none;
+}
+
+.hide-arrows{
+    -moz-appearance: textfield;
 }
 
 .is-invalid{
