@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+fa-icon{
+    svg{
+        width: 100%;
+        text-align: center;
+    }
+}
 
 .hide-arrows::-webkit-inner-spin-button,
 .hide-arrows::-webkit-outer-spin-button{
