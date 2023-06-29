@@ -54,9 +54,9 @@
             <div class="search-result overflow-y-auto">
                 <ul class="search-result-list">
                     <li class="search-result-item" *ngFor="let item of searchResults">
-                        <a [routerLink]="['/home/product/', item.id]" class="search-result-link flex p-[5px_10px]"
+                        <a [routerLink]="['/home/product/', item.prod_id]" class="search-result-link flex p-[5px_10px]"
                             (click)="toggleSearch()">
-                            {{item.name}}
+                            {{item.prod_name}}
                         </a>
                     </li>
                 </ul>

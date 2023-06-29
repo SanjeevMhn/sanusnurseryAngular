@@ -50,7 +50,14 @@ export default class LayoutComponent implements OnInit {
     this.searchSubject.pipe(
       debounceTime(800)
     ).subscribe((searchText: string) => {
-      this.searchResults = this.product.searchPlants(searchText);
+      this.product.searchPlants(searchText).subscribe({
+        next:(data:any) => {
+          this.searchResults = data.products;
+        },
+        error:(err) => {
+          console.error(err);
+        }
+      });
       // console.log(this.searchResults);
     })
 

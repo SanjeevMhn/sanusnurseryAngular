@@ -18,7 +18,7 @@ export class CartService {
   addToCart(product: CartItem): void {
     const currentCart = this.cartItems.getValue();
 
-    if (!currentCart.some(item => item.id === product.id)) {
+    if (!currentCart.some(item => item.prod_id === product.prod_id)) {
       const updatedCart = [ product,...currentCart];
       this.cartItems.next(updatedCart);
     }
@@ -32,7 +32,7 @@ export class CartService {
 
   removeCartItem(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
-    const updatedCart = currentCart.filter(cart => cart.id !== item.id);
+    const updatedCart = currentCart.filter(cart => cart.prod_id !== item.prod_id);
     this.cartItems.next(updatedCart);
     return this.cartItems;
   }
@@ -43,10 +43,10 @@ export class CartService {
 
   decreaseCartItemQuantity(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
-    const index = currentCart.findIndex(cart => cart.id === item.id);
+    const index = currentCart.findIndex(cart => cart.prod_id === item.prod_id);
     const updatedCart = currentCart;
     let updatedQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
-    let updatedTotal = item.price * updatedQuantity;
+    let updatedTotal = item.prod_price * updatedQuantity;
     const updatedCartObject: CartItem = {
       ...item,
       quantity: updatedQuantity,
@@ -59,10 +59,10 @@ export class CartService {
 
   increaseCartItemQuantity(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
-    const index = currentCart.findIndex(cart => cart.id === item.id);
+    const index = currentCart.findIndex(cart => cart.prod_id === item.prod_id);
     const updatedCart = currentCart;
     let updatedQuantity = Number(item.quantity) + 1;
-    let updatedTotal = item.price * updatedQuantity;
+    let updatedTotal = item.prod_price * updatedQuantity;
     const updatedCartObject: CartItem = {
       ...item,
       quantity: updatedQuantity,
@@ -75,10 +75,10 @@ export class CartService {
 
   setCartItemQuantity(item: CartItem, quantity: number): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
-    const index = currentCart.findIndex(cart => cart.id === item.id);
+    const index = currentCart.findIndex(cart => cart.prod_id === item.prod_id);
     const updatedCart = currentCart;
     let updatedQuantity = quantity;
-    let updatedTotal = item.price * updatedQuantity;
+    let updatedTotal = item.prod_price * updatedQuantity;
     const updatedCartObject: CartItem = {
       ...item,
       quantity: updatedQuantity,

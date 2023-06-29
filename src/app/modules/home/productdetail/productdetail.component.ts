@@ -19,7 +19,7 @@ export class ProductdetailComponent implements OnInit {
   productId?: number;
   productDetail?: Product;
   productQuantity: number = 1;
-  relatedProducts: Product[] = [];
+  relatedProducts?: Product[] = [];
 
   faPlus = faPlus;
   faMinus = faMinus;
@@ -58,11 +58,11 @@ export class ProductdetailComponent implements OnInit {
   getProduct(id: number): void {
     this.getPlantFromIdSubscription = this.product.getPlantFromId(id)
       .subscribe({
-        next: (data) => {
-          this.productDetail = data;
-          this.selectedProductImage = this.productDetail.img;
-          this.inStock = this.productDetail.inStock;
-          this.getRelatedProducts(this.productDetail.type, this.productDetail.id);
+        next: (data:any) => {
+          this.productDetail = data.product[0];
+          this.selectedProductImage = this.productDetail!.prod_img;
+          this.inStock = this.productDetail!.prod_inStock;
+          this.getRelatedProducts(this.productDetail!.prod_category, this.productDetail!.prod_id);
         },
         error: (err) => {
           console.error(err)
@@ -70,17 +70,17 @@ export class ProductdetailComponent implements OnInit {
       })
   }
 
-  getRelatedProducts(type: string, id: number): void {
-    this.getRelatedProductsSubscription = this.product.getPlantFromType(type, id).subscribe({
-      next: (data) => {
-        this.relatedProducts = data;
-        // console.log(this.relatedProducts);
+  getRelatedProducts(type: string, id?:number): void {
+    this.getRelatedProductsSubscription = this.product.getPlantFromType(type,id).subscribe({
+      next: (data:any) => {
+        this.relatedProducts = data.products;
       },
       error: (err) => {
         console.error(err);
 
       }
     })
+
   }
 
   ngOnDestroy(): void {
@@ -125,7 +125,7 @@ export class ProductdetailComponent implements OnInit {
       let cartItem: CartItem = {
         ...this.productDetail!,
         quantity: this.productQuantity,
-        total: this.productDetail?.price! * this.productQuantity,
+        total: this.productDetail?.prod_price! * this.productQuantity,
       };
       this.cart.addToCart(cartItem);
       this.toastService.show("Added to cart", ToastType.success);
@@ -140,7 +140,7 @@ export class ProductdetailComponent implements OnInit {
       let cartItem: CartItem = {
         ...this.productDetail!,
         quantity: this.productQuantity,
-        total: this.productDetail?.price! * this.productQuantity,
+        total: this.productDetail?.prod_price! * this.productQuantity,
       };
       this.cart.addToCart(cartItem);
       this.router.navigate(['/home/cart']);

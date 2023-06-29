@@ -40,11 +40,11 @@
                                 <div class="inline-flex flex-col items-center lg:flex-row w-full">
 
                                     <div class="img-container max-w-[175px] lg:max-w-[120px] mx-auto lg:mx-0">
-                                        <img src="{{item.img}}" alt="" class="w-full h-auto object-contain">
+                                        <img src="{{item.prod_img}}" alt="" class="w-full h-auto object-contain">
                                     </div>
                                     <div class="product-info lg:pl-[10px] text-center lg:text-left pt-[8px] lg:pt-0">
-                                        <div class="name font-[500]">{{item.name}}</div>
-                                        <div class="type text-primary text-[14px]">{{item.type}}</div>
+                                        <div class="name font-[500]">{{item.prod_name}}</div>
+                                        <div class="type text-primary text-[14px]">{{item.prod_category}}</div>
                                     </div>
                                 </div>
                             </td>
@@ -69,7 +69,7 @@
                                     </button>
                                 </div>
                             </td>
-                            <td data-name="price">Rs.&nbsp;{{item.price}}</td>
+                            <td data-name="price">Rs.&nbsp;{{item.prod_price}}</td>
                             <td data-name="total">Rs.&nbsp;{{item.total}}</td>
                             <td data-name="action">
                                 <button
@@ -217,9 +217,9 @@
                         <tbody>
                             <tr *ngFor="let item of paymentReceipt?.products; let i=index">
                                 <td data-name="sn">{{i+1}}</td>
-                                <td data-name="name">{{item.name}}</td>
+                                <td data-name="name">{{item.prod_name}}</td>
                                 <td data-name="quantity">{{item.quantity}}</td>
-                                <td data-name="price">{{item.price}}</td>
+                                <td data-name="price">{{item.prod_price}}</td>
                                 <td data-name="total">{{item.total}}</td>
                             </tr>
                         </tbody>

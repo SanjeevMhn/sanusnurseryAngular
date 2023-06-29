@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/interface/product';
 
@@ -8,17 +7,17 @@ import { Product } from 'src/app/interface/product';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 
   constructor(private product: ProductService) { }
   plants?: Product[];
-  limit:number = 8;
+  page:number = 1;
 
   ngOnInit(): void {
-    this.product.getPlants(this.limit).subscribe({
-      next: (data) => {
-        this.plants = data
-        // console.log(this.plants)
+    this.product.getPlants(this.page).subscribe({
+      next: (data:any) => {
+        this.plants = data.products;
       },
       error: (err) => {
         console.error(err)

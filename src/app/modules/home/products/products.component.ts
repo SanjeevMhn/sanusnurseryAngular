@@ -22,14 +22,18 @@ export class ProductsComponent implements OnInit {
   currentPage: number = 1;
   totalPages?: number;
   sortBy: string = 'default';
-  categories: string[] = ['', 'flower', 'plant', 'vegetable'];
+  categories?: any[];
   defaultLinkActive: boolean = true;
   listFilterItem?: Event;
   filter?: string;
 
   public sortForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private fb: FormBuilder) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService, private fb: FormBuilder, private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.sortForm = this.fb.group({
@@ -40,14 +44,15 @@ export class ProductsComponent implements OnInit {
       this.defaultLinkActive = !this.defaultLinkActive;
     }
     this.getProducts(this.productType);
+    this.getProductCategories();
     this.filterData(this.filter!);
   }
 
-  filterData(filter: string): Product[] {
+  filterData(filter: string): any {
     if (filter === 'priceLowToHigh') {
-      return this.products!.sort((a, b) => a.price - b.price);
+      return this.products!.sort((a, b) => a.prod_price - b.prod_price);
     } else if (filter === 'priceHighToLow') {
-      return this.products!.sort((a, b) => b.price - a.price);
+      return this.products!.sort((a, b) => b.prod_price - a.prod_price);
     } else {
       return this.products!;
     }
@@ -57,12 +62,24 @@ export class ProductsComponent implements OnInit {
     this.filterData(String(e.target.value));
   }
 
+
+  getProductCategories():void{
+    this.productService.getPlantCategories().subscribe({
+      next:(data: any) => {
+        this.categories = data.categories;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
   getProducts(type: string): void {
     if (type !== null) {
       this.productService.getPlantFromType(type).subscribe({
-        next: (data) => {
-          this.products = data;
-          this.totalPages = Math.ceil(this.products.length / this.pageSize);
+        next: (data:any) => {
+          this.products = data.products;
+          this.totalPages = data.totalPages;
           // console.log(this.products);
         },
         error: (err) => {
@@ -70,11 +87,12 @@ export class ProductsComponent implements OnInit {
         }
       })
     } else {
-      this.productService.getAllPlants().subscribe({
-        next: (data) => {
-          this.products = data;
-          this.totalPages = Math.ceil(this.products.length / this.pageSize);
+      this.productService.getAllPlants(this.currentPage).subscribe({
+        next: (data: any) => {
+          this.products = data.products;
+          // this.totalPages = Math.ceil(this.products.length / this.pageSize);
           // console.log(this.products);
+          this.totalPages = data.totalPages;
         },
         error: (err) => {
           console.error(err);
@@ -83,28 +101,26 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  get paginatedData() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    return this.products?.slice(startIndex, endIndex);
-  }
+  // get paginatedData() {
+  //   const startIndex = (this.currentPage - 1) * this.pageSize;
+  //   const endIndex = startIndex + this.pageSize;
+  //   return this.products?.slice(startIndex, endIndex);
+  // }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      const getType = this.route.snapshot.paramMap.get('type')!;
+      this.getProducts(getType);
     }
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages!) {
       this.currentPage++;
+      const getType = this.route.snapshot.paramMap.get('type')!;
+      this.getProducts(getType);
     }
   }
 
-  reload(): void {
-    const getType = this.route.snapshot.paramMap.get('type')!;
-    this.getProducts(getType);
-    this.currentPage = 1;
-    this.sortForm.controls['sortSelect'].reset('default');
-  }
 }

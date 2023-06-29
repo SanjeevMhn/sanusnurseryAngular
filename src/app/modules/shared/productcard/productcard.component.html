@@ -1,16 +1,16 @@
-<a [routerLink]="['/home/product/',item.id]" class="product-list-link p-3 h-full w-full flex justify-center">
-    <div class="card-ribbon" [ngClass]="item.inStock ? 'hidden' : 'block'">
+<a [routerLink]="['/home/product/',item.prod_id]" class="product-list-link p-3 h-full w-full flex justify-center">
+    <div class="card-ribbon" [ngClass]="item.prod_inStock ? 'hidden' : 'block'">
         <span class="msg">
             <span>Out of stock</span> 
         </span>
     </div>
     <div class="inner-card-container w-full bg-[#fff] max-w-[335px] shadow-lg">
         <div class="product-img w-full h-[250px] bg-slate-400">
-            <img src={{item.img}} alt="product-img" class="h-full w-full object-contain" loading="lazy">
+            <img src={{item.prod_img}} alt="product-img" class="h-full w-full object-contain" loading="lazy">
         </div>
         <div class="product-details px-[25px] py-[5px]">
-            <h5 class="product-name text-base">{{item.name}}</h5>
-            <h6 class="product-price text-lg text-primary">Rs.&nbsp;{{item.price}}</h6>
+            <h5 class="product-name text-base">{{item.prod_name}}</h5>
+            <h6 class="product-price text-lg text-primary">Rs.&nbsp;{{item.prod_price}}</h6>
         </div>
     </div>
 </a>
