@@ -13,6 +13,7 @@ import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ContactComponent } from './contact/contact.component';
     CheckoutFormComponent,
     PageNotFoundComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

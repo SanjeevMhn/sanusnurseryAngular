@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { faSearch, faPhone, faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPhone, faCartShopping, faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/interface/product';
 import { CartService } from 'src/app/services/cart.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,12 +15,13 @@ export class NavigationComponent implements OnInit {
   faPhone = faPhone;
   faCartShopping = faCartShopping;
   faBars = faBars;
+  faUser = faUser;
   cartList: Product[] = [];
 
   @Output() toggleSideNav = new EventEmitter();
   @Output() toggleSearch = new EventEmitter();
 
-  constructor(private cart: CartService) { }
+  constructor(private cart: CartService, private loginModalService: LoginService) { }
 
   ngOnInit(): void {
     this.getCartData();
@@ -43,4 +45,9 @@ export class NavigationComponent implements OnInit {
       }
     })
   }
+
+  openLoginModal(){
+    this.loginModalService.show('Login');
+  }
+
 }
