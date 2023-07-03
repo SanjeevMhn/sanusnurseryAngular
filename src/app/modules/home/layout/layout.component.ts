@@ -77,12 +77,12 @@ export default class LayoutComponent implements OnInit {
       this.onRouteChanges();
     })
 
-    this.authService.getAuthData().subscribe({
-      next: (data:any) => {
-        this.userData = data[0];
-        console.log(data[0]);
-      }
-    })
+    // this.authService.getAuthData().subscribe({
+    //   next: (data:any) => {
+    //     this.userData = data[0];
+    //     console.log(data[0]);
+    //   }
+    // })
   }
 
   onRouteChanges() {

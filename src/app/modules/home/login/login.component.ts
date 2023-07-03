@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LoginModal } from './login-modal';
 import { LoginService } from 'src/app/services/login.service';
 import { Subscription } from 'rxjs';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -19,12 +19,15 @@ export class LoginComponent implements OnInit {
   userLoginForm!: FormGroup;
 
   faClose = faClose
+  faChevronDown = faChevronDown;
   @Output() toogleLogin = new EventEmitter()
 
   errorUserEmail: boolean = false;
   errorUserPassword: boolean = false;
   errorUserEmailMsg: string = '';
   errorUserPasswordMsg: string = '';
+
+  showMainLogin: boolean = false;
 
   constructor(private loginService: LoginService, private fb: FormBuilder, private authService: AuthService, private router: Router) { }
   
@@ -40,15 +43,20 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public close(){
+  public close():void{
     this.loginService.hide();
     this.toogleLogin.emit();
     this.errorUserEmail = false;
     this.errorUserPassword = false;
     this.userLoginForm.reset();
+    this.showMainLogin = false;
   }
 
-  login(){
+  toggleMainLogin():void{
+    this.showMainLogin = !this.showMainLogin;
+  }
+
+  login():void{
     this.errorUserEmail = false;
     this.errorUserPassword = false;
     if(this.userLoginForm.invalid){
