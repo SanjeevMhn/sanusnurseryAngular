@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, take, map, filter, BehaviorSubject, of, reduce, flatMap } from 'rxjs';
 import { Product } from '../interface/product';
+import { environment } from 'src/environments/environment';
 
 // const baseUrl = './assets/json/plants.json';
 const baseUrl = 'https://script.google.com/macros/s/AKfycbyqUmK7xsS47nGiPj3ErkiQ_y4ktMDjDIqbkiXpeh0jF0AuoAyNnDQ0gV-3CyebXgPJ1A/exec';
-const baseUrlNew = 'http://localhost:8080/api/v1/products';
+const baseUrlNew = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'

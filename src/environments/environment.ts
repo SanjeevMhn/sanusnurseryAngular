@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   imgBBApikey: '014e008e82e884c8eb4215bf3b5ed463',
+  refreshToken: 'http://localhost:8080/api/v1/refresh',
+  baseUrl: 'http://localhost:8080/api/v1/products',
+  authUrl: 'http://localhost:8080/api/v1/auth',
 };
 
 /*

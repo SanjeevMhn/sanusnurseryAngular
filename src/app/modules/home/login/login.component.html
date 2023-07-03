@@ -1,4 +1,4 @@
-<div class="login-modal-wrapper absolute h-screen w-full  bg-[#0909097a] flex items-center justify-center z-[9999] p-[20px]"
+<div class="login-modal-wrapper absolute min-h-screen w-full  bg-[#0909097a] flex items-center justify-center z-[9999] p-[10px] md:p-[20px]"
     *ngIf="loginModal?.visible">
     <div class="login-modal max-w-[390px] w-[90%] bg-white rounded-md p-[15px] md:p-[25px] relative">
         <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]"
@@ -8,7 +8,7 @@
         <div class="modal-header ">
             <h4 class="modal-title text-3xl text-primary font-bold text-center company-name">{{loginModal?.message}}</h4>
         </div>
-        <div class="modal-body py-[30px]">
+        <div class="modal-body third-party-login py-[30px] border-b border-slate-400">
             <a class="login-google p-[10px_15px] border border-slate-400 rounded-full text-base text-center mb-[10px] text-black font-semibold block" role="button">
                 Continue with Google
             </a>
@@ -16,5 +16,25 @@
                 Continue with Facebook 
             </a>
         </div>
+        <div class="modal-body main-login pt-[30px]">
+            <form class="login-form" [formGroup]="userLoginForm" (submit)="login()">
+                <div class="form-group mb-4">
+                    <input type="text" name="user-email" id="user-email" class="form-control text-base p-[5px_10px] border border-slate-400 rounded-md w-full" placeholder="Email" [ngClass]="errorUserEmail ? 'border border-red-700' : ''" formControlName="user_email">
+                    <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorUserEmail">
+                        {{errorUserEmailMsg}}
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <input type="password" name="user-password" id="user-password" class="form-control text-base p-[5px_10px] border border-slate-400 rounded-md w-full" [ngClass]="errorUserEmail ? 'border border-red-700' : ''" placeholder="password" formControlName="user_password">
+                    <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorUserPassword">
+                        {{errorUserPasswordMsg}}
+                    </div>
+                </div>
+                <div class="form-group flex items-center justify-center pt-[10px]">
+                    <button type="submit" class="p-[5px_65px] bg-primary text-white company-name rounded-full text-xl">Login</button>
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>

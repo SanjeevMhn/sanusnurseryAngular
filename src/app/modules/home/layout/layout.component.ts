@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Subject } from 'rxjs';
 import { Product } from 'src/app/interface/product';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -16,6 +18,7 @@ export default class LayoutComponent implements OnInit {
 
   showSideNav: boolean = false;
   showSearch: boolean = false;
+  showLogin: boolean = false;
   faClose = faClose;
   faSearch = faSearch;
   defaultLinkActive: boolean = false;
@@ -28,12 +31,15 @@ export default class LayoutComponent implements OnInit {
   private searchSubject = new Subject<string>();
   searchResults?: Product[];
 
+  userData?: {};
+
   @ViewChild('searchText') searchText?: ElementRef<HTMLInputElement>;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private product: ProductService) { }
+    private product: ProductService,
+    private authService: AuthService) { }
 
 
   @HostListener('window:scroll', ['$event'])
@@ -70,6 +76,13 @@ export default class LayoutComponent implements OnInit {
     ).subscribe(() => {
       this.onRouteChanges();
     })
+
+    this.authService.getAuthData().subscribe({
+      next: (data:any) => {
+        this.userData = data[0];
+        console.log(data[0]);
+      }
+    })
   }
 
   onRouteChanges() {
@@ -104,6 +117,8 @@ export default class LayoutComponent implements OnInit {
     },0)
   }
 
-  
+  toogleLogin(){
+    this.showLogin = !this.showLogin;
+  }
 
 }

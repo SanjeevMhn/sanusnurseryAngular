@@ -20,6 +20,7 @@ export class NavigationComponent implements OnInit {
 
   @Output() toggleSideNav = new EventEmitter();
   @Output() toggleSearch = new EventEmitter();
+  @Output() toogleLogin = new EventEmitter();
 
   constructor(private cart: CartService, private loginModalService: LoginService) { }
 
@@ -46,8 +47,9 @@ export class NavigationComponent implements OnInit {
     })
   }
 
-  openLoginModal(){
+  onOpenLoginModal(){
     this.loginModalService.show('Login');
+    this.toogleLogin.emit();
   }
 
 }
