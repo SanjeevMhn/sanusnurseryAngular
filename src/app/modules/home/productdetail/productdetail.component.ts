@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2 } fr
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
-import { faPlus, faMinus, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/interface/cart-item';

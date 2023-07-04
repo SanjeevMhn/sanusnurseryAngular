@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptorInterceptor } from './interceptor/auth-interceptor.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { AuthInterceptorInterceptor } from './interceptor/auth-interceptor.inter
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     }
   ],

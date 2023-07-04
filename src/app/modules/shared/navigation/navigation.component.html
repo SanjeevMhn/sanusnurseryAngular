@@ -3,7 +3,7 @@
 
         <a routerLink="/home" class="brand-link block text-xl md:text-2xl company-name">Sanu's Nursery</a>
 
-        <ul class="nav-list hidden md:flex items-center text-lg">
+        <ul class="nav-list hidden lg:flex items-center text-lg">
             <li class="nav-item">
                 <a routerLink="/home" class="nav-link flex px-3">Home</a>
             </li>
@@ -34,15 +34,50 @@
                     </span>
                 </a>
             </li>
-            <li class="user-actions-item px-2">
-                <a role="button" class="cart-container relative block">
-                    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center" (click)="onOpenLoginModal()">
-                        <fa-icon [icon]="faUser" class=""></fa-icon>
-                    </span>
-                </a>
+            <li class="user-actions-item px-2 relative hidden lg:block">
+                <div class="auth-user-dropdown relative" *ngIf="userData; else loginModal">
+                    <button type="button" class="cart-container relative block" (click)="toggleDropDown()">
+                        <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full bg-blue-400">
+                            <!-- <fa-icon [icon]="faUser" class=""></fa-icon> -->
+                            <img src="" class="w-full h-auto object-contain">
+                        </span>
+                    </button>
+                    <div class="dropdown absolute right-0 min-w-[220px] bg-[white] p-[15px] rounded-md"
+                        [ngClass]="showDropDown ? 'block' : 'hidden'">
+                        <a class="flex flex-col user-profile-content pb-[10px] border-b border-slate-300">
+                            <span class="user_name text-lg fon-semiBold">{{userData?.user_name}}</span>
+                            <span class="user_email text-sm">{{userData?.user_email}}</span>
+                        </a>
+                        <ul class="user-actions-dropdown-list pt-[10px]">
+                            <li class="user-actions-item">
+                                <a href="" class="user-actions-link flex py-[5px]">Dashboard</a>
+                            </li>
+                            <li class="user-actions-item">
+                                <a href="" class="user-actions-link flex py-[5px]">Order History</a>
+                            </li>
+                            <li class="user-actions-item">
+                                <a href="" class="user-actions-link flex py-[5px]">My Reviews</a>
+                            </li>
+                            <li class="user-actions-item">
+                                <a role="button" class="user-actions-link flex py-[5px]" (click)="logout()">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <ng-template #loginModal>
+                    <a role="button"
+                        class="cart-container relative flex items-center p-[2px_10px] bg-outline-primary rounded-full text-primary"  (click)="onOpenLoginModal()">
+                        <span class="icon-container flex items-center justify-center">
+                            <fa-icon [icon]="faCircleUser" class="text-primary text-xl"></fa-icon>
+                        </span>
+                        <span class="label-text text-sm pl-2">Sign In</span>
+                    </a>
+                </ng-template>
+
             </li>
-            <li class="user-actions-item pl-2 md:hidden">
-                <button type="button" class="icon-container md:hidden" (click)="onToggleSideNav()">
+            <li class="user-actions-item pl-2 lg:hidden">
+                <button type="button" class="icon-container" (click)="onToggleSideNav()">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                         <fa-icon [icon]="faBars" class="flex items-center text-lg"></fa-icon>
                     </span>

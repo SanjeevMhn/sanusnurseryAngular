@@ -4,8 +4,10 @@ import { LoginService } from 'src/app/services/login.service';
 import { Subscription } from 'rxjs';
 import { faClose, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @Component({
   selector: 'app-login',
@@ -20,16 +22,23 @@ export class LoginComponent implements OnInit {
 
   faClose = faClose
   faChevronDown = faChevronDown;
-  @Output() toogleLogin = new EventEmitter()
+  @Output() toggleLogin = new EventEmitter()
 
   errorUserEmail: boolean = false;
   errorUserPassword: boolean = false;
   errorUserEmailMsg: string = '';
   errorUserPasswordMsg: string = '';
 
+  errFormMessage: string = '';
+
   showMainLogin: boolean = false;
 
-  constructor(private loginService: LoginService, private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(
+    private loginService: LoginService, 
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient
+    ) { }
   
   ngOnInit(): void {
     this.loginModalSubscription = this.loginService.$loginModalState.subscribe((loginModal: LoginModal) => {
@@ -45,7 +54,7 @@ export class LoginComponent implements OnInit {
 
   public close():void{
     this.loginService.hide();
-    this.toogleLogin.emit();
+    this.toggleLogin.emit();
     this.errorUserEmail = false;
     this.errorUserPassword = false;
     this.userLoginForm.reset();
@@ -83,17 +92,18 @@ export class LoginComponent implements OnInit {
     }
 
     let val = this.userLoginForm.value;
-    this.authService.login(val).subscribe({
-      next: (data:any)  => {
-        this.authService.setAccessToken(data.accessToken);
-        console.log(data);
+    this.http.post(environment.authUrl,val,{withCredentials: true}).subscribe({
+      next: (res: any) =>{
         this.close();
-        this.router.navigate(['home']);
+        AuthInterceptor.accessToken = res.accessToken;
+        this.router.navigate(['/home']);
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error(err);
+        this.errFormMessage = err.message;
+        console.log(err.message);
       }
-    })
+    })  
   }
 
 }

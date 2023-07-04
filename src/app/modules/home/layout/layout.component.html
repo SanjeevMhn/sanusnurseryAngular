@@ -1,9 +1,9 @@
 <div class="wrapper h-auto w-full" [ngClass]="showSideNav || showSearch || showLogin ? 'fixed' : 'relative'">
     <app-toast></app-toast>
-    <app-login (toogleLogin)="toogleLogin()"></app-login>
+    <app-login (toggleLogin)="toggleLogin()"></app-login>
     <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[530] justify-end"
         [ngClass]="showSideNav ? 'flex' : 'hidden'">
-        <nav class="offscreen-sidenav-container w-full h-full bg-[#e1e1e1] p-[15px]">
+        <nav class="offscreen-sidenav-container max-w-[500px] w-[90%] h-full bg-[#e1e1e1] p-[15px]">
             <div class="top-content flex justify-between">
                 <button class="circle-button" (click)="toggleSideNav()" type="button">
                     <fa-icon [icon]="faClose"></fa-icon>
@@ -12,22 +12,73 @@
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </button> -->
             </div>
-            <ul class="menu-list py-[45px]">
+            <ul class="menu-list py-[25px]">
                 <li class="menu-list-item">
-                    <a routerLink="/home/" class="menu-list-link flex text-xl p-[5px_15px]"
+                    <!-- <a role="button"
+                        class="cart-container relative flex items-center p-[5px_15px] bg-outline-primary rounded-full text-primary mb-[10px]"
+                        (click)="showLoginModal()">
+                        <span class="icon-container flex items-center justify-center">
+                            <fa-icon [icon]="faCircleUser" class="text-primary text-xl"></fa-icon>
+                        </span>
+                        <span class="label-text text-sm pl-2">Sign In</span>
+                    </a> -->
+                    <div class="auth-user-dropdown relative" *ngIf="userData; else loginModal">
+                        <button type="button" class="cart-container relative flex w-full border-b border-slate-500 mb-[10px]" (click)="toggleDropDown()">
+                            <span class="icon-container flex w-[50px] h-[50px] items-center justify-center rounded-full bg-blue-400">
+                                <!-- <fa-icon [icon]="faCircleUser" class="text-2xl"></fa-icon> -->
+                                <img src="" class="w-full h-auto object-contain">
+                            </span>
+                            <a class="flex flex-col user-profile-content pb-[10px] flex-grow text-left pl-[10px]">
+                                <span class="user_name text-lg fon-semiBold">{{userData?.user_name}}</span>
+                                <span class="user_email text-sm">{{userData?.user_email}}</span>
+                            </a>
+                        </button>
+                        <div class="dropdown mb-[10px] border-b border-slate-500" [ngClass]="showDropDown ? 'block' : 'hidden'">
+                            <ul class="user-actions-dropdown-list pb-[10px] pl-[25px]">
+                                <li class="user-actions-item">
+                                    <a href="" class="user-actions-link flex py-[5px]">Dashboard</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a href="" class="user-actions-link flex py-[5px]">Order History</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a href="" class="user-actions-link flex py-[5px]">My Reviews</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a role="button" class="user-actions-link flex py-[5px]"
+                                        (click)="logout()">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <ng-template #loginModal>
+                        <a role="button"
+                            class="cart-container relative flex items-center p-[2px_10px] bg-outline-primary rounded-full text-primary mb-[10px]"
+                            (click)="showLoginModal()">
+                            <span class="icon-container flex items-center justify-center">
+                                <fa-icon [icon]="faCircleUser" class="text-primary text-xl"></fa-icon>
+                            </span>
+                            <span class="label-text text-xl pl-2">Sign In</span>
+                        </a>
+                    </ng-template>
+
+                </li>
+                <li class="menu-list-item">
+                    <a routerLink="/home/" class="menu-list-link flex p-[5px_15px]"
                         [ngClass]="defaultLinkActive ? 'active' : ''" (click)="toggleSideNav()">Home</a>
                 </li>
                 <li class="menu-list-item">
                     <a routerLink="/home/products" routerLinkActive="active"
-                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Products</a>
+                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav()">Products</a>
                 </li>
                 <li class="menu-list-item">
                     <a routerLink="/home/about" routerLinkActive="active"
-                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">About</a>
+                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav()">About</a>
                 </li>
                 <li class="menu-list-item">
                     <a routerLink="/home/contact" routerLinkActive="active"
-                        class="menu-list-link flex text-xl p-[5px_15px]" (click)="toggleSideNav()">Contact</a>
+                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav()">Contact</a>
                 </li>
 
             </ul>
@@ -65,8 +116,8 @@
         </div>
     </div>
     <app-contact-header class="homepage-contact-us" *ngIf="showContactUs"></app-contact-header>
-    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" (toogleLogin)="toogleLogin()" *ngIf="showNavbar"
-        class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
+    <app-navigation (toggleSideNav)="toggleSideNav()" (toggleSearch)="toggleSearch()" (toggleLogin)="toggleLogin()"
+        *ngIf="showNavbar" class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
         [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
     <main class="main-content h-auto pt-[60px] md:pt-[72px] bg-[#e1e1e1]">
         <router-outlet></router-outlet>
