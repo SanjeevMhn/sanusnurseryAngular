@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from '../../shared/toast/toast.modal';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService, 
     private fb: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastService: ToastService
     ) { }
   
   ngOnInit(): void {
@@ -97,6 +100,7 @@ export class LoginComponent implements OnInit {
         this.close();
         AuthInterceptor.accessToken = res.accessToken;
         this.router.navigate(['/home']);
+        this.toastService.show('User logged in', ToastType.success);
       },
       error: (err: any) => {
         console.error(err);

@@ -6,6 +6,11 @@ import { LoginService } from 'src/app/services/login.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from '../toast/toast.modal';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @Component({
   selector: 'app-navigation',
@@ -33,31 +38,28 @@ export class NavigationComponent implements OnInit {
     private cart: CartService,
     private loginModalService: LoginService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
 
-    this.http.get(`${environment.authUrl}/me`).subscribe({
-      next: (res: any) => {
-        this.userData = res.user[0];
-        console.log(this.userData);
+    this.authService.userData.subscribe({
+      next: (data: any) => {
+        this.userData = data;
       },
       error: (err: any) => {
         console.error(err);
       }
     })
+
   }
 
   ngOnInit(): void {
     this.getCartData();
-    this.http.get(`${environment.authUrl}/me`).subscribe({
-      next: (res: any) => {
-        this.userData = res.user[0];
-        console.log(this.userData);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
+  }
+
+  checkObject(obj: Object): boolean {
+    return isObjectEmpty(obj);
   }
 
   onToggleSideNav() {
@@ -89,9 +91,16 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    this.http.post(`${environment.authUrl}/logout`, {}, { withCredentials: true }).subscribe({
+
+    this.authService.logout().subscribe({
       next: (data: any) => {
-        this.userData = null;
+        AuthInterceptor.accessToken = '';
+        this.authService.removeUserData();
+        this.toastService.show('User logged out', ToastType.success);
+        this.userData = {};
+      },
+      error: (err: any) => {
+        console.error(err);
       }
     })
   }

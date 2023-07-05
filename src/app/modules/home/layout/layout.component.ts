@@ -9,6 +9,11 @@ import { Product } from 'src/app/interface/product';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from '../../shared/toast/toast.modal';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @Component({
   selector: 'app-layout',
@@ -47,20 +52,13 @@ export default class LayoutComponent implements OnInit {
     private fb: FormBuilder,
     private product: ProductService,
     private http: HttpClient,
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    private authService: AuthService,
+    private toastService: ToastService) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
-
-    this.http.get(`${environment.authUrl}/me`, { withCredentials: true }).subscribe({
-      next: (data: any) => {
-        this.userData = data.user[0];
-      },
-      error: (err: any) => {
-        // this.userData = null
-      }
-    })
   }
 
 
@@ -70,6 +68,10 @@ export default class LayoutComponent implements OnInit {
     this.navbarTop = currentPosition > 5;
     this.showNavbar = currentPosition < this.previousScrollPosition || currentPosition < 72;
     this.previousScrollPosition = currentPosition;
+  }
+
+  checkObject(obj: Object): boolean {
+    return isObjectEmpty(obj);
   }
 
 
@@ -99,21 +101,25 @@ export default class LayoutComponent implements OnInit {
       this.onRouteChanges();
     })
 
-    // this.authService.getAuthData().subscribe({
-    //   next: (data:any) => {
-    //     this.userData = data[0];
-    //     console.log(data[0]);
-    //   }
-    // })
-    this.http.get(`${environment.authUrl}/me`).subscribe({
-      next: (res: any) => {
-        this.userData = res.user[0];
-        console.log(this.userData);
+    this.authService.getUserData().subscribe({
+      next: (data: any) => {
+        this.authService.setUserData(data.user[0]);
+        console.log(data.user[0]);
       },
       error: (err: any) => {
         console.error(err);
       }
     })
+
+    this.authService.userData.subscribe({
+      next: (data: any) => {
+        this.userData = data;
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+
   }
 
   onRouteChanges() {
@@ -134,8 +140,8 @@ export default class LayoutComponent implements OnInit {
     }
   }
 
-  toggleSideNav() {
-    this.showSideNav = !this.showSideNav;
+  toggleSideNav(value: boolean) {
+    this.showSideNav = value;
   }
 
   toggleSearch() {
@@ -148,8 +154,8 @@ export default class LayoutComponent implements OnInit {
     }, 0)
   }
 
-  toggleLogin() {
-    this.showLogin = !this.showLogin;
+  toggleLogin(value: boolean) {
+    this.showLogin = value;
   }
 
   showLoginModal() {
@@ -161,9 +167,15 @@ export default class LayoutComponent implements OnInit {
   }
 
   logout() {
-    this.http.post(`${environment.authUrl}/logout`, {}, { withCredentials: true }).subscribe({
+    this.authService.logout().subscribe({
       next: (data: any) => {
-        this.userData = null;
+        AuthInterceptor.accessToken = '';
+        this.authService.removeUserData();
+        this.toastService.show('User logged out', ToastType.success);
+        this.userData = {};
+      },
+      error: (err: any) => {
+        console.error(err);
       }
     })
   }
