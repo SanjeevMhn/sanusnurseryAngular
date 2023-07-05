@@ -35,8 +35,8 @@
                         </button>
                         <div class="dropdown mb-[10px] border-b border-slate-500" [ngClass]="showDropDown ? 'block' : 'hidden'">
                             <ul class="user-actions-dropdown-list pb-[10px] pl-[25px]">
-                                <li class="user-actions-item">
-                                    <a href="" class="user-actions-link flex py-[5px]">Dashboard</a>
+                                <li class="user-actions-item" *ngIf="userData?.user_role === 'admin'">
+                                    <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
                                 </li>
                                 <li class="user-actions-item">
                                     <a href="" class="user-actions-link flex py-[5px]">Order History</a>

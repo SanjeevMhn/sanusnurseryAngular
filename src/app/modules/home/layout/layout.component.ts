@@ -104,7 +104,6 @@ export default class LayoutComponent implements OnInit {
     this.authService.getUserData().subscribe({
       next: (data: any) => {
         this.authService.setUserData(data.user[0]);
-        console.log(data.user[0]);
       },
       error: (err: any) => {
         console.error(err);

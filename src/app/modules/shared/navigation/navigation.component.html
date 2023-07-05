@@ -49,8 +49,8 @@
                             <span class="user_email text-sm">{{userData?.user_email}}</span>
                         </a>
                         <ul class="user-actions-dropdown-list pt-[10px]">
-                            <li class="user-actions-item">
-                                <a href="" class="user-actions-link flex py-[5px]">Dashboard</a>
+                            <li class="user-actions-item" *ngIf="userData?.user_role === 'admin'">
+                                <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
                             </li>
                             <li class="user-actions-item">
                                 <a href="" class="user-actions-link flex py-[5px]">Order History</a>

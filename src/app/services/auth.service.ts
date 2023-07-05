@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { isObjectEmpty } from '../utils/functions/isObjectEmpty';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,20 @@ export class AuthService {
   removeUserData() {
     const emptyUserData = new BehaviorSubject<object>({});
     this.userDataSubject.next(emptyUserData.getValue());
+  }
+
+  isAdmin(): Observable<boolean>{
+    return this.userData.pipe(
+      map((data:any) => {
+        if( !isObjectEmpty(data) && data.user_role === 'admin'){
+           return true;
+        }
+        else{
+          return false;
+        }
+      })
+
+    )
   }
 
   logout(): Observable<object> {
