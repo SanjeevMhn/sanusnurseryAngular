@@ -34,21 +34,29 @@
                     </span>
                 </a>
             </li>
-            <li class="user-actions-item px-2 relative hidden lg:block">
+            <li class="user-actions-item pl-4 relative hidden lg:block">
                 <div class="auth-user-dropdown relative" *ngIf="!checkObject(userData); else loginModal">
-                    <button type="button" class="cart-container relative block" (click)="toggleDropDown()">
-                        <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full bg-blue-400">
+                    <button type="button" class="cart-container relative flex items-center" (click)="toggleDropDown()">
+                        <span
+                            class="icon-container h-[40px] w-[40px] flex items-center justify-center rounded-full bg-blue-400">
                             <!-- <fa-icon [icon]="faUser" class=""></fa-icon> -->
                             <img src="" class="w-full h-auto object-contain">
+                        </span>
+                        <span class="flex flex-col user-profile-content pl-[5px] border-b border-slate-300 text-left">
+                            <span class="user_name text-md font-semibold leading-none">{{userData?.user_name}}</span>
+                            <span class="user_email text-sm leading-none">{{userData?.user_email}}</span>
+                        </span>
+                        <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
+                            <fa-icon [icon]="faChevronDown"></fa-icon>
                         </span>
                     </button>
                     <div class="dropdown absolute right-0 min-w-[220px] bg-[white] p-[15px] rounded-md"
                         [ngClass]="showDropDown ? 'block' : 'hidden'">
-                        <a class="flex flex-col user-profile-content pb-[10px] border-b border-slate-300">
+                        <!-- <a class="flex flex-col user-profile-content pb-[10px] border-b border-slate-300">
                             <span class="user_name text-lg fon-semiBold">{{userData?.user_name}}</span>
                             <span class="user_email text-sm">{{userData?.user_email}}</span>
-                        </a>
-                        <ul class="user-actions-dropdown-list pt-[10px]">
+                        </a> -->
+                        <ul class="user-actions-dropdown-list">
                             <li class="user-actions-item" *ngIf="userData?.user_role === 'admin'">
                                 <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
                             </li>
@@ -67,7 +75,8 @@
                 </div>
                 <ng-template #loginModal>
                     <a role="button"
-                        class="cart-container relative flex items-center p-[2px_10px] bg-outline-primary rounded-full text-primary"  (click)="onOpenLoginModal()">
+                        class="cart-container relative flex items-center p-[2px_10px] bg-outline-primary rounded-full text-primary"
+                        (click)="onOpenLoginModal()">
                         <span class="icon-container flex items-center justify-center">
                             <fa-icon [icon]="faCircleUser" class="text-primary text-xl"></fa-icon>
                         </span>

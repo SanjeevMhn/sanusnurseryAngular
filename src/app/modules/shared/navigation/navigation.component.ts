@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { faSearch, faPhone, faCartShopping, faBars, faUser, faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPhone, faCartShopping, faBars, faUser, faCircleUser, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/interface/product';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -25,6 +25,8 @@ export class NavigationComponent implements OnInit {
   faBars = faBars;
   faUser = faUser;
   faCircleUser = faCircleUser
+  faChevronDown = faChevronDown
+
   cartList: Product[] = [];
   public userData?: any;
 

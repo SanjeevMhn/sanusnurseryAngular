@@ -23,17 +23,24 @@
                         <span class="label-text text-sm pl-2">Sign In</span>
                     </a> -->
                     <div class="auth-user-dropdown relative" *ngIf="!checkObject(userData); else loginModal">
-                        <button type="button" class="cart-container relative flex w-full border-b border-slate-500 mb-[10px]" (click)="toggleDropDown()">
-                            <span class="icon-container flex w-[50px] h-[50px] items-center justify-center rounded-full bg-blue-400">
+                        <button type="button"
+                            class="cart-container relative flex items-center w-full border-b border-slate-500 mb-[10px] pb-[10px]"
+                            (click)="toggleDropDown()">
+                            <span
+                                class="icon-container flex w-[50px] h-[50px] flex-[0_0_50px] items-center justify-center rounded-full bg-blue-400">
                                 <!-- <fa-icon [icon]="faCircleUser" class="text-2xl"></fa-icon> -->
                                 <img src="" class="w-full h-auto object-contain">
                             </span>
-                            <a class="flex flex-col user-profile-content pb-[10px] flex-grow text-left pl-[10px]">
-                                <span class="user_name text-lg fon-semiBold">{{userData?.user_name}}</span>
+                            <a class="flex flex-col user-profile-content flex-grow text-left pl-[10px]">
+                                <span class="user_name text-lg font-semibold">{{userData?.user_name}}</span>
                                 <span class="user_email text-sm">{{userData?.user_email}}</span>
                             </a>
+                            <span class="icon-container h-[25px] w-[25px] flex items-center justify-center items-center">
+                                <fa-icon [icon]="faChevronDown"></fa-icon>
+                            </span>
                         </button>
-                        <div class="dropdown mb-[10px] border-b border-slate-500" [ngClass]="showDropDown ? 'block' : 'hidden'">
+                        <div class="dropdown mb-[10px] border-b border-slate-500"
+                            [ngClass]="showDropDown ? 'block' : 'hidden'">
                             <ul class="user-actions-dropdown-list pb-[10px] pl-[25px]">
                                 <li class="user-actions-item" *ngIf="userData?.user_role === 'admin'">
                                     <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
@@ -69,16 +76,16 @@
                         [ngClass]="defaultLinkActive ? 'active' : ''" (click)="toggleSideNav(false)">Home</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/products" routerLinkActive="active"
-                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav(false)">Products</a>
+                    <a routerLink="/home/products" routerLinkActive="active" class="menu-list-link flex p-[5px_15px]"
+                        (click)="toggleSideNav(false)">Products</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/about" routerLinkActive="active"
-                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav(false)">About</a>
+                    <a routerLink="/home/about" routerLinkActive="active" class="menu-list-link flex p-[5px_15px]"
+                        (click)="toggleSideNav(false)">About</a>
                 </li>
                 <li class="menu-list-item">
-                    <a routerLink="/home/contact" routerLinkActive="active"
-                        class="menu-list-link flex p-[5px_15px]" (click)="toggleSideNav(false)">Contact</a>
+                    <a routerLink="/home/contact" routerLinkActive="active" class="menu-list-link flex p-[5px_15px]"
+                        (click)="toggleSideNav(false)">Contact</a>
                 </li>
 
             </ul>
@@ -116,8 +123,9 @@
         </div>
     </div>
     <app-contact-header class="homepage-contact-us" *ngIf="showContactUs"></app-contact-header>
-    <app-navigation (toggleSideNav)="toggleSideNav(true)" (toggleSearch)="toggleSearch()" (toggleLogin)="toggleLogin(true)"
-        *ngIf="showNavbar" class="fixed z-[500]" [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
+    <app-navigation (toggleSideNav)="toggleSideNav(true)" (toggleSearch)="toggleSearch()"
+        (toggleLogin)="toggleLogin(true)" *ngIf="showNavbar" class="fixed z-[500]"
+        [ngClass]="showContactUs? 'top-[64px] md:top-[40px]' : 'top-0'"
         [ngClass]="navbarTop ? 'top-0' : ''"></app-navigation>
     <main class="main-content h-auto pt-[60px] md:pt-[72px] bg-[#e1e1e1]">
         <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { faClose, faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faSearch, faUserCircle, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { debounceTime, filter } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -29,6 +29,7 @@ export default class LayoutComponent implements OnInit {
   faClose = faClose;
   faSearch = faSearch;
   faCircleUser = faUserCircle;
+  faChevronDown = faChevronDown;
 
   defaultLinkActive: boolean = false;
   public showContactUs: boolean = true;
