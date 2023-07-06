@@ -1,0 +1,23 @@
+<div class="wrapper h-auto w-full bg-[#ececec]">
+    <div class="flex relative">
+        <aside class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-[#1B3D3E] text-white z-[100] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0" [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
+            <div class="close-sidenav-cont pt-[10px] px-[30px] flex justify-end lg:hidden">
+                <button type="button" (click)="toggleAdminSidenav(false)">
+                    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full">
+                        <fa-icon [icon]="faXmark" class="text-white text-[22px]"></fa-icon>
+                    </span>
+                </button>
+            </div>
+            <a routerLink="/home" class="brand-link company-name block text-2xl px-[30px] py-4">Sanu's Nursery</a>
+            <ul class="admin-nav-list w-full">
+                <li class="admin-list-item pb-[5px] " *ngFor="let sl of sidenavList">
+                    <a routerLink="/admin/{{sl}}" class="admin-list-link flex p-[10px_30px] capitalize" routerLinkActive="active">{{sl}}</a>
+                </li>
+            </ul>
+        </aside>
+        <main class="main-container flex-grow bg-[#e1e1e1] h-screen">
+            <app-header (toggleAdminSidenavEvent)="toggleAdminSidenav($event)"></app-header>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

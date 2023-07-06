@@ -42,7 +42,7 @@
                             <!-- <fa-icon [icon]="faUser" class=""></fa-icon> -->
                             <img src="" class="w-full h-auto object-contain">
                         </span>
-                        <span class="flex flex-col user-profile-content pl-[5px] border-b border-slate-300 text-left">
+                        <span class="flex flex-col user-profile-content pl-[5px] text-left">
                             <span class="user_name text-md font-semibold leading-none">{{userData?.user_name}}</span>
                             <span class="user_email text-sm leading-none">{{userData?.user_email}}</span>
                         </span>
@@ -50,26 +50,47 @@
                             <fa-icon [icon]="faChevronDown"></fa-icon>
                         </span>
                     </button>
-                    <div class="dropdown absolute right-0 min-w-[220px] bg-[white] p-[15px] rounded-md"
+                    <div class="dropdown absolute right-0 min-w-[220px] bg-[white] py-[15px] rounded-md shadow-lg border border-slate-300"
                         [ngClass]="showDropDown ? 'block' : 'hidden'">
                         <!-- <a class="flex flex-col user-profile-content pb-[10px] border-b border-slate-300">
                             <span class="user_name text-lg fon-semiBold">{{userData?.user_name}}</span>
                             <span class="user_email text-sm">{{userData?.user_email}}</span>
                         </a> -->
-                        <ul class="user-actions-dropdown-list">
-                            <li class="user-actions-item" *ngIf="userData?.user_role === 'admin'">
-                                <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
+                        <ul class="admin-user-actions-dropdown-list"
+                            *ngIf="userData?.user_role === 'admin';else normalUserActions">
+                            <li class="user-actions-item">
+                                <a routerLink="/admin" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Dashboard</a>
                             </li>
                             <li class="user-actions-item">
-                                <a href="" class="user-actions-link flex py-[5px]">Order History</a>
+                                <a routerLink="/admin/products" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Products</a>
                             </li>
                             <li class="user-actions-item">
-                                <a href="" class="user-actions-link flex py-[5px]">My Reviews</a>
+                                <a routerLink="/admin/orders" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Orders</a>
                             </li>
                             <li class="user-actions-item">
-                                <a role="button" class="user-actions-link flex py-[5px]" (click)="logout()">Logout</a>
+                                <a routerLink="/admin"    class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Customers</a>
+                            </li>
+                            <li class="user-actions-item">
+                                <a routerLink="/admin" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Messages</a>
+                            </li>
+                            <li class="user-actions-item">
+                                <a role="button" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300" (click)="logout()">Logout</a>
                             </li>
                         </ul>
+                        <ng-template #normalUserActions>
+                            <ul class="normal-user-actions-dropdown-list">
+                                <li class="user-actions-item">
+                                    <a href="" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">Order History</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a href="" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300">My Reviews</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a role="button" class="user-actions-link flex py-[5px] px-[15px] hover:bg-slate-300"
+                                        (click)="logout()">Logout</a>
+                                </li>
+                            </ul>
+                        </ng-template>
                     </div>
 
                 </div>
