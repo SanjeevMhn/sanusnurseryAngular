@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DataGridComponent } from './data-grid/data-grid.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LayoutComponent,
     ProductsComponent,
     OrdersComponent,
-    HeaderComponent
+    HeaderComponent,
+    DataGridComponent
   ],
   imports: [
     CommonModule,

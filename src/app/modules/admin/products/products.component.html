@@ -1,3 +1,6 @@
-<section class="admin-products-section p-[20px] h-[calc(100vh-64px)]">
-    <p>products works!</p>
+<section class="admin-products-section p-[20px] h-[calc(100vh-64px)] overflow-y-auto flex flex-col">
+    <h2 class="header-text text-[28px] font-medium leading-0 pb-[15px]">Products</h2>
+    <article class="products-list-container w-full shadow-lg bg-white rounded-md flex-grow p-[15px]">
+        <app-data-grid [productsList]="productsList"></app-data-grid>
+    </article>
 </section>

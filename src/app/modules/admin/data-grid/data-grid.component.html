@@ -1,0 +1,53 @@
+<div class="table-container overflow-x-auto w-full">
+    <table class="data-table w-full">
+        <thead>
+            <tr>
+                <th>S.n</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>In Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productsList; let i=index">
+                <td>{{i+1}}</td>
+                <td>
+                    <div class="flex items-center">
+                        <div
+                            class="img-container w-[65px] h-[65px] flex-[0_0_65px] rounded-md overflow-hidden flex items-center justify-center bg-blue-300">
+                            <img src="{{item.prod_img}}" alt="" class="w-full h-auto object-contain">
+                        </div>
+                        <h2 class="product-name pl-[10px]">{{item.prod_name}}</h2>
+                    </div>
+                </td>
+                <td>
+                    <h2 class="product-category">{{item.prod_category}}</h2>
+                </td>
+                <td>
+                    <h2 class="product-price">{{item.prod_price}}</h2>
+                </td>
+                <td>
+                    <h2 class="product-inStock">{{item.prod_inStock}}</h2>
+                </td>
+                <td>
+                    <div class="options-dropdown relative">
+                        <button type="button"
+                            class="w-[30px] h-[30px] p-[10px] bg-blue-200 rounded-md flex items-center justify-center" (click)="toggleDropdown()">
+                            <fa-icon [icon]="faEllipsis" class="text-[18px]"></fa-icon>
+                        </button>
+                        <ul class="dropdown-list absolute min-w-[120px] border border-slate-300 shadow-lg bg-white top-full right-[calc(100%-35px)] rounded-md z-[200]" [ngClass]="showDropdown ? 'block' : 'hidden'">
+                            <li class="dropdown-list-item">
+                                <a class="dropdown-list-link flex p-[5px_10px]">Edit</a>
+                            </li>
+                            <li class="dropdown-list-item">
+                                <a class="dropdown-list-link flex p-[5px_10px]">Edit</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

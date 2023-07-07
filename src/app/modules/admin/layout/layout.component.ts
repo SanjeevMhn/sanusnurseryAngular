@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faEnvelope, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
+type AdminSidenav = {
+  icon: IconProp,
+  name: string,
+}
+
 
 @Component({
   selector: 'app-layout',
@@ -8,12 +15,33 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class LayoutComponent implements OnInit {
 
-  sidenavList: string[] = [
-    "dashboard",
-    "products",
-    "orders",
-    "users",
-    "messages"
+  faChartSimple = faChartSimple;
+  faSpa = faSpa;
+  faTruck = faTruck;
+  faUsers = faUsers;
+  faEnvelope = faEnvelope;
+
+  sidenavList: AdminSidenav[] = [
+    {
+      icon: faChartSimple,
+      name:"dashboard"
+    },
+    {
+      icon: faSpa,
+      name: "products"
+    },
+    {
+      icon: faTruck,
+      name: "orders"
+    },
+    {
+      icon: faUsers,
+      name: "users"
+    },
+    {
+      icon: faEnvelope,
+      name: "messages"
+    }
   ];
 
   showSidenav:boolean = false;
