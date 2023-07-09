@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/interface/product';
 
 @Component({
@@ -11,16 +10,9 @@ export class DataGridComponent implements OnInit {
 
   @Input() productsList?:Product[];
 
-  faEllipsis = faEllipsis;
-  showDropdown: boolean = false;
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  toggleDropdown(){
-    this.showDropdown = !this.showDropdown;
   }
 
 }

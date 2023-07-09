@@ -1,6 +1,6 @@
 <div class="wrapper h-auto w-full bg-[#ececec]">
     <div class="flex relative">
-        <aside class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-[#1B3D3E] text-white z-[100] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0" [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
+        <aside class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-admin-primary text-white z-[100] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0" [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
             <div class="close-sidenav-cont pt-[10px] px-[30px] flex justify-end lg:hidden">
                 <button type="button" (click)="toggleAdminSidenav(false)">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full">
@@ -20,7 +20,7 @@
                 </li>
             </ul>
         </aside>
-        <main class="main-container flex-grow bg-[#e1e1e1] h-screen">
+        <main class="main-container flex-grow bg-[#e1e1e1] h-screen w-full">
             <app-header (toggleAdminSidenavEvent)="toggleAdminSidenav($event)"></app-header>
             <router-outlet></router-outlet>
         </main>

@@ -1,7 +1,12 @@
 $headerColor: #daf9f9;
 
 
+.table-container{
+    overflow-x: auto;
+}
+
 .data-table {
+    width: 100%;
     thead {
         tr {
             background-color: $headerColor;
@@ -12,6 +17,7 @@ $headerColor: #daf9f9;
                 color: #2e2e2e;
                 font-size: 17px;
                 position: relative;
+                white-space: nowrap;
 
                 &:after{
                     content: '';

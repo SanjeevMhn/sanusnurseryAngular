@@ -35,12 +35,24 @@
     color: $theme;
 }
 
+.text-admin-primary{
+    color: $adminTheme;
+}
+
 .bg-primary {
     background-color: $theme;
 }
 
+.bg-admin-primary{
+    background-color: $adminTheme;
+}
+
 .bg-outline-primary {
     border: 1px solid $theme;
+}
+
+.bg-outline-admin-primary {
+    border: 1px solid $adminTheme;
 }
 
 .disabled{
