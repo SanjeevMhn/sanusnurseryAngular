@@ -1,3 +1,8 @@
+ <div class="table-header flex items-center justify-start md:justify-end p-[10px_15px] border-b border-slate-300 sticky top-0 bg-white z-[500]">
+    <form class="relative w-[100%] max-w-[unset] md:max-w-[250px]" [formGroup]="searchProductListForm">
+        <input type="text" name="searchTableText" id="searchTable" class="form-control border border-slate-400 p-[5px_10px] rounded-md text-sm w-full" placeholder="Search..." formControlName="searchProductListText" (input)="searchProduct($event)">
+    </form>
+</div>
 <div class="table-container h-full">
     <table class="data-table">
         <thead>
@@ -32,24 +37,24 @@
                 {{page}} of {{totalPages}} pages
             </div>
             <div class="page-state-control-btns flex gap-1 justify-center">
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="firstPage()">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center" (click)="firstPage()" [disabled]="page == 1" [ngClass]="page == 1 ? 'bg-gray-300 cursor-not-allowed' : ' bg-white'">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center text-slate-800"></fa-icon>
+                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center" [ngClass]="page == 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="prevPage()">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="prevPage()" [disabled]="page! < totalPages!" [ngClass]="page! < totalPages! ? 'bg-gray-300 cursor-not-allowed' : ' bg-white'">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center text-slate-800"></fa-icon>
+                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center" [ngClass]="page == 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="nextPage()">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="nextPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'bg-gray-300 cursor-not-allowed' : ' bg-white'">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faChevronRight" class="flex items-center justify-center text-slate-800"></fa-icon>
+                        <fa-icon [icon]="faChevronRight" class="flex items-center justify-center" [ngClass]="page == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="lastPage()">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="lastPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'bg-gray-300 cursor-not-allowed' : ' bg-white'">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faAnglesRight" class="flex items-center justify-center text-slate-800"></fa-icon>
+                        <fa-icon [icon]="faAnglesRight" class="flex items-center justify-center" [ngClass]="page == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
             </div>

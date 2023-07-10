@@ -40,6 +40,20 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  searchProduct(event: any) {
+    if (event !== '' && event !== null) {
+      this.productService.searchPlants(event).subscribe({
+        next: (data: any) => {
+          this.productsList = data.products;
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      })
+    }else{
+      this.getProducts();
+    }
+  }
 
   nextPage(event: number) {
     this.page = event;
