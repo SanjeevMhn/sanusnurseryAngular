@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DataGridComponent } from './data-grid/data-grid.component';
 import { DataGridRowComponent } from './data-grid-row/data-grid-row.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { DataGridRowComponent } from './data-grid-row/data-grid-row.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

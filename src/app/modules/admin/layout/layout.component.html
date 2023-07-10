@@ -1,6 +1,8 @@
-<div class="wrapper h-auto w-full bg-[#ececec]">
+<div class="wrapper h-auto w-full bg-[#ececec] relative">
     <div class="flex relative">
-        <aside class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-admin-primary text-white z-[100] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0" [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
+        <aside
+            class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-admin-primary text-white z-[900] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0"
+            [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
             <div class="close-sidenav-cont pt-[10px] px-[30px] flex justify-end lg:hidden">
                 <button type="button" (click)="toggleAdminSidenav(false)">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full">
@@ -8,10 +10,13 @@
                     </span>
                 </button>
             </div>
-            <a routerLink="/home" class="brand-link company-name block text-2xl px-[30px] py-4 border-b border-[#3D878A]">Sanu's Nursery</a>
+            <a routerLink="/home"
+                class="brand-link company-name block text-2xl px-[30px] py-4 border-b border-[#3D878A]">Sanu's
+                Nursery</a>
             <ul class="admin-nav-list w-full pt-[20px]">
                 <li class="admin-list-item pb-[5px] " *ngFor="let sl of sidenavList">
-                    <a routerLink="/admin/{{sl.name}}" class="admin-list-link flex items-center p-[10px_30px]" routerLinkActive="active">
+                    <a routerLink="/admin/{{sl.name}}" class="admin-list-link flex items-center p-[10px_30px]"
+                        routerLinkActive="active">
                         <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
                             <fa-icon [icon]="sl.icon"></fa-icon>
                         </span>

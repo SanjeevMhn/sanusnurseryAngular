@@ -23,8 +23,8 @@ export class ProductService {
     return this.http.get(baseUrlNew);
   }
 
-  getAllPlants(page: number): Observable<object> {
-    return this.http.get(`${baseUrlNew}?page=${page}`);
+  getAllPlants(page: number,pageSize?: number): Observable<object> {
+    return this.http.get(`${baseUrlNew}?page=${page}&pageSize=${pageSize}`);
   }
 
   getPlants(page: number): Observable<object> {

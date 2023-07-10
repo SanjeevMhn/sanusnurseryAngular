@@ -13,8 +13,46 @@
         <tbody>
             <tr *ngFor="let item of productsList; let i=index">
                 <app-data-grid-row [item]=item [index]=i class="contents"></app-data-grid-row>
-           </tr>
+            </tr>
         </tbody>
     </table>
 </div>
-
+<div class="table-footer mt-auto border-t border-slate-300 p-[10px_15px]">
+    <div class="flex justify-center flex-wrap gap-2">
+        <form [formGroup]="pageSizeFilterForm" class="items-per-page-wrapper flex items-center">
+            <label for="pageSizeFilter" class="mb-0 items-per-page-text pr-[10px]">Items per page:</label>
+            <select name="items-per-page" id="pageSizeFilter" class=" border border-slate-400 rounded-md p-[2px_5px]" formControlName="sortPageSize" (change)="changePageSize($event)">
+                <option value="6">6</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+            </select>
+        </form>
+        <!-- <div class="page-desc flex items-center flex-col md:flex-row"> -->
+            <div class="showing-page flex items-center flex-grow justify-end md:flex-grow-0 md:pr-[10px] ml-auto">
+                {{page}} of {{totalPages}} pages
+            </div>
+            <div class="page-state-control-btns flex gap-1 justify-center">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="firstPage()">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center text-slate-800"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="prevPage()">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center text-slate-800"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="nextPage()">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faChevronRight" class="flex items-center justify-center text-slate-800"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center" (click)="lastPage()">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faAnglesRight" class="flex items-center justify-center text-slate-800"></fa-icon>
+                    </span>
+                </button>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>

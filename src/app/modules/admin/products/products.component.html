@@ -1,12 +1,25 @@
-<section class="admin-products-section p-[20px] h-[calc(100vh-64px)] overflow-y-auto flex flex-col">
+<section class="admin-products-section p-[20px] h-[calc(100vh-64px)] overflow-y-auto flex flex-col relative">
     <header class="admin-products-header flex items-center justify-between pb-[15px]">
-         <h2 class="header-text text-[28px] font-medium leading-0">Products</h2>       
-        <button class="bg-admin-primary rounded-md p-[10px_15px] text-[18px] text-white">
+        <h2 class="header-text text-[20px] md:text-[28px] font-medium leading-0">Products</h2>
+        <button class="bg-admin-primary rounded-md p-[5px_15px] text-base text-white">
             Add Product
         </button>
     </header>
 
-    <article class="products-list-container shadow-lg bg-white rounded-md flex-grow overflow-hidden w-full p-[15px] ">
-        <app-data-grid [productsList]="productsList" class="contents"></app-data-grid>
+    <article
+        class="products-list-container shadow-lg bg-white rounded-md flex-grow overflow-hidden w-full flex flex-col">
+        <app-data-grid 
+            [productsList]="productsList" 
+            [page]=page 
+            [pageSize]=pageSize 
+            [totalPages]=totalPages
+            [totalProducts]="totalProducts" 
+            (nextPageEvent)="nextPage($event)" 
+            (prevPageEvent)="prevPage($event)" 
+            (changePageSizeEvent)="changePageSize($event)"
+            (firstPageEvent)="firstPage($event)" 
+            (lastPageEvent)="lastPage($event)"
+            class="contents">
+        </app-data-grid>
     </article>
 </section>

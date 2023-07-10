@@ -10,25 +10,63 @@ import { Subscription } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
 
-  productsList?:Product[];
-  page:number = 1;
-  productsSubscription?:Subscription;
+  productsList?: Product[];
+  page: number = 1;
+  pageSize: number = 6;
+  totalPages?: number;
+  totalProducts?: number;
+
+
+  productsSubscription?: Subscription;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productsSubscription = this.productService.getAllPlants(this.page).subscribe({
-      next: (data:any) => {
+
+    this.getProducts();
+
+  }
+
+  getProducts() {
+    this.productsSubscription = this.productService.getAllPlants(this.page, this.pageSize).subscribe({
+      next: (data: any) => {
         this.productsList = data.products;
+        this.totalPages = data.totalPages;
+        this.totalProducts = data.totalItems;
       },
       error: (err: any) => {
         console.error(err);
       }
     })
-
   }
 
-  ngOnDestroy(){
+
+  nextPage(event: number) {
+    this.page = event;
+    this.getProducts();
+  }
+
+  prevPage(event: number) {
+    this.page = event;
+    this.getProducts();
+  }
+
+  changePageSize(event: number) {
+    this.pageSize = event;
+    this.getProducts();
+  }
+
+  firstPage(event: number) {
+    this.page = event;
+    this.getProducts();
+  }
+
+  lastPage(event: number) {
+    this.page = event;
+    this.getProducts();
+  }
+
+  ngOnDestroy() {
     this.productsSubscription?.unsubscribe();
   }
 
