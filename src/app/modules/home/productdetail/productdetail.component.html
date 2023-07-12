@@ -21,7 +21,7 @@
                 <span class="label-text">Out of Stock</span>
             </div>
             <div class="product-detail-inner flex flex-col items-center md:flex-row md:items-center w-full h-full p-[12px] md:p-[25px] rounded-[10px] bg-[#efefef] shadow-lg">
-                <aside class="product-img-container w-full h-auto" [ngClass]="productDetail?.prod_inStock ? 'max-w-[275px] lg:max-w-[420px]' : 'max-w-[275px] lg:max-w-[400px]'">
+                <aside class="product-img-container w-full h-full" [ngClass]="productDetail?.prod_inStock ? 'max-w-[275px] lg:max-w-[420px]' : 'max-w-[275px] lg:max-w-[400px]'">
                     <img src={{selectedProductImage}} alt="" class="w-full h-full object-contain">
                 </aside>
                 <article class="product-detail-list md:pl-[25px] pt-[12px] md:pt-[30px] flex-grow flex flex-col sm:items-center md:items-start w-full">

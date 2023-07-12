@@ -1,0 +1,59 @@
+<section class="add-product-section admin-section-component">
+    <header class="add-products-header admin-section-header">
+        <h2 class="header-text">Add Product</h2>
+    </header>
+    <article class="create-product-container admin-section-body p-[15px] md:p-[25px] flex flex-col xl:flex-row">
+        <aside class="product-img-container md:max-w-[420px] w-full md:flex-[0_0_420px] h-full mb-[75px] xl:mb-0">
+            <div class="img-container w-full h-full min-h-[290px] max-h-[500px] p-[10px] md:p-[20px] rounded-md border border-slate-400 ">
+                <img src="" alt="product-img" class="w-full h-full object-contain bg-blue-300 ">
+            </div>
+            <div class="btn-container flex justify-center py-[15px]">
+                <button class="upload-btn bg-outline-admin-primary rounded-md block p-[5px_10px]">Upload</button>
+            </div>
+        </aside>
+        <form class="add-product-form flex-grow xl:pl-[25px] form-layout">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prod-name" class="form-label">Product Name</label>
+                    <input type="text" name="prod-name" id="prod-name" class="form-control" placeholder="Product Name">
+                </div>
+                <div class="form-group">
+                    <label for="prod-cat-select" class="form-label">Product Category</label>
+                    <select name="prod-cat-select" id="prod-cat-select" class="prod-cat-select form-control">
+                        <option *ngFor="let item of prodCategories" [value]="item?.prod_cat_id" class="capitalize">{{item?.prod_cat_name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prod-price" class="form-label">Product Price</label>
+                    <input type="number" name="prod-price" id="prod-price" class="prod-price form-control">
+                </div>
+                <div class="form-group">
+                    <label for="prod-instock" class="form-label">Product InStock</label>
+                    <div class="radio-container flex gap-3 w-full flex-grow">
+                        <div class="opt flex items-center">
+                            <label for="prod-in" class="pr-3">True</label>
+                            <input type="radio" name="prod-inStock" id="prod-in" class="">
+                        </div>
+                        <div class="opt flex items-center">
+                            <label for="prod-out" class="pr-3">False</label>
+                            <input type="radio" name="prod-inStock" id="prod-out" class="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prod-desc" class="form-label">Product Description</label>
+                    <textarea name="prod-desc" id="prod-desc" class="form-control min-h-[290px]">Product Description</textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <button type="submit" class="bg-admin-primary text-white p-[5px_10px] rounded-md">Submit</button>
+            </div>
+        </form>
+    </article>
+</section>

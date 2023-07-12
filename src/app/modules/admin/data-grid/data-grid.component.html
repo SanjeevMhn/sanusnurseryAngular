@@ -20,12 +20,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of productsList; let i=index">
-                <app-data-grid-row [item]=item [index]=i class="contents"></app-data-grid-row>
+                <app-data-grid-row 
+                    [item]=item 
+                    [index]=i 
+                    class="contents">
+                </app-data-grid-row>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="table-footer mt-auto border-t border-slate-300 p-[10px_15px]">
+<div class="table-footer mt-auto border-t border-slate-400 p-[10px_15px]">
     <div class="flex justify-center flex-wrap gap-2">
         <form [formGroup]="pageSizeFilterForm" class="items-per-page-wrapper flex items-center">
             <label for="pageSizeFilter" class="mb-0 items-per-page-text pr-[10px]">Items per page:</label>

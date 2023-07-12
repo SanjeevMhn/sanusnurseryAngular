@@ -1,13 +1,13 @@
-<section class="admin-products-section p-[20px] h-[calc(100vh-64px)] overflow-y-auto flex flex-col relative">
-    <header class="admin-products-header flex items-center justify-between pb-[15px]">
-        <h2 class="header-text text-[20px] md:text-[28px] font-medium leading-0">Products</h2>
-        <button class="bg-admin-primary rounded-md p-[5px_15px] text-base text-white">
+<section class="admin-products-section admin-section-component">
+    <header class="admin-products-header admin-section-header">
+        <h2 class="header-text">Products</h2>
+        <a routerLink="/admin/add-product" role="button" class="bg-admin-primary rounded-md p-[5px_15px] text-base text-white">
             Add Product
-        </button>
+        </a>
     </header>
 
     <article
-        class="products-list-container shadow-lg bg-white rounded-md flex-grow overflow-hidden w-full flex flex-col">
+        class="products-list-container admin-section-body flex flex-col">
         <app-data-grid 
             [productsList]="productsList" 
             [page]=page 

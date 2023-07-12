@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DataGridComponent } from './data-grid/data-grid.component';
 import { DataGridRowComponent } from './data-grid-row/data-grid-row.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrdersComponent,
     HeaderComponent,
     DataGridComponent,
-    DataGridRowComponent
+    DataGridRowComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,

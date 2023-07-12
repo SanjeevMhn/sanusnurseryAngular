@@ -35,7 +35,8 @@
                                 <span class="user_name text-lg font-semibold">{{userData?.user_name}}</span>
                                 <span class="user_email text-sm">{{userData?.user_email}}</span>
                             </a>
-                            <span class="icon-container h-[25px] w-[25px] flex items-center justify-center items-center">
+                            <span
+                                class="icon-container h-[25px] w-[25px] flex items-center justify-center items-center">
                                 <fa-icon [icon]="faChevronDown"></fa-icon>
                             </span>
                         </button>
@@ -46,10 +47,16 @@
                                     <a routerLink="/admin" class="user-actions-link flex py-[5px]">Dashboard</a>
                                 </li>
                                 <li class="user-actions-item">
-                                    <a href="" class="user-actions-link flex py-[5px]">Order History</a>
+                                    <a routerLink="/admin/products" class="user-actions-link flex py-[5px]">Products</a>
                                 </li>
                                 <li class="user-actions-item">
-                                    <a href="" class="user-actions-link flex py-[5px]">My Reviews</a>
+                                    <a routerLink="/admin/orders" class="user-actions-link flex py-[5px]">Orders</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a routerLink="/admin" class="user-actions-link flex py-[5px]">Users</a>
+                                </li>
+                                <li class="user-actions-item">
+                                    <a routerLink="/admin" class="user-actions-link flex py-[5px]">Messages</a>
                                 </li>
                                 <li class="user-actions-item">
                                     <a role="button" class="user-actions-link flex py-[5px]"
