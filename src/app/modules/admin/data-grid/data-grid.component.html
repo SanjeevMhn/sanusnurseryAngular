@@ -40,22 +40,22 @@
                 {{page}} of {{totalPages}} pages
             </div>
             <div class="page-state-control-btns flex gap-1 justify-center">
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="firstPage()" [disabled]="page == 1" [ngClass]="page == 1 ? 'cursor-not-allowed' : ''">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="firstPage()" [disabled]="page === 1" [ngClass]="page === 1 ? 'cursor-not-allowed' : ''">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center" [ngClass]="page == 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center" [ngClass]="page === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="prevPage()" [disabled]="page! < totalPages! || pageSize! >= totalProducts!" [ngClass]="page! < totalPages! || pageSize! >= totalProducts! ? 'cursor-not-allowed' : ''">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="prevPage()" [disabled]="page === 1" [ngClass]="page === 1 ? 'cursor-not-allowed' : ''">
                     <span class="icon-container flex items-center justify-center">
-                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center" [ngClass]="page! < totalPages! || pageSize! >= totalProducts! ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center" [ngClass]="page === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="nextPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'cursor-not-allowed' : ''">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="nextPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'cursor-not-allowed' : ''">
                     <span class="icon-container flex items-center justify-center">
                         <fa-icon [icon]="faChevronRight" class="flex items-center justify-center" [ngClass]="page == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
                 </button>
-                <button type="button" class="border border-slate-400 rounded-md p-[5px] bg-white w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="lastPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'cursor-not-allowed' : ''">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="lastPage()" [disabled]="page == totalPages"  [ngClass]="page == totalPages ? 'cursor-not-allowed' : ''">
                     <span class="icon-container flex items-center justify-center">
                         <fa-icon [icon]="faAnglesRight" class="flex items-center justify-center" [ngClass]="page == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
                     </span>
