@@ -12,6 +12,7 @@ import { DataGridComponent } from './data-grid/data-grid.component';
 import { DataGridRowComponent } from './data-grid-row/data-grid-row.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AddProductComponent } from './add-product/add-product.component';
     AdminRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
