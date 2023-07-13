@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -14,8 +15,12 @@ import { ToastType } from '../../shared/toast/toast.modal';
 export class AddProductComponent implements OnInit {
 
   prodCategories?: any[];
+  editProduct: any;
+  editMode: boolean = false;
+  editProductId?: number;
   imgSrc: any;
   image: any;
+  placeholder: string = "./assets/images/placeholder.jpg";
 
   addProductForm!: FormGroup;
   prodNameError: boolean = false;
@@ -25,7 +30,15 @@ export class AddProductComponent implements OnInit {
   prodPriceError: boolean = false;
   prodPriceErrMsg: string = '';
 
-  constructor(private productService: ProductService, private fb: FormBuilder, private http:HttpClient, private toastService: ToastService) { }
+  titleText: string = '';
+
+
+  constructor(private productService: ProductService,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private toastService: ToastService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productService.getPlantCategories().subscribe({
@@ -43,6 +56,41 @@ export class AddProductComponent implements OnInit {
       prod_price: ['', [Validators.required]],
       prod_inStock: ['true', [Validators.required]],
     })
+
+    const paramId = this.route.snapshot.paramMap.get('id');
+    if (paramId === '' || paramId === null) {
+      this.titleText = "Add Product";
+    } else {
+      this.editMode = true;
+      this.titleText = "Edit Product";
+      this.editProductId = Number(paramId);
+      this.loadProduct(Number(paramId));
+    }
+
+  }
+
+
+  loadProduct(id: number) {
+    this.productService.getPlantFromId(id).subscribe({
+      next: (data: any) => {
+        this.editProduct = data.product[0];
+        this.imgSrc = data.product[0].prod_img;
+        this.fillForm();
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+
+  }
+
+  fillForm() {
+    this.addProductForm.patchValue({
+      prod_name: this.editProduct.prod_name,
+      prod_category: this.editProduct.prod_category,
+      prod_price: this.editProduct.prod_price,
+      prod_inStock: String(this.editProduct.prod_inStock)
+    });
   }
 
   showImg(event: any) {
@@ -69,51 +117,87 @@ export class AddProductComponent implements OnInit {
         this.prodNameErrMsg = "Please enter product name";
       }
 
-      if(this.addProductForm.controls['prod_category'].errors?.['required']){
+      if (this.addProductForm.controls['prod_category'].errors?.['required']) {
         this.prodCategoryError = true;
         this.prodCategoryErrMsg = 'Please select product category'
       }
 
-      if(this.addProductForm.controls['prod_price'].errors?.['required']){
+      if (this.addProductForm.controls['prod_price'].errors?.['required']) {
         this.prodPriceError = true;
         this.prodPriceErrMsg = 'Please enter product price';
       }
-     
+
 
       return;
     }
 
-    if(this.image == null || !this.image){
-      this.toastService.show('Please upload product image',ToastType.error);
+    if (this.image == null || !this.image) {
+      this.toastService.show('Please upload product image', ToastType.error);
       return;
     }
 
     let addProductFormValue = this.addProductForm.value;
     // console.log(addProductFormValue)
-    let formData: any = new FormData();
-    formData.append('prod_name', addProductFormValue.prod_name)
-    formData.append('prod_category',addProductFormValue.prod_category)
-    formData.append('prod_price',addProductFormValue.prod_price)
-    formData.append('prod_inStock',addProductFormValue.prod_inStock)
-    formData.append('image', this.image);
 
-    // console.log(formData);
 
-    formData.forEach((val: any, key: any) => {
-      console.log(`${key} : ${val}`)
-    })
+    if (!this.editMode) {
 
-    this.http.post<any>(environment.baseUrl,formData,{withCredentials: true}).subscribe({
-      next:(data:any) => {
-        this.toastService.show(data.message, ToastType.success);
-        this.addProductForm.reset();
-        this.image = '';
-        this.imgSrc = '';
-      },
-      error: (err: any) => {
-        console.error(err);
+      let formData: any = new FormData();
+      formData.append('prod_name', addProductFormValue.prod_name)
+      formData.append('prod_category', addProductFormValue.prod_category)
+      formData.append('prod_price', addProductFormValue.prod_price)
+      formData.append('prod_inStock', addProductFormValue.prod_inStock)
+      formData.append('image', this.image);
+
+      console.log(formData);
+
+      formData.forEach((val: any, key: any) => {
+        console.log(`${key} : ${val}`)
+      })
+
+      this.http.post<any>(environment.baseUrl, formData, { withCredentials: true }).subscribe({
+        next: (data: any) => {
+          this.toastService.show(data.message, ToastType.success);
+          this.addProductForm.reset();
+          this.image = '';
+          this.imgSrc = '';
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      })
+    } else {
+
+      let updatedValues:any = new FormData();
+
+      for(const key in addProductFormValue){
+        if(addProductFormValue.hasOwnProperty(key) && addProductFormValue[key] !== this.editProduct[key]){
+          updatedValues.append(key,addProductFormValue[key]);
+        }
       }
-    })
+
+      if(this.image){
+        updatedValues.append('image',this.image);
+      }
+
+      updatedValues.forEach((val:any, key:any) => {
+        console.log(`${key} : ${val}`);
+      })
+
+      this.http.patch<any>(`${environment.baseUrl}/id/${this.editProductId}`, updatedValues, { withCredentials: true }).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.toastService.show(data.message, ToastType.success);
+          this.router.navigate(['/admin/products/']);
+          // this.addProductForm.reset();
+          this.image = '';
+          this.imgSrc = '';
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      })
+    }
 
   }
 

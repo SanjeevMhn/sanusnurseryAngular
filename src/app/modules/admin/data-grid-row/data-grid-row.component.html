@@ -25,10 +25,10 @@
         </button>
         <ul class="dropdown-list absolute min-w-[120px] border border-slate-300 shadow-lg bg-white top-full right-[calc(100%-35px)] rounded-md z-[200]" [ngClass]="showDropdown ? 'block' : 'hidden'">
             <li class="dropdown-list-item">
-                <a class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300">Edit</a>
+                <a [routerLink]="['/admin/add-product',item.prod_id]" class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Edit</a>
             </li>
             <li class="dropdown-list-item">
-                <a class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300">Delete</a>
+                <a class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Delete</a>
             </li>
         </ul>
     </div>

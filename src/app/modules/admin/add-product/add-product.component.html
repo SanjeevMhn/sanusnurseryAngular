@@ -1,12 +1,12 @@
 <section class="add-product-section admin-section-component">
     <header class="add-products-header admin-section-header">
-        <h2 class="header-text">Add Product</h2>
+        <h2 class="header-text">{{ titleText }}</h2>
     </header>
     <article class="create-product-container admin-section-body p-[15px] md:p-[25px] flex flex-col xl:flex-row">
         <aside class="product-img-container md:max-w-[420px] w-full md:flex-[0_0_420px] h-full mb-[75px] xl:mb-0">
             <div
                 class="img-container w-full h-full min-h-[290px] max-h-[500px] p-[10px] md:p-[20px] rounded-md border border-slate-400">
-                <img [src]="imgSrc" alt="product-img" class="w-full h-full object-contain bg-blue-300 ">
+                <img [src]="imgSrc || placeholder" alt="product-img" class="w-full h-full bg-blue-300" [ngClass]="imgSrc ? ' object-contain' : 'object-cover border border-slate-400 rounded-md'">
             </div>
             <div class="btn-container flex justify-center py-[15px] relative">
                 <label for="upload-img"
