@@ -85,8 +85,8 @@ export class ProductdetailComponent implements OnInit {
   }
 
 
-  getRelatedProducts(type: string, id?:number): void {
-    this.getRelatedProductsSubscription = this.product.getPlantFromType(type,id).subscribe({
+  getRelatedProducts(type: string,id:number): void {
+    this.getRelatedProductsSubscription = this.product.getRelatedPlants(type,id).subscribe({
       next: (data:any) => {
         this.relatedProducts = data.products;
       },

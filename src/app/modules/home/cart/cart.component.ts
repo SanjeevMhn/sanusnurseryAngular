@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { OrderDetail } from 'src/app/interface/order-detail';
 import { v4 as uuid } from 'uuid';
 import { convertToPdf } from 'src/app/utils/functions/convertToPdf';
+import { ProductService } from 'src/app/services/product.service';
 
 interface PaymentBill {
   date: string | undefined,
@@ -71,7 +72,20 @@ export class CartComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private toastService: ToastService,
-    private router: Router) { }
+    private router: Router,
+    private productService: ProductService) { }
+
+
+  getProductCategoryName(cat_id:number){
+    this.productService.getPlantCatgoryById(cat_id).subscribe({
+      next: (data:any) => {
+        console.log(data.product_category[0].prod_cat_name);
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
 
   ngOnInit(): void {
     let date = new Date();
