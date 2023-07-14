@@ -8,8 +8,8 @@
                 <a routerLink="/home/products" class="breadcrumb-link">Products</a>
             </li>
             <li class="breadcrumb-item">
-                <a [routerLink]="['/home/products/',productDetail?.prod_category]"
-                    class="breadcrumb-link">{{productDetail?.prod_category}}</a>
+                <a [routerLink]="['/home/products/',prodCatName]"
+                    class="breadcrumb-link">{{prodCatName}}</a>
             </li>
             <li class="breadcrumb-item">
                 <a class="breadcrumb-link">{{productDetail?.prod_name}}</a>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="product-category pb-[10px] md:pb-[20px] text-center md:text-[22px]">
                         <span class="label-text pr-[12px]">Category:</span>
-                        <a [routerLink]="['/home/products/',productDetail?.prod_category]" class="category-name text-primary">{{productDetail?.prod_category}}</a>
+                        <a [routerLink]="['/home/products/',prodCatName]" class="category-name text-primary">{{prodCatName}}</a>
                     </div>
                     <div class="product-quantity flex items-center justify-center flex-wrap pb-[15px] md:pb-[20px]">
                         <span class="label-text pr-[12px] text-lg">Quantity:</span>

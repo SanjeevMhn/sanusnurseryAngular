@@ -35,8 +35,8 @@ export class ProductService {
     return this.http.get<Product>(`${baseUrlNew}/id/${id}`);
   }
 
-  getPlantFromType(category: string, id?: number): Observable<Object> {
-    return this.http.get(`${baseUrlNew}/category/${category}?prod_id=${id}`);
+  getPlantFromType(category: string, page?:number, id?: number): Observable<Object> {
+    return this.http.get(`${baseUrlNew}/category/${category}?page=${page}&prod_id=${id}`);
   }
 
   getPlantCategories():Observable<object>{
@@ -45,5 +45,9 @@ export class ProductService {
 
   searchPlants(searchText: string): Observable<object> {
     return this.http.get(`${baseUrlNew}/name?prod_name=${searchText}`);
+  }
+
+  getPlantCatgoryById(cat_id:number):Observable<object>{
+    return this.http.get(`${baseUrlNew}/category/id/${cat_id}`);
   }
 }

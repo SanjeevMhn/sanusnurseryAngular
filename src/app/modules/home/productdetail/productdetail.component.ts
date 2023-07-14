@@ -31,6 +31,7 @@ export class ProductdetailComponent implements OnInit {
 
   selectedProductImage = '';
   inStock?: boolean = false;
+  prodCatName?: string;
 
   @ViewChild('scrollContainer', { static: false }) scrollContainer?: ElementRef;
   @ViewChild('productQuantityInput', { static: false }) productQuantityInput?: ElementRef<HTMLInputElement>;
@@ -44,6 +45,7 @@ export class ProductdetailComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
+
   }
 
   ngOnInit(): void {
@@ -62,13 +64,26 @@ export class ProductdetailComponent implements OnInit {
           this.productDetail = data.product[0];
           this.selectedProductImage = this.productDetail!.prod_img;
           this.inStock = this.productDetail!.prod_inStock;
-          this.getRelatedProducts(this.productDetail!.prod_category, this.productDetail!.prod_id);
+          this.getProductCatName(this.productDetail!.prod_category);
         },
         error: (err) => {
           console.error(err)
         }
       })
   }
+
+  getProductCatName(cat_id: number){
+    this.product.getPlantCatgoryById(cat_id).subscribe({
+      next: (data: any) => {
+        this.prodCatName = data.product_category[0].prod_cat_name;
+        this.getRelatedProducts(this.prodCatName!,this.productDetail!.prod_id);
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
+
 
   getRelatedProducts(type: string, id?:number): void {
     this.getRelatedProductsSubscription = this.product.getPlantFromType(type,id).subscribe({

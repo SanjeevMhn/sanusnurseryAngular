@@ -76,11 +76,10 @@ export class ProductsComponent implements OnInit {
 
   getProducts(type: string): void {
     if (type !== null) {
-      this.productService.getPlantFromType(type).subscribe({
+      this.productService.getPlantFromType(type, this.currentPage).subscribe({
         next: (data:any) => {
           this.products = data.products;
           this.totalPages = data.totalPages;
-          // console.log(this.products);
         },
         error: (err) => {
           console.error(err);
@@ -91,7 +90,6 @@ export class ProductsComponent implements OnInit {
         next: (data: any) => {
           this.products = data.products;
           // this.totalPages = Math.ceil(this.products.length / this.pageSize);
-          // console.log(this.products);
           this.totalPages = data.totalPages;
         },
         error: (err) => {

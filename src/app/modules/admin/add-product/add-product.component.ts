@@ -126,21 +126,17 @@ export class AddProductComponent implements OnInit {
         this.prodPriceError = true;
         this.prodPriceErrMsg = 'Please enter product price';
       }
-
-
-      return;
-    }
-
-    if (this.image == null || !this.image) {
-      this.toastService.show('Please upload product image', ToastType.error);
       return;
     }
 
     let addProductFormValue = this.addProductForm.value;
     // console.log(addProductFormValue)
-
-
     if (!this.editMode) {
+
+      if (this.image == null || !this.image) {
+        this.toastService.show('Please upload product image', ToastType.error);
+        return;
+      }
 
       let formData: any = new FormData();
       formData.append('prod_name', addProductFormValue.prod_name)
@@ -149,11 +145,10 @@ export class AddProductComponent implements OnInit {
       formData.append('prod_inStock', addProductFormValue.prod_inStock)
       formData.append('image', this.image);
 
-      console.log(formData);
 
-      formData.forEach((val: any, key: any) => {
-        console.log(`${key} : ${val}`)
-      })
+      // formData.forEach((val: any, key: any) => {
+      //   console.log(`${key} : ${val}`)
+      // })
 
       this.http.post<any>(environment.baseUrl, formData, { withCredentials: true }).subscribe({
         next: (data: any) => {
@@ -168,30 +163,32 @@ export class AddProductComponent implements OnInit {
       })
     } else {
 
-      let updatedValues:any = new FormData();
+      let updatedValues: any = new FormData();
 
-      for(const key in addProductFormValue){
-        if(addProductFormValue.hasOwnProperty(key) && addProductFormValue[key] !== this.editProduct[key]){
-          updatedValues.append(key,addProductFormValue[key]);
+      for (const key in addProductFormValue) {
+        if (addProductFormValue.hasOwnProperty(key) && addProductFormValue[key] !== this.editProduct[key]) {
+          updatedValues.append(key, addProductFormValue[key]);
         }
       }
 
-      if(this.image){
-        updatedValues.append('image',this.image);
+      if (this.image) {
+        updatedValues.append('image', this.image);
       }
 
-      updatedValues.forEach((val:any, key:any) => {
-        console.log(`${key} : ${val}`);
-      })
+      // updatedValues.forEach((val: any, key: any) => {
+      //   console.log(`${key} : ${val}`);
+      // })
 
-      this.http.patch<any>(`${environment.baseUrl}/id/${this.editProductId}`, updatedValues, { withCredentials: true }).subscribe({
+      this.http.patch<any>(`${environment.baseUrl}/id/${this.editProductId}`, updatedValues, { withCredentials: true, observe: 'response' }).subscribe({
         next: (data: any) => {
-          console.log(data);
-          this.toastService.show(data.message, ToastType.success);
-          this.router.navigate(['/admin/products/']);
-          // this.addProductForm.reset();
-          this.image = '';
-          this.imgSrc = '';
+          if (data.status === 204) {
+            this.toastService.show("Product Updated!", ToastType.success);
+            this.router.navigate(['/admin/products/']);
+            this.addProductForm.reset();
+            this.image = '';
+            this.imgSrc = '';
+          }
+
         },
         error: (err: any) => {
           console.error(err);
