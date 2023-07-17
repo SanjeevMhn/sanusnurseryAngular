@@ -31,53 +31,15 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of cartItems">
-                            <button
-                                class="close-btn-sp text-white w-[25px] h-[25px] bg-primary rounded-full inline-flex items-center justify-center"
-                                (click)="removeCartItem(item)">
-                                <fa-icon [icon]="faClose" class="flex items-center justify-center w-full h-full text-center"></fa-icon>
-                            </button>
-                            <td data-name="name">
-                                <div class="inline-flex flex-col items-center lg:flex-row w-full">
-
-                                    <div class="img-container max-w-[175px] lg:max-w-[120px] mx-auto lg:mx-0">
-                                        <img src="{{item.prod_img}}" alt="" class="w-full h-auto object-contain">
-                                    </div>
-                                    <div class="product-info lg:pl-[10px] text-center lg:text-left pt-[8px] lg:pt-0">
-                                        <div class="name font-[500]">{{item.prod_name}}</div>
-                                        <div class="type text-primary text-[14px]">{{getProductCategoryName(item.prod_category)}}</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td data-name="quantity">
-                                <div class="quantity-setting inline-flex items-center">
-                                    <button
-                                        class="leading-[0] decrease-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                        type="button" (click)="decreaseCartItemQuantity(item)">
-                                        <fa-icon [icon]="faMinus" class="flex items-center justify-center"></fa-icon>
-                                    </button>
-                                    <!-- <span
-                                        class="product-quantity-data text-lg px-5 w-[35px] flex justify-center items-center">
-                                        {{item.quantity}}
-                                    </span> -->
-                                    <input type="number" name="" id="" [value]="item.quantity"
-                                        class="hide-arrows product-quantity-num max-w-[60px] px-[8px] h-[25px] mx-[2px] text-center"
-                                        (change)="setProductQuantity($event,item)" required #productQuantityInput>
-                                    <button
-                                        class="leading-[0] increase-quantity h-[25px] w-[25px] flex items-center justify-center bg-slate-300"
-                                        type="button" (click)="increaseCartItemQuantity(item)">
-                                        <fa-icon [icon]="faPlus" class="flex items-center justify-center"></fa-icon>
-                                    </button>
-                                </div>
-                            </td>
-                            <td data-name="price">Rs.&nbsp;{{item.prod_price}}</td>
-                            <td data-name="total">Rs.&nbsp;{{item.total}}</td>
-                            <td data-name="action">
-                                <button
-                                    class="close-btn text-white w-[25px] h-[25px] bg-primary rounded-full inline-flex items-center justify-center"
-                                    (click)="removeCartItem(item)">
-                                    <fa-icon [icon]="faClose" class="flex items-center justify-center h-full w-full text-center"></fa-icon>
-                                </button>
-                            </td>
+                            
+                            <app-cart-item 
+                                [item]="item" 
+                                (increaseCartItemQuantityEvent)="increaseCartItemQuantity(item)"
+                                (decreaseCartItemQuantityEvent)="decreaseCartItemQuantity(item)"
+                                (setProductQuantityEvent)="setProductQuantity($event)"
+                                (removeCartItemEvent)="removeCartItem(item)"
+                                class="contents">
+                            </app-cart-item>
 
                         </tr>
                     </tbody>

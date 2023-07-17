@@ -1,0 +1,78 @@
+.close-btn-sp {
+    display: none;
+}
+
+// &:nth-child(even) {
+//     background-color: #efefef;
+// }
+
+// &:nth-child(odd) {
+//     background-color: #bdbdbd;
+// }
+
+td {
+    padding: 5px 12px;
+    vertical-align: middle;
+
+    &[data-name="price"],
+    &[data-name="total"] {
+        text-align: right;
+    }
+
+    &[data-name="name"] {
+        text-align: left;
+    }
+
+    &[data-name="quantity"],
+    &[data-name="action"] {
+        text-align: center;
+    }
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+
+    .form-group {
+        flex: 0 0 calc(100%);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .close-btn-sp {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        display: flex;
+    }
+
+    td {
+        &[data-name="name"] {
+            padding-top: 20px;
+        }
+
+        &:nth-last-child(2) {
+            padding-bottom: 20px;
+        }
+    }
+
+    td {
+        display: block;
+        text-align: center !important;
+
+        &:not([data-name="name"]) {
+            &:before {
+                content: attr(data-name) ": ";
+                text-transform: capitalize;
+                font-weight: 500;
+                padding-right: 10px;
+            }
+        }
+
+        &[data-name="action"] {
+            display: none;
+        }
+    }
+}

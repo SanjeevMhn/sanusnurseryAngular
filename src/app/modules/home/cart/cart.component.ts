@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { CartItem } from 'src/app/interface/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { ToastService } from 'src/app/services/toast.service';
@@ -77,14 +77,20 @@ export class CartComponent implements OnInit {
 
 
   getProductCategoryName(cat_id:number){
-    this.productService.getPlantCatgoryById(cat_id).subscribe({
-      next: (data:any) => {
-        console.log(data.product_category[0].prod_cat_name);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
+    // this.productService.getPlantCatgoryById(cat_id).subscribe({
+    //   next: (data:any) => {
+    //     console.log(data.product_category[0].prod_cat_name);
+    //   },
+    //   error: (err: any) => {
+    //     console.error(err);
+    //   }
+    // })
+    this.productService.getPlantCatgoryById(cat_id).pipe(
+      map((data:any) => {
+        console.log(data);
+        return data as Observable<object>;
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -328,8 +334,8 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  setProductQuantity(event: any, item: CartItem) {
-    let quantity: number = event.target.value;
+  setProductQuantity(obj:any) {
+    let { quantity, item } = obj;
     if (quantity > 0 && quantity) {
       this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity).subscribe({
         next: (data) => {
@@ -341,18 +347,17 @@ export class CartComponent implements OnInit {
         }
       })
     } else {
-      this.toastService.show("Please add quantity for the product", ToastType.error);
-      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity = 0).subscribe({
+      this.toastService.show("Product quantity cannot be less than 1", ToastType.error);
+      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity=1).subscribe({
         next: (data) => {
           this.cartItems = data;
-          this.calculateSubTotal();
+          // this.calculateSubTotal();
         },
         error: (err) => {
           console.error(err);
         }
       })
     }
-    // console.log(this.productQuantity);
   }
 
   closeBill() {
