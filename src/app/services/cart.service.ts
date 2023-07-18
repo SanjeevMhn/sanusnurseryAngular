@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../interface/product';
 import { CartItem } from '../interface/cart-item';
+import { AuthService } from './auth.service';
 
 const baseUrl = "./assets/json/plants.json";
 
@@ -12,14 +13,14 @@ export class CartService {
 
   private cartItems = new BehaviorSubject<CartItem[]>([]);
 
-  constructor() { }
-
+  constructor(private authService: AuthService) { }
 
   addToCart(product: CartItem): void {
     const currentCart = this.cartItems.getValue();
 
     if (!currentCart.some(item => item.prod_id === product.prod_id)) {
       const updatedCart = [ product,...currentCart];
+      sessionStorage.setItem('cart_items',JSON.stringify(updatedCart));
       this.cartItems.next(updatedCart);
     }
 
@@ -33,11 +34,13 @@ export class CartService {
   removeCartItem(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
     const updatedCart = currentCart.filter(cart => cart.prod_id !== item.prod_id);
+    sessionStorage.setItem('cart_items',JSON.stringify(updatedCart));
     this.cartItems.next(updatedCart);
     return this.cartItems;
   }
 
   clearCart() {
+    sessionStorage.removeItem('cart_items');
     return this.cartItems.next([]);
   }
 
