@@ -1,5 +1,6 @@
-<div class="wrapper h-auto w-full" [ngClass]="showSideNav || showSearch || showLogin ? 'fixed' : 'relative'">
+<div class="wrapper h-auto w-full" [ngClass]="showSideNav || showSearch || showLogin || showConfirm ? 'fixed' : 'relative'">
     <app-toast></app-toast>
+    <app-confirm-dialog (toggleConfirm)="toggleConfirm(false)"></app-confirm-dialog>
     <app-login (toggleLogin)="toggleLogin(false)"></app-login>
     <div class="offscreen-sidenav-container w-full h-full absolute top-0 right-0 bottom-0 bg-[#0909097a] z-[530] justify-end"
         [ngClass]="showSideNav ? 'flex' : 'hidden'">

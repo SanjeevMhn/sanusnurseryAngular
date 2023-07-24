@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductcardComponent } from './productcard/productcard.component';
 import { ContactHeaderComponent } from './contact-header/contact-header.component';
 import { ToastComponent } from './toast/toast.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ToastComponent } from './toast/toast.component';
     FooterComponent,
     ProductcardComponent,
     ContactHeaderComponent,
-    ToastComponent
+    ToastComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { ToastComponent } from './toast/toast.component';
     FontAwesomeModule,
     ProductcardComponent,
     ContactHeaderComponent,
-    ToastComponent
+    ToastComponent,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }

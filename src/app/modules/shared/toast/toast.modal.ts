@@ -1,16 +1,16 @@
-export class ToastModal{
+import { BaseModal } from "../models/base-modal";
 
-    public visible:boolean;
-    public message?: string;
+export class ToastModal extends BaseModal {
+
     public type?: ToastType;
 
-    constructor(visible: boolean){
-        this.visible = visible;
+    constructor(visible: boolean) {
+        super(visible);
     }
 
 }
 
-export enum ToastType{
+export enum ToastType {
     success = 'toast-success',
     error = 'toast-error'
 }

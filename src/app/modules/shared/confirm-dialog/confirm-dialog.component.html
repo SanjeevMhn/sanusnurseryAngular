@@ -1,0 +1,21 @@
+<div class="confirm-modal-wrapper absolute min-h-screen w-full  bg-[#0909097a] flex items-center justify-center z-[9999] p-[10px] md:p-[20px]"
+    *ngIf="confirmModal?.visible">
+    <div class="login-modal relative max-w-[390px] w-[90%] bg-white rounded-md p-[15px] md:p-[25px] relative">
+        <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]"
+            (click)="close()" type="button">
+            <fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
+        </button>
+        <div class="modal-header ">
+            <h4 class="modal-title text-3xl text-primary font-bold text-center company-name">{{confirmModal?.message}}
+            </h4>
+        </div>
+        <div class="modal-footer flex items-center justify-center gap-2 pt-[20px]">
+            <button class="confirm p-[10px_15px] bg-primary rounded-full text-base text-white text-center mb-[10px] font-semibold block" (click)="confirm()">
+                Confirm
+            </button>
+            <button class="cancel p-[10px_15px] bg-outline-primary rounded-full text-base text-primary text-center mb-[10px] text-black font-semibold block" (click)="cancel()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

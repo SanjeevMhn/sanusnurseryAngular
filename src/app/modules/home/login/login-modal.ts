@@ -1,9 +1,8 @@
-export class LoginModal {
+import { BaseModal } from "../../shared/models/base-modal";
 
-    public visible: boolean;
-    public message?: string;
+export class LoginModal extends BaseModal {
 
     constructor(visible: boolean){
-        this.visible = visible;
+       super(visible);
     }
 }

@@ -14,6 +14,7 @@ import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-layout',
@@ -25,6 +26,7 @@ export default class LayoutComponent implements OnInit {
   showSideNav: boolean = false;
   showSearch: boolean = false;
   showLogin: boolean = false;
+  showConfirm: boolean = false;
 
   faClose = faClose;
   faSearch = faSearch;
@@ -55,7 +57,8 @@ export default class LayoutComponent implements OnInit {
     private http: HttpClient,
     private loginService: LoginService,
     private authService: AuthService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private confirmService: ConfirmDialogService) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -120,6 +123,7 @@ export default class LayoutComponent implements OnInit {
       }
     })
 
+
   }
 
   onRouteChanges() {
@@ -165,6 +169,12 @@ export default class LayoutComponent implements OnInit {
   toggleDropDown() {
     this.showDropDown = !this.showDropDown;
   }
+
+  toggleConfirm(value: boolean){
+    this.showConfirm = value;
+  }
+
+
 
   logout() {
     this.authService.logout().subscribe({
