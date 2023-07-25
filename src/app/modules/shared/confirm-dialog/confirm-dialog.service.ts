@@ -10,6 +10,8 @@ export class ConfirmDialogService {
   $confirmState = new BehaviorSubject<ConfirmModal>(new ConfirmModal(false));
   $confirmSubject = new BehaviorSubject<Boolean>(false);
 
+  confirmValue = this.$confirmSubject.getValue();
+
   constructor() { }
 
   public show(message: string){
@@ -18,16 +20,15 @@ export class ConfirmDialogService {
     this.$confirmState.next(confirm);
   }
 
-  public confirm(): Observable<Boolean>{
-    this.$confirmSubject.next(true)
-    return this.$confirmSubject as Observable<Boolean>;
-  }
-  
-  public cancel(): Boolean{
-    return false;
-  }
-
   public hide(){
     this.$confirmState.next(new ConfirmModal(false));
+  }
+
+  public confirm(){
+    this.$confirmSubject.next(true);
+  }
+
+  public cancel(){
+    this.$confirmSubject.next(false);
   }
 }

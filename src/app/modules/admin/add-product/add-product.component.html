@@ -72,8 +72,9 @@
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" [ngClass]=" editMode ? 'flex flex-column gap-2 md:gap-0 md:items-center md:justify-between  md:flex-row' : '' ">
                 <button type="submit" class="bg-admin-primary text-white p-[5px_10px] rounded-md">Submit</button>
+                <button type="button" class="bg-red-700 text-white p-[5px_10px] rounded-md" *ngIf="editMode" (click)="deleteProduct()">Delete</button>
             </div>
         </form>
     </article>

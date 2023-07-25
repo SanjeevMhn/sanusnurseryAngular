@@ -16,7 +16,6 @@ export class ConfirmDialogComponent implements OnInit {
 
   @Output() toggleConfirm = new EventEmitter()
   @Output() confirmOptionEvent = new EventEmitter();
-  @Output() cancelOptionEvent = new EventEmitter();
 
   constructor(private confirmModalService: ConfirmDialogService) { }
 
@@ -26,17 +25,16 @@ export class ConfirmDialogComponent implements OnInit {
     })
   }
   public close(){
-    // this.confirmModal!.visible = false;
     this.confirmModalService.hide();
     this.toggleConfirm.emit()
   }
 
   public confirm() {
-    
+    this.confirmModalService.confirm();
   }
 
-  public cancel(): Boolean{
-    return this.confirmModalService.cancel(); 
+  public cancel(){
+    this.confirmModalService.cancel();
   }
 
 }

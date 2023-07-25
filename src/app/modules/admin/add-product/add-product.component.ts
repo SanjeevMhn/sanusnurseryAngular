@@ -31,6 +31,7 @@ export class AddProductComponent implements OnInit {
   prodPriceErrMsg: string = '';
 
   titleText: string = '';
+  paramId?:number;
 
 
   constructor(private productService: ProductService,
@@ -61,6 +62,7 @@ export class AddProductComponent implements OnInit {
     if (paramId === '' || paramId === null) {
       this.titleText = "Add Product";
     } else {
+      this.paramId = Number(paramId);
       this.editMode = true;
       this.titleText = "Edit Product";
       this.editProductId = Number(paramId);
@@ -115,6 +117,11 @@ export class AddProductComponent implements OnInit {
       if (this.addProductForm.controls['prod_name'].errors?.['required']) {
         this.prodNameError = true;
         this.prodNameErrMsg = "Please enter product name";
+      }
+
+      if(this.addProductForm.controls['prod_name'].errors?.['minlength']){
+        this.prodNameError = true;
+        this.prodNameErrMsg = "Product name cannot be less than 8 characters";
       }
 
       if (this.addProductForm.controls['prod_category'].errors?.['required']) {
@@ -198,6 +205,22 @@ export class AddProductComponent implements OnInit {
 
   }
 
+  deleteProduct(){
+    if(window.confirm("Do you really want to delete this product?")){
+      this.http.delete(`${environment.baseUrl}/id/${this.paramId!}`,{withCredentials: true, observe: 'response'}).subscribe({
+        next:(data:any) => {
+          if(data.status === 200){
+            this.toastService.show("Product has been deleted",ToastType.success);
+            this.router.navigate(['/admin/products']);
+          }
+
+        },
+        error:(err: any) => {
+          console.error(err);
+        }
+      })
+    }
+  }
 
 
 }

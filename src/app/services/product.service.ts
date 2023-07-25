@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, take, map, filter, BehaviorSubject, of, reduce, flatMap } from 'rxjs';
+import { Observable, take, map, filter, BehaviorSubject, of, reduce, flatMap, Observer } from 'rxjs';
 import { Product } from '../interface/product';
 import { environment } from 'src/environments/environment';
 

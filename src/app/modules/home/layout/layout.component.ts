@@ -46,6 +46,8 @@ export default class LayoutComponent implements OnInit {
   userData?: any;
   showDropDown: boolean = false;
 
+  confirmationValue?: boolean;
+
   @ViewChild('searchText') searchText?: ElementRef<HTMLInputElement>;
 
 
