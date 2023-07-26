@@ -10,8 +10,7 @@
         </ul>
 
         <article class="cart-details-container h-[calc(100%-51px)] flex flex-col md:pb-[30px]">
-            <article
-                class="cart-items-container pb-[10px] md:pb-0 flex-grow overflow-y-auto mb-[15px] md:mb-[35px]">
+            <article class="cart-items-container pb-[10px] md:pb-0 flex-grow overflow-y-auto mb-[15px] md:mb-[35px]">
                 <div
                     class="title-container flex justify-between  pb-[15px] md:sticky md:top-0 bg-[#e1e1e1] z-[10] header-text">
                     <h2 class="text-lg md:text-2xl">Shopping Cart
@@ -31,14 +30,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of cartItems">
-                            
-                            <app-cart-item 
-                                [item]="item" 
+
+                            <app-cart-item [item]="item"
                                 (increaseCartItemQuantityEvent)="increaseCartItemQuantity(item)"
                                 (decreaseCartItemQuantityEvent)="decreaseCartItemQuantity(item)"
                                 (setProductQuantityEvent)="setProductQuantity($event)"
-                                (removeCartItemEvent)="removeCartItem(item)"
-                                class="contents">
+                                (removeCartItemEvent)="removeCartItem(item)" class="contents">
                             </app-cart-item>
 
                         </tr>
@@ -56,7 +53,8 @@
             </article>
             <aside class="total-amount-receipe block pt-[10px] md:pt-0 flex-grow w-full">
                 <h2 class="text-lg md:text-2xl pb-[15px] header-text hidden md:block">Cart Summary</h2>
-                <div class="receipt-list-container p-[15px] md:p-[25px] rounded-[10px] bg-[#efefef] sticky top-0 shadow-lg">
+                <div
+                    class="receipt-list-container p-[15px] md:p-[25px] rounded-[10px] bg-[#efefef] sticky top-0 shadow-lg">
                     <ul class="receipt-list flex w-fill flex-col">
                         <li class="receipt-list-item flex">
                             <span class="label-text flex-grow font-semibold text-[#282828]">Order Subtotal:</span>
@@ -113,11 +111,31 @@
                                     {{errorAddressMsg}}
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="payment-option" class="required-label">
+                                    Payment Type
+                                </label>
+                                <ul class="payment-option-list flex flex-wrap gap-3 items-center flex-grow">
+                                    <li class="payment-option-item flex items-center">
+                                        <input type="radio" name="payment_type" id="cash" value="1" checked formControlName="payment_type">
+                                        <label for="cash" class="pl-[5px]">Cash on Delivery</label>
+                                    </li>
+                                    <li class="payment-option-item flex items-center">
+                                        <input type="radio" name="payment_type" id="esewa" value="2" formControlName="payment_type">
+                                        <label for="esewa" class="pl-[5px]">ESewa</label>
+                                    </li>
+                                    <li class="payment-option-item flex items-center">
+                                        <input type="radio" name="payment_type" id="khalti" value="3" formControlName="payment_type">
+                                        <label for="khalti" class="pl-[5px]">Khalti</label>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </form>
                     <div class="actions-container flex flex-col-reverse md:flex-row md:justify-center items-center">
                         <a routerLink="/home/products" role="button" class="text-primary md:mr-2">Continue Shopping?</a>
-                        <button type="button" class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full mb-4 md:mb-0 md:ml-2"
+                        <button type="button"
+                            class="flex p-[5px_20px] bg-primary text-lg text-white rounded-full mb-4 md:mb-0 md:ml-2"
                             [ngClass]="cartItems.length < 1 || !subTotal || subTotal === 0 ? 'disabled' : ''"
                             (click)="checkout()"
                             [disabled]="cartItems.length < 1 || !subTotal || subTotal === 0">Checkout</button>

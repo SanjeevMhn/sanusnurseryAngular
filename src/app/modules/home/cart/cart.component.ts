@@ -12,6 +12,7 @@ import { OrderDetail } from 'src/app/interface/order-detail';
 import { v4 as uuid } from 'uuid';
 import { convertToPdf } from 'src/app/utils/functions/convertToPdf';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface PaymentBill {
   date: string | undefined,
@@ -73,10 +74,11 @@ export class CartComponent implements OnInit {
     private http: HttpClient,
     private toastService: ToastService,
     private router: Router,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private authService: AuthService) { }
 
 
-  getProductCategoryName(cat_id:number){
+  getProductCategoryName(cat_id: number) {
     // this.productService.getPlantCatgoryById(cat_id).subscribe({
     //   next: (data:any) => {
     //     console.log(data.product_category[0].prod_cat_name);
@@ -86,7 +88,7 @@ export class CartComponent implements OnInit {
     //   }
     // })
     this.productService.getPlantCatgoryById(cat_id).pipe(
-      map((data:any) => {
+      map((data: any) => {
         console.log(data);
         return data as Observable<object>;
       })
@@ -95,14 +97,15 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     let date = new Date();
-    this.billDate = `${(1 + date.getMonth()).toString()}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`
+    this.billDate = `${date.getFullYear()}-${(1 + date.getMonth()).toString()}-${date.getDate().toString().padStart(2, '0')}`
     this.getCartData();
     this.checkoutForm = this.fb.group({
       ftname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
       ltname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
       phone: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]{10}')]],
       email: ['', [Validators.required, Validators.email,]],
-      address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]]
+      address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]],
+      payment_type: ['1', [Validators.required]]
     })
   }
 
@@ -202,16 +205,6 @@ export class CartComponent implements OnInit {
       // this.formMessage = '';
       // (val.name && val.phone && val.address && val.email)
       this.formMessage = '';
-      let date = new Date();
-      let formattedDate = date.toLocaleString('en-US', {
-        weekday: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        month: 'long',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-      });
 
       let customerName = `${val.ftname} ${val.ltname}`;
 
@@ -234,11 +227,35 @@ export class CartComponent implements OnInit {
         products: this.cartItems,
         subTotal: this.subTotal
       }
-      // window.scrollTo({
-      //   top: 0,
-      //   behavior: 'smooth'
-      // });
-      window.scroll(0,0)
+
+      let orderData = {
+        'order_number': uuid(),
+        'user_id': null,
+        'order_date': this.billDate,
+        'order_total': this.subTotal,
+        'order_status': 'PENDING',
+        'delivery_address': val.address,
+        'user_name': customerName,
+        'user_email': val.email,
+        'user_contact': val.phone,
+        'payment_type': val.payment_type,
+        'order_products': this.cartItems
+      }
+
+      this.authService.sendOrderRequest(orderData).subscribe({
+        next: (data: any) => {
+          const elem = document.getElementById('payment-receipt');
+          convertToPdf(elem!, 'payment_bill.pdf');
+          this.clearCart();
+          this.toastService.show('Order Sent Successfully', ToastType.success);
+          this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      })
+
+      window.scroll(0, 0)
       this.showBill = true;
 
       let headers = new Headers({
@@ -257,15 +274,7 @@ export class CartComponent implements OnInit {
           return res.text()
         })
         .then(data => {
-          // data ? JSON.parse(data) : {};
-          // console.log(data)
 
-          const elem = document.getElementById('payment-receipt');
-          convertToPdf(elem!, 'payment_bill.pdf');
-
-          this.clearCart();
-          this.toastService.show('Order Sent Successfully', ToastType.success);
-          this.router.navigate(['/home/checkout/', { previousRoute: '/home/cart' }]);
         })
         .catch(error => console.error(error));
 
@@ -335,7 +344,7 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  setProductQuantity(obj:any) {
+  setProductQuantity(obj: any) {
     let { quantity, item } = obj;
     if (quantity > 0 && quantity) {
       this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity).subscribe({
@@ -349,7 +358,7 @@ export class CartComponent implements OnInit {
       })
     } else {
       this.toastService.show("Product quantity cannot be less than 1", ToastType.error);
-      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity=1).subscribe({
+      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity = 1).subscribe({
         next: (data) => {
           this.cartItems = data;
           // this.calculateSubTotal();

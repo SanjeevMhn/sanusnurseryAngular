@@ -32,7 +32,6 @@ export class CartService {
         const cachedCartItems = sessionStorage.getItem('cart_items');
         if(cachedCartItems){
           const parsedCachedCartItems: CartItem[] = [...JSON.parse(cachedCartItems!)];
-          console.log(parsedCachedCartItems);
           this.cartItems.next(parsedCachedCartItems);
           return this.cartItems;
         }else{

@@ -41,6 +41,10 @@ export class AuthService {
     )
   }
 
+  sendOrderRequest(orderData:any):Observable<object>{
+    return this.http.post(environment.orderUrl,orderData,{withCredentials: true, observe:'response'});
+  }
+
   logout(): Observable<object> {
     return this.http.post(`${environment.authUrl}/logout`, {}, { withCredentials: true });
   }
