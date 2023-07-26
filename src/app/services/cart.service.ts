@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../interface/product';
 import { CartItem } from '../interface/cart-item';
 import { AuthService } from './auth.service';
@@ -19,8 +19,8 @@ export class CartService {
     const currentCart = this.cartItems.getValue();
 
     if (!currentCart.some(item => item.prod_id === product.prod_id)) {
-      const updatedCart = [ product,...currentCart];
-      sessionStorage.setItem('cart_items',JSON.stringify(updatedCart));
+      const updatedCart = [product, ...currentCart];
+      sessionStorage.setItem('cart_items', JSON.stringify(updatedCart));
       this.cartItems.next(updatedCart);
     }
 
@@ -28,13 +28,26 @@ export class CartService {
   }
 
   getCartDetails(): BehaviorSubject<CartItem[]> {
-    return this.cartItems;
+    if(this.cartItems.value.length == 0 || this.cartItems.value == null){
+        const cachedCartItems = sessionStorage.getItem('cart_items');
+        if(cachedCartItems){
+          const parsedCachedCartItems: CartItem[] = [...JSON.parse(cachedCartItems!)];
+          console.log(parsedCachedCartItems);
+          this.cartItems.next(parsedCachedCartItems);
+          return this.cartItems;
+        }else{
+          return this.cartItems;
+        }
+
+    }else{
+      return this.cartItems;
+    }
   }
 
   removeCartItem(item: CartItem): BehaviorSubject<CartItem[]> {
     const currentCart = this.cartItems.getValue();
     const updatedCart = currentCart.filter(cart => cart.prod_id !== item.prod_id);
-    sessionStorage.setItem('cart_items',JSON.stringify(updatedCart));
+    sessionStorage.setItem('cart_items', JSON.stringify(updatedCart));
     this.cartItems.next(updatedCart);
     return this.cartItems;
   }
@@ -57,6 +70,7 @@ export class CartService {
     }
     updatedCart[index] = updatedCartObject
     this.cartItems.next(updatedCart);
+    sessionStorage.setItem('cart_items', JSON.stringify(updatedCart));
     return this.cartItems;
   }
 
@@ -73,6 +87,7 @@ export class CartService {
     }
     updatedCart[index] = updatedCartObject
     this.cartItems.next(updatedCart);
+    sessionStorage.setItem('cart_items', JSON.stringify(updatedCart));
     return this.cartItems;
   }
 
@@ -89,6 +104,7 @@ export class CartService {
     }
     updatedCart[index] = updatedCartObject
     this.cartItems.next(updatedCart);
+    sessionStorage.setItem('cart_items', JSON.stringify(updatedCart));
     return this.cartItems;
   }
 }

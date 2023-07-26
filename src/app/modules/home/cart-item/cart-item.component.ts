@@ -52,6 +52,9 @@ export class CartItemComponent implements OnInit {
 
   setProductQuantity(e:any){
     let setQuantity = e.target.value;
+    if(setQuantity == 0 || !setQuantity){
+      
+    }
     let itemObj = {
       quantity: Number(setQuantity),
       item: this.item

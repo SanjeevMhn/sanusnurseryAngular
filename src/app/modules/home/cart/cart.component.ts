@@ -276,6 +276,7 @@ export class CartComponent implements OnInit {
     this.getItemsSubscription = this.cartService.getCartDetails().subscribe({
       next: (data) => {
         this.cartItems = data;
+        console.log(data);
         this.calculateSubTotal();
       },
       error: (err) => {
