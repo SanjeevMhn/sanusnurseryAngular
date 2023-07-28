@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from 'src/app/services/toast.service';
-import { ToastType } from '../../shared/toast/toast.modal';
+import { ToastType } from '../../../shared/toast/toast.modal';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
