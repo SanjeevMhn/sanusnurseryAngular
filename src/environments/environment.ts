@@ -8,7 +8,7 @@ export const environment = {
   refreshToken: 'http://localhost:8080/api/v1/refresh',
   baseUrl: 'http://localhost:8080/api/v1/products',
   authUrl: 'http://localhost:8080/api/v1/auth',
-  orderUrl: 'http://localhost:8080/api/v1/order'
+  orderUrl: 'http://localhost:8080/api/v1/orders'
 };
 
 /*

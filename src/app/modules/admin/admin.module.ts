@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DataGridComponent } from './products/data-grid/data-grid.component';
 import { DataGridRowComponent } from './products/data-grid-row/data-grid-row.component';
+import { OrdersDataGridComponent } from './orders/orders-data-grid/orders-data-grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SharedModule } from '../shared/shared.module';
@@ -24,7 +25,8 @@ import { SharedModule } from '../shared/shared.module';
     HeaderComponent,
     DataGridComponent,
     DataGridRowComponent,
-    AddProductComponent
+    AddProductComponent,
+    OrdersDataGridComponent
   ],
   imports: [
     CommonModule,

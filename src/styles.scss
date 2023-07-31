@@ -49,7 +49,7 @@
             flex-direction: column;
             flex-grow: 1;
 
-             .form-label{
+            .form-label {
                 font-size: 16px;
                 padding-bottom: 5px;
             }
@@ -286,6 +286,78 @@ section {
     color: $theme;
 }
 
+$headerColor: #daf9f9;
+
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+
+    thead {
+        tr {
+            th {
+                font-weight: 600;
+                color: #2e2e2e;
+                font-size: 17px;
+                position: relative;
+                white-space: nowrap;
+                position: sticky;
+                top: 0;
+                background-color: $headerColor;
+                z-index: 500;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 60%;
+                    width: 1px;
+                    background-color: #7a7a7a;
+                }
+
+                &:last-child {
+                    &:after {
+                        content: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    tr {
+        td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        &:first-child{
+            th{
+                padding: 12px 15px;
+                text-align: left;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-radius: 8px;
+
+            &:nth-child(even) {
+                background-color: #efefef;
+            }
+
+            td {
+                padding-left: 15px;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 768px) {
 
     .admin-section-component {
@@ -350,6 +422,12 @@ section {
     }
 }
 
+@media screen and (min-width: 1024px){
+    .admin-section-component{
+        width: calc(100vw - 250px);
+    }
+}
+
 @media screen and (min-width: 1156px) {
     .inner-container {
         // max-width: 1156px;
@@ -366,6 +444,7 @@ section {
         }
     }
 }
+
 
 @media screen and (max-width: 1300px) {
     .related-products-container {

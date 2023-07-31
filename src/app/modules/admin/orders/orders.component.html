@@ -2,4 +2,14 @@
     <header class="admin-section-header orders-headers">
         <h2 class="header-text">Orders</h2>
     </header>
+<article
+        class="orders-list-container admin-section-body flex flex-col overflow-hidden">
+        <app-orders-data-grid 
+            [orderList]="orders" 
+            [currentPage]=currentPage 
+            [totalPages]=totalPages
+            [totalItems]=totalItems
+            class="contents">
+        </app-orders-data-grid>
+    </article>
 </section>

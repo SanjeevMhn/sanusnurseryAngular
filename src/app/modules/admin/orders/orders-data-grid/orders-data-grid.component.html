@@ -1,0 +1,68 @@
+<div class="table-container h-full">
+    <table class="data-table">
+        <thead>
+            <tr class="table-header-title">
+                <th>S.n</th>
+                <th>Order Date</th>
+                <th>Order Number</th>
+                <th>User Type</th>
+                <th>User Name</th>
+                <th>Total</th>
+                <th>Payment Method</th>
+                <th>Payment Status</th>
+                <th>Delivery Address</th>
+                <th>Order Status</th>
+                <th>Action</th>
+            </tr>
+            <tr class="search-header-row">
+                <th></th>
+                <th>
+                    <input type="date" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th></th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of orderList; let i=index">
+                <!-- <app-data-grid-row 
+                    [item]=item 
+                    [index]=i 
+                    class="contents">
+                </app-data-grid-row> -->
+                <td>{{i+1}}</td>
+                <td>{{item.order_date.split('T')[0]}}</td>
+                <td>{{item.order_number}}</td>
+                <td>{{item.user_id === null ? 'Guest' : 'Registered'}}</td>
+                <td>{{item.user_name}}</td>
+                <td>{{item.order_total}}</td>
+                <td>{{item.payment_id}}</td>
+                <td>{{item.payment_status}}</td>
+                <td>{{item.delivery_address}}</td>
+                <td>{{item.order_status}}</td>
+                <td>Action</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
