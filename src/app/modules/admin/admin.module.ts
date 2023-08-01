@@ -14,6 +14,7 @@ import { OrdersDataGridComponent } from './orders/orders-data-grid/orders-data-g
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SharedModule } from '../shared/shared.module';
+import { OrdersDataGridRowComponent } from './orders/orders-data-grid-row/orders-data-grid-row.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     DataGridComponent,
     DataGridRowComponent,
     AddProductComponent,
-    OrdersDataGridComponent
+    OrdersDataGridComponent,
+    OrdersDataGridRowComponent
   ],
   imports: [
     CommonModule,

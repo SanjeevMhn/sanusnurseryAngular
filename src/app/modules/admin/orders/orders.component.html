@@ -9,6 +9,11 @@
             [currentPage]=currentPage 
             [totalPages]=totalPages
             [totalItems]=totalItems
+            (nextPageEvent)="nextPage($event)" 
+            (prevPageEvent)="prevPage($event)" 
+            (changePageSizeEvent)="changePageSize($event)"
+            (firstPageEvent)="firstPage($event)" 
+            (lastPageEvent)="lastPage($event)"
             class="contents">
         </app-orders-data-grid>
     </article>

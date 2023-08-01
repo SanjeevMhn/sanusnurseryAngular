@@ -6,18 +6,19 @@
                 <th>Order Date</th>
                 <th>Order Number</th>
                 <th>User Type</th>
-                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Contact</th>
                 <th>Total</th>
                 <th>Payment Method</th>
                 <th>Payment Status</th>
-                <th>Delivery Address</th>
                 <th>Order Status</th>
+                <th>Delivery Address</th>
                 <th>Action</th>
             </tr>
             <tr class="search-header-row">
                 <th></th>
                 <th>
-                    <input type="date" name="" id="">
+                    <input type="date" name="" id="" pattern="\d{4}-\d{2}-\d{2}">
                 </th>
                 <th>
                     <input type="text" name="" id="">
@@ -28,7 +29,12 @@
                 <th>
                     <input type="text" name="" id="">
                 </th>
-                <th></th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
+                <th>
+                    <input type="text" name="" id="">
+                </th>
                 <th>
                     <input type="text" name="" id="">
                 </th>
@@ -46,23 +52,53 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of orderList; let i=index">
-                <!-- <app-data-grid-row 
+                <app-orders-data-grid-row 
                     [item]=item 
-                    [index]=i 
+                    [i]=i 
                     class="contents">
-                </app-data-grid-row> -->
-                <td>{{i+1}}</td>
-                <td>{{item.order_date.split('T')[0]}}</td>
-                <td>{{item.order_number}}</td>
-                <td>{{item.user_id === null ? 'Guest' : 'Registered'}}</td>
-                <td>{{item.user_name}}</td>
-                <td>{{item.order_total}}</td>
-                <td>{{item.payment_id}}</td>
-                <td>{{item.payment_status}}</td>
-                <td>{{item.delivery_address}}</td>
-                <td>{{item.order_status}}</td>
-                <td>Action</td>
+                </app-orders-data-grid-row>
+                
             </tr>
         </tbody>
     </table>
+</div>
+<div class="table-footer mt-auto border-t border-slate-400 p-[10px_15px]">
+    <div class="flex justify-center flex-wrap gap-2">
+        <form [formGroup]="pageSizeFilterForm" class="items-per-page-wrapper flex items-center">
+            <label for="pageSizeFilter" class="mb-0 items-per-page-text pr-[10px]">Items per page:</label>
+            <select name="items-per-page" id="pageSizeFilter" class=" border border-slate-400 rounded-md p-[2px_5px]" formControlName="sortPageSize" (change)="changePageSize($event)">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </form>
+        <!-- <div class="page-desc flex items-center flex-col md:flex-row"> -->
+            <div class="showing-page flex items-center flex-grow justify-end md:flex-grow-0 md:pr-[10px] ml-auto">
+                {{currentPage}} of {{totalPages}} pages
+            </div>
+            <div class="page-state-control-btns flex gap-1 justify-center">
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="firstPage()" [disabled]="currentPage === 1" [ngClass]="currentPage === 1 ? 'cursor-not-allowed' : ''">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faAnglesLeft" class="flex items-center justify-center" [ngClass]="currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="prevPage()" [disabled]="currentPage === 1" [ngClass]="currentPage === 1 ? 'cursor-not-allowed' : ''">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faChevronLeft" class="flex items-center justify-center" [ngClass]="currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="nextPage()" [disabled]="currentPage == totalPages"  [ngClass]="currentPage == totalPages ? 'cursor-not-allowed' : ''">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faChevronRight" class="flex items-center justify-center" [ngClass]="currentPage == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                    </span>
+                </button>
+                <button type="button" class="border border-slate-400 rounded-md p-[5px] w-[30px] h-[30px] flex items-center justify-center bg-white" (click)="lastPage()" [disabled]="currentPage == totalPages"  [ngClass]="currentPage == totalPages ? 'cursor-not-allowed' : ''">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faAnglesRight" class="flex items-center justify-center" [ngClass]="currentPage == totalPages ? 'text-slate-400 cursor-not-allowed' : 'text-slate-800'"></fa-icon>
+                    </span>
+                </button>
+            </div>
+        <!-- </div> -->
+    </div>
 </div>

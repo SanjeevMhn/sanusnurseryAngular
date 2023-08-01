@@ -11,11 +11,11 @@ type Order = {
   order_date: string,
   order_total: number,
   order_status: string,
-  payment_id: number,
+  payment_type: number,
   payment_status: string,
   delivery_address: string|null,
-  user_name: string | null,
   user_email: string | null,
+  user_contact: string | null,
 }
 
 @Component({
@@ -29,6 +29,7 @@ export class OrdersComponent implements OnInit {
   totalPages?: number;
   totalItems?: number;
   orders?: Order[];
+  pageSize: number = 10;
   getAllOrdersSubscriber?: Subscription;
   constructor(private http:HttpClient) { }
 
@@ -37,7 +38,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getAllOrders(){
-    this.getAllOrdersSubscriber = this.http.get(`${environment.orderUrl}`,{withCredentials: true}).subscribe({
+    this.getAllOrdersSubscriber = this.http.get(`${environment.orderUrl}?page=${this.currentPage}&pageSize=${this.pageSize}`,{withCredentials: true}).subscribe({
       next: (data: any) => {
         this.currentPage = data.currentPage;
         this.totalItems = data.totalItems;
@@ -50,6 +51,31 @@ export class OrdersComponent implements OnInit {
     })
   }
 
+  nextPage(event: number) {
+    this.currentPage = event;
+    console.log(this.currentPage)
+    this.getAllOrders();
+  }
+
+  prevPage(event: number) {
+    this.currentPage = event;
+    this.getAllOrders();
+  }
+
+  changePageSize(event: number) {
+    this.pageSize = event;
+    this.getAllOrders();
+  }
+
+  firstPage(event: number) {
+    this.currentPage = event;
+    this.getAllOrders();
+  }
+
+  lastPage(event: number) {
+    this.currentPage = event;
+    this.getAllOrders();
+  }
 
   ngOnDestroy(){
     this.getAllOrdersSubscriber?.unsubscribe();

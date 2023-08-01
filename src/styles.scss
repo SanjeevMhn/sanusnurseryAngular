@@ -333,11 +333,10 @@ $headerColor: #daf9f9;
             padding: 12px 15px;
             text-align: left;
         }
-        &:first-child{
-            th{
-                padding: 12px 15px;
-                text-align: left;
-            }
+
+        th {
+            padding: 12px 15px;
+            text-align: left;
         }
     }
 
@@ -353,9 +352,69 @@ $headerColor: #daf9f9;
                 padding-left: 15px;
                 vertical-align: middle;
                 white-space: nowrap;
+
+                .status {
+                    text-align: center;
+                    font-weight: 500;
+                }
             }
         }
     }
+}
+
+.status {
+    padding: 2px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-block;
+
+    &.pending {
+        $color: #f09414;
+        color: $color;
+        background-color: #{$color + '41'};
+        border: 1px solid $color;
+    }
+
+    &.completed {
+        $color: #18ba06;
+        color: $color;
+        background-color: #{$color + '41'};
+        border: 1px solid $color;
+    }
+
+    &.cancelled {
+        $color:#bc1818; 
+        color: $color;
+        background-color: #{$color + '41'};
+        border: 1px solid $color;
+    }
+}
+
+.img-container-md{
+    width: 125px;
+    height: 30px;
+    img,>*{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+.esewa,
+.khalti{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    object-fit: contain;
+}
+
+.esewa{
+    background-image: url('./assets/images/esewa-logo.svg');
+}
+
+.khalti{
+    background-image: url('./assets/images/khalti-logo.svg');
 }
 
 @media screen and (min-width: 768px) {
@@ -422,8 +481,8 @@ $headerColor: #daf9f9;
     }
 }
 
-@media screen and (min-width: 1024px){
-    .admin-section-component{
+@media screen and (min-width: 1024px) {
+    .admin-section-component {
         width: calc(100vw - 250px);
     }
 }

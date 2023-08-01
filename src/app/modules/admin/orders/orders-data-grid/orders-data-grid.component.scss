@@ -1,0 +1,40 @@
+tr {
+    &.table-header-title {
+        th {
+            padding: 12px 15px 0 15px;
+        }
+    }
+
+    &.search-header-row {
+        th {
+            padding: 8px 15px;
+            top: 37.5px!important;
+            input {
+                min-width: 125px;
+                width: 100%;
+                font-size: 14px;
+                font-weight: 400;
+                padding: 5px 10px;
+                border: 1px solid #a4d7d7;
+
+                &:active,
+                &:focus {
+                    outline: none;
+                    border-width: 2px;
+                }
+            }
+        }
+    }
+}
+
+.data-table {
+    thead {
+        tr {
+            th{
+                &::after{
+                    height: 0;
+                }
+            }
+        }
+    }
+}

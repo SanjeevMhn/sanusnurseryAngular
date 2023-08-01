@@ -244,6 +244,7 @@ export class CartComponent implements OnInit {
 
       this.authService.sendOrderRequest(orderData).subscribe({
         next: (data: any) => {
+          console.log(orderData);
           const elem = document.getElementById('payment-receipt');
           convertToPdf(elem!, 'payment_bill.pdf');
           this.clearCart();
