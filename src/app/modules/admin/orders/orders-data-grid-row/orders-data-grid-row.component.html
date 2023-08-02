@@ -1,6 +1,10 @@
 <td>{{i!+1}}</td>
 <td>{{item.order_date.split('T')[0]}}</td>
-<td>{{item.order_number}}</td>
+<td>
+    <a [routerLink]="['/admin/order-detail/',item.order_id]" class="text-blue-700">
+        {{item.order_number}}
+    </a>
+</td>
 <td>{{item.user_id === null ? 'Guest' : 'Registered'}}</td>
 <td>{{item.user_email}}</td>
 <td>{{item.user_contact}}</td>
@@ -9,7 +13,8 @@
     <div *ngIf="paymentType === 'cash';else logoContainer">
         <div class="cash-on-delivery flex items-center gap-3">
             <span class="icon-container h-[24px] w-[24px] flex items-center justify-center">
-                <fa-icon [icon]="faCashWave" class="text-[20px] flex items-center justify-center text-[#56a83f]"></fa-icon>
+                <fa-icon [icon]="faCashWave"
+                    class="text-[20px] flex items-center justify-center text-[#56a83f]"></fa-icon>
             </span>
             <span class="lable-text">
                 Cash On Delivery
@@ -18,7 +23,8 @@
     </div>
     <ng-template #logoContainer>
         <div class="img-container-md">
-            <div class="logo-container" [ngClass]="paymentType === 'esewa' ? 'esewa' : paymentType === 'khalti' ? 'khalti' : ''"></div>
+            <div class="logo-container"
+                [ngClass]="paymentType === 'esewa' ? 'esewa' : paymentType === 'khalti' ? 'khalti' : ''"></div>
         </div>
     </ng-template>
 </td>
@@ -35,4 +41,20 @@
     </div>
 </td>
 <td>{{item.delivery_address}}</td>
-<td>Action</td>
+<td>
+    <div class="options-dropdown relative">
+        <button type="button"
+            class="w-[24px] h-[24px] p-[10px] bg-blue-200 rounded-md flex items-center justify-center" (click)="toggleDropdown()">
+            <fa-icon [icon]="faEllipsis" class="text-[15px] flex items-center justify-center"></fa-icon>
+        </button>
+        <ul
+            class="dropdown-list absolute bg-white border border-slate-300 shadow-lg top-full right-[calc(100%-24px)] rounded-md z-[200] text-[15px]" [ngClass]="showDropdown ? 'block' : 'hidden'">
+            <li class="dropdown-item">
+                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">View Details</a>
+            </li>
+            <li class="dropdown-item">
+                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Delete</a>
+            </li>
+        </ul>
+    </div>
+</td>

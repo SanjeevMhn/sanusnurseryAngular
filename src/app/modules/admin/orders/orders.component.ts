@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -38,7 +38,9 @@ export class OrdersComponent implements OnInit {
   }
 
   getAllOrders(){
-    this.getAllOrdersSubscriber = this.http.get(`${environment.orderUrl}?page=${this.currentPage}&pageSize=${this.pageSize}`,{withCredentials: true}).subscribe({
+    this.getAllOrdersSubscriber = this.http.get(`${environment.orderUrl}?page=${this.currentPage}&pageSize=${this.pageSize}`,{withCredentials: true}).pipe(
+      retry(3)
+    ).subscribe({
       next: (data: any) => {
         this.currentPage = data.currentPage;
         this.totalItems = data.totalItems;
@@ -53,7 +55,6 @@ export class OrdersComponent implements OnInit {
 
   nextPage(event: number) {
     this.currentPage = event;
-    console.log(this.currentPage)
     this.getAllOrders();
   }
 

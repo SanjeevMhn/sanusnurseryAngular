@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { faMoneyBillWave } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faMoneyBillWave } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-orders-data-grid-row',
@@ -16,6 +16,9 @@ export class OrdersDataGridRowComponent implements OnInit {
   paymentType?:string;
 
   faCashWave = faMoneyBillWave
+  faEllipsis = faEllipsis
+
+  showDropdown: boolean = false;
 
   constructor(private http:HttpClient) { }
 
@@ -30,4 +33,7 @@ export class OrdersDataGridRowComponent implements OnInit {
     })
   }
 
+  toggleDropdown(){
+    this.showDropdown = !this.showDropdown;
+  }
 }
