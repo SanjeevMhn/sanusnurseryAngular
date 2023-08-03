@@ -5,11 +5,11 @@
         {{item.order_number}}
     </a>
 </td>
-<td>{{item.user_id === null ? 'Guest' : 'Registered'}}</td>
-<td>{{item.user_email}}</td>
-<td>{{item.user_contact}}</td>
-<td>{{item.order_total}}</td>
-<td>
+<!-- <td>{{item.user_id === null ? 'Guest' : 'Registered'}}</td> -->
+<!-- <td>{{item.user_email}}</td> -->
+<!-- <td>{{item.user_contact}}</td> -->
+<td>Rs.&nbsp;{{item.order_total}}</td>
+<!-- <td>
     <div *ngIf="paymentType === 'cash';else logoContainer">
         <div class="cash-on-delivery flex items-center gap-3">
             <span class="icon-container h-[24px] w-[24px] flex items-center justify-center">
@@ -27,20 +27,20 @@
                 [ngClass]="paymentType === 'esewa' ? 'esewa' : paymentType === 'khalti' ? 'khalti' : ''"></div>
         </div>
     </ng-template>
-</td>
-<td>
+</td> -->
+<!-- <td>
     <div class="status"
         [ngClass]="item.payment_status === 'PENDING' ? 'pending' : item.payment_status === 'COMPLETED' ? 'completed' : item.payment_status === 'CANCELLED' ? 'cancelled' : ''">
         {{item.payment_status}}
     </div>
-</td>
+</td> -->
 <td>
     <div class="status"
         [ngClass]="item.order_status === 'PENDING' ? 'pending' : item.order_status === 'COMPLETED' ? 'completed' : item.order_status === 'CANCELLED' ? 'cancelled' : ''">
         {{item.order_status}}
     </div>
 </td>
-<td>{{item.delivery_address}}</td>
+<!-- <td>{{item.delivery_address}}</td> -->
 <td>
     <div class="options-dropdown relative">
         <button type="button"
@@ -50,7 +50,7 @@
         <ul
             class="dropdown-list absolute bg-white border border-slate-300 shadow-lg top-full right-[calc(100%-24px)] rounded-md z-[200] text-[15px]" [ngClass]="showDropdown ? 'block' : 'hidden'">
             <li class="dropdown-item">
-                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">View Details</a>
+                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer" [routerLink]="['/admin/order-detail',item.order_id]">View Details</a>
             </li>
             <li class="dropdown-item">
                 <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Delete</a>

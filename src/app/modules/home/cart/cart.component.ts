@@ -233,7 +233,6 @@ export class CartComponent implements OnInit {
         'user_id': null,
         'order_date': this.billDate,
         'order_total': this.subTotal,
-        'order_status': 'PENDING',
         'delivery_address': val.address,
         'user_name': customerName,
         'user_email': val.email,

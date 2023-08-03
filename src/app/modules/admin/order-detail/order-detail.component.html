@@ -2,8 +2,157 @@
     <header class="order-detail-header admin-section-header">
         <h2 class="header-text">Order Detail</h2>
     </header>
-    <main class="order-detail-container flex flex-wrap gap-3">
-    </main>
+    <article class="order-detail-container admin-section-body !bg-transparent !flex-none !shadow-none">
+
+        <div class="order-detail-card detail-card">
+            <div class="detail-card-header flex items-center justify-between">
+                <div class="order-number">
+                    <span class="label-text font-semibold">Order No:</span>
+                    <span class="order-number-text pl-3 text-primary">{{order.order_number}}</span>
+                </div>
+                <div class="order-status">
+                    <div class="status" [ngClass]="order.order_status === 'PENDING' ? 'pending' : order.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
+                        {{order.order_status}}
+                    </div>
+                </div>
+            </div>
+            <div class="detail-card-body">
+                <div class="table-container h-full">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order Created At</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>User Type</th>
+                                <th>Contact</th>
+                                <th>Delivery Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{order.order_date.split('T')[0]}}</td>
+                                <td>{{order.user_name}}</td>
+                                <td>{{order.user_email}}</td>
+                                <td>
+                                    <div class="" *ngIf="order.user_id === null; else registered">
+                                        Guest
+                                    </div>
+                                    <ng-template #registered>Registered User</ng-template>
+                                </td>
+                                <td>{{order.user_contact}}</td>
+                                <td>{{order.delivery_address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="order-items-detail-card detail-card">
+            <div class="detail-card-header">
+                <h2 class="header-text text-[21px]">
+                    Order Items
+                </h2>
+            </div>
+            <div class="detail-card-body">
+                <div class="table-container h-full">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Sn</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of orderItems;let i=index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <div class="flex items-center">
+                                        <div class="img-container w-[90px] h-[90px] flex-[0_0_90px] rounded-md overflow-hidden flex items-center justify-center">
+                                            <img class="w-full h-auto object-contain" src="{{item.image_url}}" alt=""> 
+                                        </div>
+                                        <h2 class="product-name pl-[10px] flex-grow">{{item.prod_name}}</h2>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{item.prod_category}}
+                                </td>
+                                <td>
+                                    Rs.&nbsp;{{item.prod_price}}
+                                </td>
+                                <td>
+                                    {{item.product_quantity}}
+                                </td>
+                                <td>
+                                    {{item.prod_price * item.product_quantity}}
+                                </td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-detail-card detail-card">
+            <div class="detail-card-header">
+                <h2 class="header-text text-[21px]">
+                   Payment Detail 
+                </h2>
+            </div>
+            <div class="detail-card-body">
+                <div class="table-container h-full">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Payment Date</th>
+                                <th>Total Amount</th>
+                                <th>Payment Type</th>
+                                <th>Payment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{paymentDetail.payment_date}}</td>
+                                <td>Rs.&nbsp;{{paymentDetail.total_amount}}</td>
+                                <td>
+                                    <div *ngIf="paymentDetail.payment_type === 'cash';else logoContainer">
+                                        <div class="cash-on-delivery flex items-center gap-3">
+                                            <span class="icon-container h-[24px] w-[24px] flex items-center justify-center">
+                                                <fa-icon [icon]="faCashWave"
+                                                    class="text-[20px] flex items-center justify-center text-[#56a83f]"></fa-icon>
+                                            </span>
+                                            <span class="lable-text">
+                                                Cash On Delivery
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ng-template #logoContainer>
+                                        <div class="img-container-md">
+                                            <div class="logo-container"
+                                                [ngClass]="paymentDetail.payment_type === 'esewa' ? 'esewa' : paymentDetail.payment_type === 'khalti' ? 'khalti' : ''"></div>
+                                        </div>
+                                    </ng-template>
+                                </td>
+                                <td>
+                                    <div class="status"
+                                        [ngClass]="paymentDetail.payment_status === 'PENDING' ? 'pending' : paymentDetail.payment_status === 'COMPLETED' ? 'completed' : paymentDetail.payment_status === 'CANCELLED' ? 'cancelled' : ''">
+                                        {{paymentDetail.payment_status}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </article> 
 
 
 </section>

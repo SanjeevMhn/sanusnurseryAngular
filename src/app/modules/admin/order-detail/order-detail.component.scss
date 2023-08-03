@@ -1,0 +1,17 @@
+.order-detail-container{
+	display: grid;
+	gap: 15px;
+	grid-template-columns: auto 40%;
+	>*{
+		min-width: 0px;
+	}
+	.payment-detail-card{
+		grid-row: 1/span 2;
+		grid-column: 2;
+	}
+
+	.order-detail-card,
+	.order-items-detail-card{
+		grid-column: 1;
+	}
+}

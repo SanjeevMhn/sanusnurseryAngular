@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.detail-card{
+    box-shadow: 0 10px 15px -3px #909090;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 15px;
+
+    .detail-card-header{
+        padding-bottom: 15px;
+    }
+}
+
 .admin-section-component {
     padding: 20px;
     height: calc(100vh - 64px);
