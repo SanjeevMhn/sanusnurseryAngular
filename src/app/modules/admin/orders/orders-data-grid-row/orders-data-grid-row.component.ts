@@ -13,8 +13,6 @@ export class OrdersDataGridRowComponent implements OnInit {
   @Input() i?:number;
   @Input() item?:any;
 
-  paymentType?:string;
-
   faCashWave = faMoneyBillWave
   faEllipsis = faEllipsis
 
@@ -22,16 +20,7 @@ export class OrdersDataGridRowComponent implements OnInit {
 
   constructor(private http:HttpClient) { }
 
-  ngOnInit(): void {
-    this.http.get(`${environment.orderUrl}/payment/type/${this.item?.payment_type}`,{withCredentials: true}).subscribe({
-      next: (data:any) => {
-        this.paymentType = data.paymentType
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
-  }
+  ngOnInit(): void { }
 
   toggleDropdown(){
     this.showDropdown = !this.showDropdown;

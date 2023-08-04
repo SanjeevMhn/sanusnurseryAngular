@@ -5,12 +5,13 @@
     <article class="order-detail-container admin-section-body !bg-transparent !flex-none !shadow-none">
 
         <div class="order-detail-card detail-card">
-            <div class="detail-card-header flex items-center justify-between">
+            <div class="detail-card-header flex flex-col gap-3">
                 <div class="order-number">
                     <span class="label-text font-semibold">Order No:</span>
                     <span class="order-number-text pl-3 text-primary">{{order.order_number}}</span>
                 </div>
-                <div class="order-status">
+                <div class="order-status flex items-center">
+                     <div class="label-text font-semibold pr-3">Order Status:</div>
                     <div class="status" [ngClass]="order.order_status === 'PENDING' ? 'pending' : order.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
                         {{order.order_status}}
                     </div>
@@ -90,7 +91,7 @@
                                     {{item.product_quantity}}
                                 </td>
                                 <td>
-                                    {{item.prod_price * item.product_quantity}}
+                                    Rs.&nbsp;{{item.prod_price * item.product_quantity}}
                                 </td>
                             </tr>                        
                         </tbody>
@@ -108,21 +109,21 @@
             <div class="detail-card-body">
                 <div class="table-container h-full">
                     <table class="data-table">
-                        <thead>
+                       <!--  <thead>
                             <tr>
                                 <th>Payment Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Type</th>
                                 <th>Payment Status</th>
                             </tr>
-                        </thead>
+                        </thead> -->
                         <tbody>
                             <tr>
-                                <td>{{paymentDetail.payment_date}}</td>
-                                <td>Rs.&nbsp;{{paymentDetail.total_amount}}</td>
-                                <td>
+                                <td data-name="payment date">{{paymentDetail.payment_date }}</td>
+                                <td data-name="total">Rs.&nbsp;{{paymentDetail.total_amount}}</td>
+                                <td data-name="payment type">
                                     <div *ngIf="paymentDetail.payment_type === 'cash';else logoContainer">
-                                        <div class="cash-on-delivery flex items-center gap-3">
+                                        <div class="cash-on-delivery flex items-center gap-2">
                                             <span class="icon-container h-[24px] w-[24px] flex items-center justify-center">
                                                 <fa-icon [icon]="faCashWave"
                                                     class="text-[20px] flex items-center justify-center text-[#56a83f]"></fa-icon>
@@ -139,7 +140,7 @@
                                         </div>
                                     </ng-template>
                                 </td>
-                                <td>
+                                <td data-name="payment status">
                                     <div class="status"
                                         [ngClass]="paymentDetail.payment_status === 'PENDING' ? 'pending' : paymentDetail.payment_status === 'COMPLETED' ? 'completed' : paymentDetail.payment_status === 'CANCELLED' ? 'cancelled' : ''">
                                         {{paymentDetail.payment_status}}
@@ -151,7 +152,7 @@
                 </div>
             </div>
         </div>
-        
+
     </article> 
 
 
