@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { faMoneyBillWave } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBillWave, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-order-detail',
@@ -17,6 +17,7 @@ export class OrderDetailComponent implements OnInit {
   paymentDetail?:any;
 
   faCashWave = faMoneyBillWave;
+  faPenToSquare = faPenToSquare;
   constructor(private route: ActivatedRoute, private http:HttpClient) { }
 
   ngOnInit(): void {

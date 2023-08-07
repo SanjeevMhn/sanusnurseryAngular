@@ -5,22 +5,16 @@
     <article class="order-detail-container admin-section-body !bg-transparent !flex-none !shadow-none">
 
         <div class="order-detail-card detail-card">
-            <div class="detail-card-header flex flex-col gap-3">
-                <div class="order-number">
-                    <span class="label-text font-semibold">Order No:</span>
-                    <span class="order-number-text pl-3 text-primary">{{order.order_number}}</span>
-                </div>
-                <div class="order-status flex items-center">
-                     <div class="label-text font-semibold pr-3">Order Status:</div>
-                    <div class="status" [ngClass]="order.order_status === 'PENDING' ? 'pending' : order.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
-                        {{order.order_status}}
-                    </div>
-                </div>
+            <div class="detail-card-header flex items-center justify-between gap-3">
+                <h2 class="header-text text-[18px] md:text-[21px] ">Order</h2>
+                <button class="edit-order flex items-center justify-center">
+                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
+                </button>
             </div>
             <div class="detail-card-body">
                 <div class="table-container h-full">
                     <table class="data-table">
-                        <thead>
+                        <!-- <thead>
                             <tr>
                                 <th>Order Created At</th>
                                 <th>Name</th>
@@ -29,20 +23,35 @@
                                 <th>Contact</th>
                                 <th>Delivery Address</th>
                             </tr>
-                        </thead>
+                        </thead> -->
                         <tbody>
                             <tr>
-                                <td>{{order.order_date.split('T')[0]}}</td>
-                                <td>{{order.user_name}}</td>
-                                <td>{{order.user_email}}</td>
-                                <td>
+                                <td data-name="order number">
+                                    <div class="order-number">
+                                        <!-- <span class="label-text font-semibold">Order No:</span> -->
+                                        <span class="order-number-text pl-3 text-primary">{{order.order_number}}</span>
+                                    </div>
+                                </td>
+                                <td data-name="order status">
+                                    <div class="order-status flex items-center">
+                                      <!--   <div class="label-text font-semibold pr-3"> Order Status:
+                                        </div> -->
+                                        <div class="status" [ngClass]="order.order_status === 'PENDING' ? 'pending' : order.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
+                                            {{order.order_status}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-name="order date">{{order.order_date.split('T')[0]}}</td>
+                                <!-- td data-name="user name">{{order.user_name}}</td>
+                                <td data-name="user email">{{order.user_email}}</td>
+                                <td data-name="user type">
                                     <div class="" *ngIf="order.user_id === null; else registered">
                                         Guest
                                     </div>
                                     <ng-template #registered>Registered User</ng-template>
                                 </td>
-                                <td>{{order.user_contact}}</td>
-                                <td>{{order.delivery_address}}</td>
+                                <td data-name="user contact">{{order.user_contact}}</td>
+                                <td data-name="delivery address">{{order.delivery_address}}</td> -->
                             </tr>
                         </tbody>
                     </table>    
@@ -52,13 +61,16 @@
         </div>
 
         <div class="order-items-detail-card detail-card">
-            <div class="detail-card-header">
-                <h2 class="header-text text-[21px]">
+            <div class="detail-card-header flex items-center justify-between">
+                <h2 class="header-text text-[18px] md:text-[21px]">
                     Order Items
                 </h2>
+                <button class="edit-order flex items-center justify-center">
+                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
+                </button>
             </div>
-            <div class="detail-card-body">
-                <div class="table-container h-full">
+            <div class="detail-card-body overflow-y-auto h-full">
+                <div class="table-container h-full overflow-y-auto">
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -101,10 +113,13 @@
         </div>
 
         <div class="payment-detail-card detail-card">
-            <div class="detail-card-header">
-                <h2 class="header-text text-[21px]">
+            <div class="detail-card-header flex items-center justify-between">
+                <h2 class="header-text text-[18px] md:text-[21px]">
                    Payment Detail 
                 </h2>
+                <button class="edit-order flex items-center justify-center">
+                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
+                </button>
             </div>
             <div class="detail-card-body">
                 <div class="table-container h-full">
@@ -153,6 +168,50 @@
             </div>
         </div>
 
+        <div class="user-detail-card detail-card">
+            <div class="detail-card-header flex items-center justify-between">
+                <h2 class="header-text text-[18px] md:text-[21px]">User Detail</h2>
+                <button class="edit-order flex items-center justify-center">
+                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
+                </button>
+            </div>
+            <div class="detail-card-body">
+                <div class="table-container h-full">
+                    <table class="data-table">
+                        <tbody>
+                            <tr>
+                                <td data-name="user name">
+                                    {{order.user_name}}
+                                </td>
+                                <td data-name="user email">
+                                    {{order.user_email}}
+                                </td>
+                                <td data-name="user type">
+                                    <div class="" *ngIf="order.user_id === null; else registered">
+                                        Guest
+                                    </div>
+                                    <ng-template #registered>
+                                        Registered User
+                                    </ng-template>
+                                </td>
+                                <td data-name="user contact">
+                                    {{order.user_contact}}
+                                </td>
+                                <td data-name="delivery address">
+                                    {{order.delivery_address}}
+                                </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-card detail-card">
+            <div class="flex items-center justify-center">
+                <button class="flex items-center justify-center bg-primary text-white p-[10px_15px] rounded-md">Download PDF</button>
+            </div>
+        </div>
     </article> 
 
 
