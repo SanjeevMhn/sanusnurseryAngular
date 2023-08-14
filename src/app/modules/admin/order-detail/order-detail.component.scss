@@ -6,6 +6,12 @@
 	}
 }
 
+.action-card{
+	.inner{
+		justify-content: center;
+	}
+}
+
 .payment-detail-card,
 .order-detail-card,
 .user-detail-card{
@@ -74,5 +80,36 @@
 @media screen and (min-width: 1390px){
 	.order-detail-container{
 		grid-template-columns: 70% auto;
+	}
+}
+
+@media screen and (min-width: 1440px){
+	.order-detail-container{
+		grid-template-columns: 35% 30% auto;
+
+		.user-detail-card{
+			grid-column: 3;
+			grid-row: 1/3;
+		}
+		.payment-detail-card{
+			grid-column: 2;
+			grid-row: 1/3;
+		}
+		.action-card{
+			grid-column: 1;
+			grid-row: 1/2;
+			.inner{
+				justify-content: flex-start;
+			}
+		}
+		.order-detail-card{
+			grid-row: 2/3;
+		}
+
+		.order-items-detail-card{
+			grid-row: 3/10;
+			grid-column: 1/4;
+		}
+
 	}
 }
