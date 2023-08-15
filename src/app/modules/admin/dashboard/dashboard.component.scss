@@ -1,0 +1,48 @@
+.dashboard-container{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 15px;
+	>*{
+		flex-grow: 1;
+	}
+}
+
+@media screen and (min-width: 990px){
+	.dashboard-container{
+		gap: 25px;
+		flex-direction: row;
+		>*{
+			flex-grow: unset;
+			width: 342px;
+		}
+	}
+}
+
+.dashboard-card{
+	flex-direction: row!important;
+	align-items: center!important;
+	.icon{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 60px;
+		height: 60px;
+		width: 60px;
+		fa-icon{
+			font-size: 35px;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	.details{
+		padding-left: 15px;
+		>*{
+			&:nth-child(2){
+				line-height: 1;
+			}
+		}
+	}
+}

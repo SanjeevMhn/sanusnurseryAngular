@@ -2,4 +2,63 @@
     <header class="dashboard-header admin-section-header">
         <h2 class="header-text">Dashboard</h2>
     </header>
+    <article class="dashboard-container admin-section-body !bg-transparent !flex-none !shadow-none">
+        <div class="product-num-card detail-card !flex-row !items-center dashboard-card">
+            <div class="icon bg-primary rounded-md">
+                <fa-icon [icon]="faSpa"></fa-icon>
+            </div>
+            <div class="details">
+                <div class="detail-card-header flex items-center justify-between gap-3 !pb-0">
+                    <h2 class="header-text text-[18px] md:text-[21px]"> Total Products</h2>
+                </div>
+
+                <div class="detail-card-body flex items-center gap-2">
+                    <h2 class="text-primary text-[32px]">20</h2>
+                </div>
+            </div>
+        </div>
+         <div class="product-category-num-card detail-card dashboard-card">
+            <div class="icon bg-primary rounded-md">
+                <fa-icon [icon]="faDatabase"></fa-icon>
+            </div>
+            <div class="details">
+                <div class="detail-card-header flex items-center justify-between gap-3 !pb-0">
+                    <h2 class="header-text text-[18px] md:text-[21px]"> Product Categories
+                    </h2>
+                </div>
+
+                <div class="detail-card-body">
+                    <h2 class="text-primary text-[32px]">15</h2>
+                </div>
+            </div>
+        </div>
+         <div class="orders-num-card detail-card dashboard-card">
+            <div class="icon bg-primary rounded-md">
+                <fa-icon [icon]="faTruck"></fa-icon>
+            </div>
+            <div class="details">
+                <div class="detail-card-header flex items-center justify-between gap-3 !pb-0">
+                    <h2 class="header-text text-[18px] md:text-[21px]"> Total Orders</h2>
+                </div>
+
+                <div class="detail-card-body">
+                    <h2 class="text-primary text-[32px]">120</h2>
+                </div>
+            </div>
+        </div>
+        <div class="signedup-users-num-card detail-card dashboard-card">
+            <div class="icon bg-primary rounded-md">
+                <fa-icon [icon]="faUsers"></fa-icon>
+            </div>
+            <div class="details">
+                <div class="detail-card-header flex items-center justify-between gap-3 !pb-0">
+                    <h2 class="header-text text-[18px] md:text-[21px]"> Total Users</h2>
+                </div>
+
+                <div class="detail-card-body">
+                    <h2 class="text-primary text-[32px]">35</h2>
+                </div>
+            </div>
+        </div>
+    </article>
 </section>

@@ -2,8 +2,9 @@
     <app-toast></app-toast>
     <div class="flex relative">
         <aside
-            class="admin-sidenav h-screen w-[90%] md:max-w-[250px] bg-admin-primary text-white z-[900] absolute lg:block lg:relative lg:flex-[0_0_250px] lg:left-0"
-            [ngClass]="showSidenav ? 'left-0' : 'left-[-90vh]'">
+            class="admin-sidenav h-screen w-[90%] lg:max-w-[250px] bg-admin-primary text-white z-[900] absolute lg:block lg:relative lg:flex-[0_0_250px]
+            lg:left-0"
+            [ngClass]="showSidenav ? 'left-0' : 'left-[-200vh]'">
             <div class="close-sidenav-cont pt-[10px] px-[30px] flex justify-end lg:hidden">
                 <button type="button" (click)="toggleAdminSidenav(false)">
                     <span class="icon-container h-[25px] w-[25px] flex items-center justify-center rounded-full">
