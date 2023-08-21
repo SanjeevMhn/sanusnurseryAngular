@@ -18,7 +18,7 @@
                     </li>
                     <li class="category-item" *ngFor="let item of categories">
                         <a [routerLink]="['/home/products/',item?.prod_cat_name]" routerLinkActive="active"
-                            class="category-link flex px-[10px] capitalize">{{item?.prod_cat_name}}</a>
+                            class="category-link flex px-[10px] capitalize whitespace-nowrap">{{item?.prod_cat_name}}</a>
                     </li>
                   
                 </ul>

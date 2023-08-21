@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChartSimple, faEnvelope, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faEnvelope, faReceipt, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 
@@ -19,6 +19,7 @@ export class LayoutComponent implements OnInit {
   faChartSimple = faChartSimple;
   faSpa = faSpa;
   faTruck = faTruck;
+  faReceipt = faReceipt;
   faUsers = faUsers;
   faEnvelope = faEnvelope;
 
@@ -34,7 +35,7 @@ export class LayoutComponent implements OnInit {
       name: "products"
     },
     {
-      icon: faTruck,
+      icon: faReceipt,
       name: "orders"
     },
     {

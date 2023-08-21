@@ -2,7 +2,7 @@
 <td>
 <div class="flex items-center py-[10px]">
     <div
-        class="img-container w-[90px] h-[90px] flex-[0_0_90px] md:w-[150px] md:h-[150px] md:flex-[0_0_150px] rounded-md overflow-hidden flex items-center justify-center bg-blue-300 cursor-pointer"  [routerLink]="['/admin/add-product',item.prod_id]">
+        class="img-container w-[90px] h-[90px] flex-[0_0_90px]rounded-md overflow-hidden flex items-center justify-center bg-blue-300 cursor-pointer"  [routerLink]="['/admin/add-product',item.prod_id]">
         <img src="{{item.prod_img}}" alt="" class="w-full h-auto object-contain">
     </div>
     <h2 class="product-name pl-[10px] flex-grow">{{item.prod_name}}</h2>
