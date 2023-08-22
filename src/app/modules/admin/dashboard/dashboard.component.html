@@ -53,7 +53,7 @@
                 </div>
                 <div class="details">
                     <div class="detail-card-header flex items-center justify-between gap-3 !pb-0">
-                        <h2 class="header-text text-[18px] md:text-[21px]"> Total Users</h2>
+                        <h2 class="header-text text-[18px] md:text-[21px]">New Signups</h2>
                     </div>
 
                     <div class="detail-card-body">
@@ -102,5 +102,54 @@
                 </div>
             </div>
         </div> 
+         <div class="order-payment-delivery-status-card detail-card">
+            <div class="detail-card-header flex items-center justy-between gap-3">
+                <h2 class="header-text text-[18px] md:text-[21px]">
+                    Order Status
+                </h2>
+            </div>
+            <div class="detail-card-body h-full">
+                <div class="table-container h-full">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Sn</th>
+                                <th>Order Date</th>
+                                <th>Order Number</th>
+                                <th>Order Total</th>
+                                <th>Delivery Status</th>
+                                <th>Payment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of orderDeliveryPaymentStatus; let i=index">
+                                <td>
+                                    {{i+1}}
+                                </td>
+                                <td>
+                                    {{item.order_date.split('T')[0]}}
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/admin/order-detail/',item.order_id]" class="text-blue-700">
+                                        {{item.order_number}}
+                                    </a>
+                                </td>
+                                <td>Rs.&nbsp;{{item.order_total}}</td>
+                                <td>
+                                    <div class="status" [ngClass]="item.order_status === 'PENDING' ? 'pending' : item.order_status === 'COMPLETED' ? 'completed' : item.order_status === 'CANCELLED' ? 'cancelled' : ''">
+                                            {{item.order_status}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="status" [ngClass]="item.payment_status === 'PENDING' ? 'pending' : item.payment_status === 'COMPLETED' ? 'completed' : item.payment_status === 'CANCELLED' ? 'cancelled' : ''">
+                                            {{item.payment_status}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
     </article>
 </section>

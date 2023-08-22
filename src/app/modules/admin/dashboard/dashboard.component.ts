@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   totalOrders?: number;
 
   repeatedProducts?: any[];
+  orderDeliveryPaymentStatus?: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
     this.getTotalProductCategories();
     this.getTotalOrders();
     this.getRepeatedProducts();
+    this.getOrderDeliveryPaymentStatus();
   }
 
   getTotalProducts(){
@@ -68,6 +70,17 @@ export class DashboardComponent implements OnInit {
     this.http.get(`${environment.orderUrl}/repeatedProducts`,{withCredentials:true}).subscribe({
       next: (data: any) => {
         this.repeatedProducts = data.products;
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
+
+  getOrderDeliveryPaymentStatus(){
+    this.http.get(`${environment.orderUrl}/orderDeliveryPaymentStatus`,{withCredentials: true}).subscribe({
+      next: (data: any) => {
+        this.orderDeliveryPaymentStatus = data.orders;
       },
       error: (err: any) => {
         console.error(err);
