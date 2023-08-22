@@ -3,6 +3,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { faMoneyBillWave, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-order-detail',
@@ -28,7 +29,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderDetail(id:number){
-    this.http.get(`${environment.orderUrl}/id/${id}`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.orderUrl}/id/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.order = data.order;
       },
@@ -39,7 +40,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderItems(id:number){
-    this.http.get(`${environment.orderUrl}/id/items/${id}`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.orderUrl}/id/items/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.orderItems = data.items;
       },
@@ -50,7 +51,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderPaymentDetail(id:number){
-    this.http.get(`${environment.orderUrl}/id/payment_detail/${id}`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.orderUrl}/id/payment_detail/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.paymentDetail = data.payment_detail[0];
       },
