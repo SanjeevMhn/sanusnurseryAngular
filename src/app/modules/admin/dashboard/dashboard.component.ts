@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalProducts(){
-    this.http.get(`${environment.baseUrl}/count`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.baseUrl}/count`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next:(data:any) => {
         this.totalProducts = Number(data.count);
       },
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalProductCategories(){
-    this.http.get(`${environment.baseUrl}/categories/count`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.baseUrl}/categories/count`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data:any) => {
         this.totalProductCategory = Number(data.count);
       },
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalOrders(){
-    this.http.get(`${environment.orderUrl}/count`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.orderUrl}/count`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.totalOrders = Number(data.count);
       },
@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getRepeatedProducts(){
-    this.http.get(`${environment.orderUrl}/repeatedProducts`,{withCredentials:true}).subscribe({
+    this.http.get(`${environment.orderUrl}/repeatedProducts`,{withCredentials:true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.repeatedProducts = data.products;
       },
