@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { faDatabase, faReceipt, faSpa, faTruck, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'src/environments/environment';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -78,7 +79,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getOrderDeliveryPaymentStatus(){
-    this.http.get(`${environment.orderUrl}/orderDeliveryPaymentStatus`,{withCredentials: true}).subscribe({
+    this.http.get(`${environment.orderUrl}/orderDeliveryPaymentStatus`,{withCredentials: true}).pipe(retry(3)).subscribe({
       next: (data: any) => {
         this.orderDeliveryPaymentStatus = data.orders;
       },
