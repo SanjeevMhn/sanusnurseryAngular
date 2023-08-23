@@ -8,7 +8,8 @@ export const environment = {
   refreshToken: 'http://localhost:8080/api/v1/refresh',
   baseUrl: 'http://localhost:8080/api/v1/products',
   authUrl: 'http://localhost:8080/api/v1/auth',
-  orderUrl: 'http://localhost:8080/api/v1/orders'
+  orderUrl: 'http://localhost:8080/api/v1/orders',
+  googleClientId: '553771537351-h5lvslcp771roge0lli3l08oq1pntv1i.apps.googleusercontent.com'
 };
 
 /*

@@ -17,7 +17,7 @@ export class ToastService {
 
     this.$toastState.next(toast);
     
-    setTimeout(()=>this.$toastState.next(new ToastModal(false)),3000)
+    setTimeout(()=>this.$toastState.next(new ToastModal(false)),5000)
   }
 
 }

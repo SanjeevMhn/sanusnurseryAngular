@@ -165,7 +165,7 @@ export class AddProductComponent implements OnInit {
           this.imgSrc = '';
         },
         error: (err: any) => {
-          console.error(err);
+          this.toastService.show(err.error.message, ToastType.error);
         }
       })
     } else {
