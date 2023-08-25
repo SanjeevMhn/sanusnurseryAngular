@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { faChartSimple, faEnvelope, faReceipt, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faChevronRight, faCircle, faEnvelope, faReceipt, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 
-type AdminSidenav = {
+export type AdminSidenav = {
   icon: IconProp,
   name: string,
+  link?: string,
+  linkParams?: boolean,
+  subMenu?: AdminSidenav[]
 }
 
 
@@ -22,6 +25,8 @@ export class LayoutComponent implements OnInit {
   faReceipt = faReceipt;
   faUsers = faUsers;
   faEnvelope = faEnvelope;
+  faCircle = faCircle;
+  faChevronRight = faChevronRight;
 
   showConfirmDialog:boolean = false;
 
@@ -32,7 +37,22 @@ export class LayoutComponent implements OnInit {
     },
     {
       icon: faSpa,
-      name: "products"
+      name: "products",
+      subMenu: [
+        {
+          icon: faCircle,
+          name: "product list",
+          link: "products",
+          linkParams: false,
+        },
+        {
+          icon: faCircle,
+          name: "add product",
+          link: "add-product",
+          linkParams: true,
+        },
+
+      ]
     },
     {
       icon: faReceipt,

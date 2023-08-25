@@ -16,6 +16,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { SharedModule } from '../shared/shared.module';
 import { OrdersDataGridRowComponent } from './orders/orders-data-grid-row/orders-data-grid-row.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { AdminNavItemComponent } from './layout/admin-nav-item/admin-nav-item.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     AddProductComponent,
     OrdersDataGridComponent,
     OrdersDataGridRowComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    AdminNavItemComponent
   ],
   imports: [
     CommonModule,

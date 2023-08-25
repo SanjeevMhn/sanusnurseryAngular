@@ -17,13 +17,9 @@
                 Nursery</a>
             <ul class="admin-nav-list w-full pt-[20px]">
                 <li class="admin-list-item pb-[5px] " *ngFor="let sl of sidenavList">
-                    <a routerLink="/admin/{{sl.name}}" class="admin-list-link flex items-center p-[10px_30px]"
-                        routerLinkActive="active">
-                        <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
-                            <fa-icon [icon]="sl.icon"></fa-icon>
-                        </span>
-                        <span class="label-text capitalize pl-[8px]">{{sl.name}}</span>
-                    </a>
+                    <app-admin-nav-item
+                        [item]=sl
+                    ></app-admin-nav-item>
                 </li>
             </ul>
         </aside>

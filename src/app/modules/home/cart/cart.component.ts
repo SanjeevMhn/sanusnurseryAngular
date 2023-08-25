@@ -89,7 +89,7 @@ export class CartComponent implements OnInit {
     // })
     this.productService.getPlantCatgoryById(cat_id).pipe(
       map((data: any) => {
-        console.log(data);
+        // console.log(data);
         return data as Observable<object>;
       })
     );
@@ -285,7 +285,7 @@ export class CartComponent implements OnInit {
     this.getItemsSubscription = this.cartService.getCartDetails().subscribe({
       next: (data) => {
         this.cartItems = data;
-        console.log(data);
+        // console.log(data);
         this.calculateSubTotal();
       },
       error: (err) => {
