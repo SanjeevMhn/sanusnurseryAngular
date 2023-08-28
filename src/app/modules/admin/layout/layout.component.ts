@@ -74,9 +74,7 @@ export class LayoutComponent implements OnInit {
   
   constructor(private confirmService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.confirmService.show("Hello");
-  }
+  ngOnInit(): void {}
 
   toggleAdminSidenav(event:boolean){
     this.showSidenav = event;
