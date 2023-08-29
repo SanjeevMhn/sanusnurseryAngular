@@ -6,6 +6,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'add-product/:id', component: AddProductComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'order-detail/:id', component: OrderDetailComponent },
+      { path: 'product-categories', component: CategoriesComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },

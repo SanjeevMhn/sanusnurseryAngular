@@ -7,7 +7,7 @@ import { AdminSidenav } from '../layout.component';
   templateUrl: './admin-nav-item.component.html',
   styleUrls: ['./admin-nav-item.component.scss']
 })
-export class AdminNavItemComponent implements OnInit {
+export class AdminNavItemComponent implements OnInit{
 
   @Input() item!: AdminSidenav;
 

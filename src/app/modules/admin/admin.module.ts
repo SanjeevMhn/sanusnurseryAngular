@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { OrdersDataGridRowComponent } from './orders/orders-data-grid-row/orders-data-grid-row.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { AdminNavItemComponent } from './layout/admin-nav-item/admin-nav-item.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AdminNavItemComponent } from './layout/admin-nav-item/admin-nav-item.co
     OrdersDataGridComponent,
     OrdersDataGridRowComponent,
     OrderDetailComponent,
-    AdminNavItemComponent
+    AdminNavItemComponent,
+    CategoriesComponent
   ],
   imports: [
     CommonModule,

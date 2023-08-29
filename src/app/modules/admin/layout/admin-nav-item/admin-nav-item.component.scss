@@ -5,4 +5,7 @@
 		background-color: #3D878A;
 		color: #fff;
 	}
+	&:not(:first-child){
+		margin-top: 5px;
+	}
 }

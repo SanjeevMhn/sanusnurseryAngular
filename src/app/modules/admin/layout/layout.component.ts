@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { faChartSimple, faChevronRight, faCircle, faEnvelope, faReceipt, faSpa, faTruck, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 
 export type AdminSidenav = {
   icon: IconProp,
@@ -17,7 +16,7 @@ export type AdminSidenav = {
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit{
 
   faChartSimple = faChartSimple;
   faSpa = faSpa;
@@ -51,7 +50,11 @@ export class LayoutComponent implements OnInit {
           link: "add-product",
           linkParams: true,
         },
-
+        {
+          icon: faCircle,
+          name: "categories",
+          link: "product-categories"
+        }
       ]
     },
     {
@@ -72,7 +75,7 @@ export class LayoutComponent implements OnInit {
 
   faXmark = faXmark;
   
-  constructor(private confirmService: ConfirmDialogService) { }
+  constructor() { }
 
   ngOnInit(): void {}
 
@@ -80,8 +83,5 @@ export class LayoutComponent implements OnInit {
     this.showSidenav = event;
   }
 
-  toggleConfirm(value: boolean){
-    this.showConfirmDialog = value;
-  }
 
 }

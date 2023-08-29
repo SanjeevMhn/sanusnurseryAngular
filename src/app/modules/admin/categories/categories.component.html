@@ -1,0 +1,31 @@
+<section class="admin-categories-section admin-section-component">
+	<header class="admin-section-header">
+		<h2 class="header-text">
+			Product Categories
+		</h2>
+		<a role="button" class="bg-admin-primary rounded-md p-[5px_15px] text-base text-white">
+            Add Category 
+        </a>
+	</header>
+	<article class="product-catregories-container admin-section-body overflow-hidden">
+		<div class="table-container h-full">
+			<table class="data-table">
+				<thead>
+					<tr class="table-header-title">
+						<th>S.N</th>
+						<th>Category Name</th>
+						<th>Product Count</th>
+						<!-- <th>Action</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of categories; let i=index">
+						<td>{{i+1}}</td>
+						<td>{{item.category_name}}</td>
+						<td>{{item.product_count}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</article>
+</section>

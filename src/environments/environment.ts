@@ -9,6 +9,7 @@ export const environment = {
   baseUrl: 'http://localhost:8080/api/v1/products',
   authUrl: 'http://localhost:8080/api/v1/auth',
   orderUrl: 'http://localhost:8080/api/v1/orders',
+  categoriesUrl: 'http://localhost:8080/api/v1/categories',
   googleClientId: '553771537351-h5lvslcp771roge0lli3l08oq1pntv1i.apps.googleusercontent.com'
 };
 

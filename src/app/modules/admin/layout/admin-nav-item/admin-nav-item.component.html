@@ -1,5 +1,5 @@
 <div class="cursor-pointer" *ngIf="item.subMenu; else directLink" (click)="toggleSubMenu()">
-	<span class="top-menu flex items-center p-[10px_30px] active:bg-[#3D878A] hover:bg-[#3D878A]">
+	<span class="top-menu flex items-center p-[10px_30px] hover:bg-[#3D878A]">
 	    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
 	        <fa-icon [icon]=item.icon></fa-icon>
 	    </span>
@@ -9,8 +9,8 @@
 	        <fa-icon [icon]="faChevronDown" *ngIf="dspSubMenu"></fa-icon>
 	    </span>
    	</span>
-	<span class="sub-menu-container flex flex-col" *ngIf="item.subMenu" [ngClass]="dspSubMenu || hasActiveLinks ? 'block' : 'hidden'">
-		<span class="contents" *ngFor="let sb of item.subMenu">
+	<span class="sub-menu-container flex flex-col" *ngIf="item.subMenu" [ngClass]="dspSubMenu || hasActiveLinks ? 'block' : 'hidden'" #checkForActiveChildren>
+		<ng-container *ngFor="let sb of item.subMenu">
 			<a routerLink="/admin/{{sb.link}}/" routerLinkActive="active" class="admin-list-link flex items-center p-[10px_30px_10px_50px]" *ngIf="!sb.linkParams">
 				<span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
 			        <fa-icon [icon]="faCircle"></fa-icon>
@@ -23,7 +23,7 @@
 			    </span>
 			    <span class="label-text capitalize pl-[8px]">{{sb.name}}</span>
 			</a>
-		</span>
+		</ng-container>
 		
 	</span>
 </div>
