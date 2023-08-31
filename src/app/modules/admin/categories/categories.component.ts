@@ -6,6 +6,7 @@ import { retry } from 'rxjs';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
 import { CategoryModalService } from '../category-modal/category-modal.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -20,10 +21,17 @@ export class CategoriesComponent implements OnInit {
       private router: Router, 
       private http: HttpClient, 
       private toastService: ToastService,
-      private categoryModalService: CategoryModalService ) { }
+      private categoryModalService: CategoryModalService,
+      private categoryService: CategoryService ) { }
 
   ngOnInit(): void {
+    // this.getCategories();
+    this.categoryService.latestCategories.subscribe((categories:any) => {
+      this.categories = categories;
+    })
+
     this.getCategories();
+
   }
 
   getCategories():void{

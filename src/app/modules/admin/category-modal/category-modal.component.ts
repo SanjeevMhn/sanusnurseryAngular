@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
+import { CategoryService } from 'src/app/services/category.service';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-category-modal',
@@ -27,7 +29,8 @@ export class CategoryModalComponent implements OnInit {
     private categoryModalService: CategoryModalService, 
     private fb: FormBuilder,
     private http: HttpClient,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.categoryModalService.$categroyModalState.subscribe((categoryModal: CategoryModal) => {
@@ -67,10 +70,18 @@ export class CategoryModalComponent implements OnInit {
       return;
     }
     if(this.formMode === 'add'){
-      this.http.post(environment.categoriesUrl,{category_name: this.categoryForm.controls['category_name'].value},{withCredentials: true}).subscribe({
+      this.http.post(environment.categoriesUrl,{category_name: this.categoryForm.controls['category_name'].value},{withCredentials: true}).pipe(retry(3)).subscribe({
         next: (data: any) => {
           this.close();
           this.toastService.show(data.message, ToastType.success);
+          this.categoryService.getCategories().subscribe({
+            next: (data:any) => {
+              this.categoryService.updatedCategories(data.categories);
+            },
+            error: (err:any) => {
+              console.error(err);
+            }
+          })
         },
         error: (err: any) => {
           this.categoryNameErr = true;
