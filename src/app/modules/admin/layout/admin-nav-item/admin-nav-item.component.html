@@ -1,4 +1,4 @@
-<div class="cursor-pointer" *ngIf="item.subMenu; else directLink" (click)="toggleSubMenu()">
+<div class="cursor-pointer multi-level-menu" *ngIf="item.subMenu; else directLink" (click)="toggleSubMenu()">
 	<span class="top-menu flex items-center p-[10px_30px] hover:bg-[#3D878A]">
 	    <span class="icon-container h-[25px] w-[25px] flex items-center justify-center">
 	        <fa-icon [icon]=item.icon></fa-icon>

@@ -5,7 +5,14 @@
 		background-color: #3D878A;
 		color: #fff;
 	}
-	&:not(:first-child){
-		margin-top: 5px;
+	margin-top: 5px;
+}
+
+.multi-level-menu{
+	&:has(.sub-menu-container .admin-list-link.active){
+		.top-menu{
+			background-color: #3D878A;
+		}
 	}
 }
+

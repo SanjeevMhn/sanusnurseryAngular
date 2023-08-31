@@ -1,0 +1,18 @@
+<td>{{i!+1}}</td>
+<td>{{item.category_name}}</td>
+<td>{{item.product_count}}</td>
+<td>
+	<div class="options-dropdown">
+        <button type="button" (click)="toggleDropdown()">
+            <fa-icon [icon]="faEllipsis"></fa-icon>
+        </button>
+        <ul class="dropdown-list" [ngClass]="showDropdown ? 'block' : 'hidden'">
+            <li class="dropdown-list-item">
+                <a  class="dropdown-list-link" (click)="toggleCategoryModal()">Edit</a>
+            </li>
+            <li class="dropdown-list-item">
+                <a class="dropdown-list-link" (click)="deleteCategory(item.cat_id)">Delete</a>
+            </li>
+        </ul>
+    </div>
+</td>

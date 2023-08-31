@@ -13,18 +13,18 @@
     </div>
 </td>
 <td>
-    <div class="options-dropdown relative">
+    <div class="options-dropdown">
         <button type="button"
-            class="w-[24px] h-[24px] p-[10px] bg-blue-200 rounded-md flex items-center justify-center" (click)="toggleDropdown()">
-            <fa-icon [icon]="faEllipsis" class="text-[15px] flex items-center justify-center"></fa-icon>
+            (click)="toggleDropdown()">
+            <fa-icon [icon]="faEllipsis"></fa-icon>
         </button>
         <ul
-            class="dropdown-list absolute bg-white border border-slate-300 shadow-lg top-full right-[calc(100%-24px)] rounded-md z-[200] text-[15px]" [ngClass]="showDropdown ? 'block' : 'hidden'">
-            <li class="dropdown-item">
-                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer" [routerLink]="['/admin/order-detail',item.order_id]">View Details</a>
+            class="dropdown-list" [ngClass]="showDropdown ? 'block' : 'hidden'">
+            <li class="dropdown-list-item">
+                <a class="dropdown-list-link" [routerLink]="['/admin/order-detail',item.order_id]">View Details</a>
             </li>
-            <li class="dropdown-item">
-                <a class="dropdown-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Delete</a>
+            <li class="dropdown-list-item">
+                <a class="dropdown-list-link">Delete</a>
             </li>
         </ul>
     </div>

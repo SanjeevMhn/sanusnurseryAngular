@@ -18,6 +18,8 @@ import { OrdersDataGridRowComponent } from './orders/orders-data-grid-row/orders
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { AdminNavItemComponent } from './layout/admin-nav-item/admin-nav-item.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryDataGridRowComponent } from './categories/category-data-grid-row/category-data-grid-row.component';
+import { CategoryModalComponent } from './category-modal/category-modal.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { CategoriesComponent } from './categories/categories.component';
     OrdersDataGridRowComponent,
     OrderDetailComponent,
     AdminNavItemComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryDataGridRowComponent,
+    CategoryModalComponent
   ],
   imports: [
     CommonModule,

@@ -18,17 +18,16 @@
     <h2 class="product-inStock">{{item.prod_inStock}}</h2>
 </td>
 <td>
-    <div class="options-dropdown relative">
-        <button type="button"
-            class="w-[30px] h-[30px] p-[10px] bg-blue-200 rounded-md flex items-center justify-center" (click)="toggleDropdown()">
-            <fa-icon [icon]="faEllipsis" class="text-[18px]"></fa-icon>
+    <div class="options-dropdown">
+        <button type="button" (click)="toggleDropdown()">
+            <fa-icon [icon]="faEllipsis"></fa-icon>
         </button>
-        <ul class="dropdown-list absolute min-w-[120px] border border-slate-300 shadow-lg bg-white top-full right-[calc(100%-35px)] rounded-md z-[200]" [ngClass]="showDropdown ? 'block' : 'hidden'">
+        <ul class="dropdown-list" [ngClass]="showDropdown ? 'block' : 'hidden'">
             <li class="dropdown-list-item">
-                <a [routerLink]="['/admin/add-product',item.prod_id]" class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer">Edit</a>
+                <a [routerLink]="['/admin/add-product',item.prod_id]" class="dropdown-list-link">Edit</a>
             </li>
             <li class="dropdown-list-item">
-                <a class="dropdown-list-link flex p-[5px_10px] hover:bg-slate-300 cursor-pointer" (click)="deleteProduct(item.prod_id)">Delete</a>
+                <a class="dropdown-list-link" (click)="deleteProduct(item.prod_id)">Delete</a>
             </li>
         </ul>
     </div>

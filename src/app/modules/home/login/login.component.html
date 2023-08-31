@@ -1,7 +1,7 @@
-<div class="login-modal-wrapper absolute min-h-screen w-full  bg-[#0909097a] flex items-center justify-center z-[9999] p-[10px] md:p-[20px]"
+<div class="login-modal-wrapper modal-wrapper"
     *ngIf="loginModal?.visible">
-    <div class="login-modal relative max-w-[390px] w-[90%] bg-white rounded-md p-[15px] md:p-[25px] relative">
-        <button class="circle-button absolute top-[calc(calc(35px/2)*-1)] right-[calc(calc(35px/2)*-1)]"
+    <div class="login-modal modal-main">
+        <button class="circle-button modal-close-btn"
             (click)="close()" type="button">
             <fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
         </button>
@@ -23,7 +23,7 @@
                 </button>
             </div>
         </div>
-        <div class="modal-body main-login pt-[30px] absolute left-0 right-0 p-[15px] md:p-[25px] bg-white" [ngClass]="showMainLogin ? 'top-[calc(100%-85px)] z-[1]' : 'top-0 z-[-1]'">
+        <div class="modal-body main-login pt-[30px] absolute left-0 right-0 p-[15px] md:p-[25px] bg-white rounded-md" [ngClass]="showMainLogin ? 'top-[calc(100%-85px)] z-[1]' : 'top-0 z-[-1]'">
             <form class="login-form" [formGroup]="userLoginForm" (submit)="login()">
                 <div class="form-group mb-4">
                     <input type="text" name="user-email" id="user-email" class="form-control text-base p-[5px_10px] border  rounded-md w-full" placeholder="Email" [ngClass]="errorUserEmail ? 'border border-red-700' : 'border-slate-400'" formControlName="user_email">
