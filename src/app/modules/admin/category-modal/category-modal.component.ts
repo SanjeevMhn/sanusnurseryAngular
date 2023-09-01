@@ -17,68 +17,85 @@ import { retry } from 'rxjs';
 })
 export class CategoryModalComponent implements OnInit {
 
-  public categoryModal?:CategoryModal;
+  public categoryModal?: CategoryModal;
   faClose = faClose;
-  formMode?:string;
+  formMode?: string;
+  cat_id?: number;
 
   categoryForm!: FormGroup;
   categoryNameErr = false;
-  categoryNameErrMsg:string = '';
+  categoryNameErrMsg: string = '';
+
+  editCategoryData?:any;
 
   constructor(
     private categoryModalService: CategoryModalService, 
     private fb: FormBuilder,
     private http: HttpClient,
     private toastService: ToastService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categoryModalService.$categroyModalState.subscribe((categoryModal: CategoryModal) => {
+    this.categoryModalService.$categoryModalState.subscribe((categoryModal: CategoryModal) => {
       this.categoryModal = categoryModal;
     })
 
-    this.formMode = this.categoryModal?.mode;
+    this.categoryModalService.latestModalMode.subscribe((mode: string) => {
+      this.formMode = mode;
+    })
+
+    this.categoryModalService.editCategoryData.subscribe((data:any) =>{
+      this.editCategoryData = data;
+      this.fillForm();
+    })
 
     this.categoryForm = this.fb.group({
-      category_name: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(50)]]
+      category_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]]
     })
   }
 
-  close(){
+  fillForm(){
+    this.categoryForm.patchValue({
+      category_name: this.editCategoryData.prod_cat_name
+    })
+  }
+
+  close() {
     this.categoryModalService.hide();
     this.categoryForm.reset();
     this.categoryNameErr = false;
+    this.editCategoryData = null;
   }
 
-  submit(){
+  submit() {
     this.categoryNameErr = false;
-    if(this.categoryForm.invalid){
-      if(this.categoryForm.controls['category_name'].errors?.['required']){
+    if (this.categoryForm.invalid) {
+      if (this.categoryForm.controls['category_name'].errors?.['required']) {
         this.categoryNameErr = true;
         this.categoryNameErrMsg = "Please enter category name";
       }
 
-      if(this.categoryForm.controls['category_name'].errors?.['minlength']){
+      if (this.categoryForm.controls['category_name'].errors?.['minlength']) {
         this.categoryNameErr = true;
         this.categoryNameErrMsg = "Category name cannot be less than 4 letters"
       }
 
-      if(this.categoryForm.controls['category_name'].errors?.['maxlength']){
+      if (this.categoryForm.controls['category_name'].errors?.['maxlength']) {
         this.categoryNameErr = true;
         this.categoryNameErrMsg = "Category name cannot be more than 50 letters"
       }
       return;
     }
-    if(this.formMode === 'add'){
-      this.http.post(environment.categoriesUrl,{category_name: this.categoryForm.controls['category_name'].value},{withCredentials: true}).pipe(retry(3)).subscribe({
+    if (this.formMode === 'add') {
+      this.http.post(environment.categoriesUrl, { category_name: this.categoryForm.controls['category_name'].value }, { withCredentials: true }).pipe(retry(3)).subscribe({
         next: (data: any) => {
           this.close();
           this.toastService.show(data.message, ToastType.success);
           this.categoryService.getCategories().subscribe({
-            next: (data:any) => {
+            next: (data: any) => {
               this.categoryService.updatedCategories(data.categories);
             },
-            error: (err:any) => {
+            error: (err: any) => {
               console.error(err);
             }
           })
@@ -89,6 +106,27 @@ export class CategoryModalComponent implements OnInit {
         }
 
       })
+    }else{
+      if(this.categoryForm.controls['category_name'].value == this.editCategoryData.prod_cat_name){
+        this.categoryNameErr = true;
+        this.categoryNameErrMsg = "No changes found";
+        return;
+      }
+
+      this.http.patch(`${environment.categoriesUrl}/id/${this.editCategoryData.prod_cat_id}`,{prod_cat_name: this.categoryForm.controls['category_name'].value},{withCredentials: true}).subscribe({
+        next: (data: any) => {
+          this.close();
+          this.toastService.show(data.message, ToastType.success);
+          this.categoryService.getCategories().subscribe({
+            next: (data: any) => {
+              this.categoryService.updatedCategories(data.categories);
+            },
+            error: (err: any) => {
+              console.error(err);
+            }
+          })
+        }
+      })      
     }
   }
 

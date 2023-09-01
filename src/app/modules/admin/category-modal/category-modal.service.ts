@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CategoryModal } from './category-modal';
 
 @Injectable({
@@ -7,18 +9,48 @@ import { CategoryModal } from './category-modal';
 })
 export class CategoryModalService {
 
-  $categroyModalState = new BehaviorSubject<CategoryModal>(new CategoryModal(false));
+  $categoryModalState = new BehaviorSubject<CategoryModal>(new CategoryModal(false));
+  $categoryModalMode = new BehaviorSubject<string>('');
+  $categoryModalEditData = new BehaviorSubject<any>({});
 
-  constructor() { }
+  latestModalMode = this.$categoryModalMode.asObservable();
+  editCategoryData = this.$categoryModalEditData.asObservable();
 
-  public show(mode: string){
+  // editId?:number;
+
+  constructor(private http: HttpClient) { }
+
+  public show(mode: string, id?: number){
     let categoryModal = new CategoryModal(true);
-    categoryModal.mode = mode;
+    this.$categoryModalMode.next(mode);
+    if(id){
+      // this.editId = id;
+      // this.$categoryModalId.next(id);
+      this.getCategoryEditData(id);
 
-    this.$categroyModalState.next(categoryModal);
+    }
+
+    this.$categoryModalState.next(categoryModal);
+  }
+
+  public getCategoryEditData(id:number){
+    this.http.get(`${environment.categoriesUrl}/id/${id}`,{withCredentials: true}).subscribe({
+      next: (data:any) => {
+        this.setCategoryEditData(data.category);
+      },
+      error: (err:any) => {
+        console.error(err)
+      }
+    })
+  }
+
+  public setCategoryEditData(category:any){
+    this.$categoryModalEditData.next(category)
   }
 
   public hide(){
-    this.$categroyModalState.next(new CategoryModal(false));
+    this.$categoryModalState.next(new CategoryModal(false));
+    this.$categoryModalMode.next('');
+    this.$categoryModalEditData.next({});
   }
 }

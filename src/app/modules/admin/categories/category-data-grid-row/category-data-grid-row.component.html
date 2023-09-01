@@ -8,7 +8,7 @@
         </button>
         <ul class="dropdown-list" [ngClass]="showDropdown ? 'block' : 'hidden'">
             <li class="dropdown-list-item">
-                <a  class="dropdown-list-link" (click)="toggleCategoryModal()">Edit</a>
+                <a  class="dropdown-list-link" (click)="toggleCategoryModal(item.cat_id)">Edit</a>
             </li>
             <li class="dropdown-list-item">
                 <a class="dropdown-list-link" (click)="deleteCategory(item.cat_id)">Delete</a>

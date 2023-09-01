@@ -39,9 +39,10 @@ export class CategoryDataGridRowComponent implements OnInit {
     }
   }
 
-  toggleCategoryModal(){
+  toggleCategoryModal(cat_id: number){
     this.showDropdown = false;
-    this.categoryModalService.show('edit');
+    this.categoryModalService.show('edit', cat_id);
+    // console.log(cat_id);
   }
 
 }

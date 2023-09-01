@@ -6,7 +6,7 @@
             <fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
         </button>
         <div class="modal-header pb-[10px]">
-        	<h2 class="modal-title text-primary font-bold company-name text-2xl text-center">{{categoryModal?.mode === 'add' ? 'Add Category' : 'Edit Category'}}</h2>
+        	<h2 class="modal-title text-primary font-bold company-name text-2xl text-center">{{formMode === 'add' ? 'Add Category' : 'Edit Category'}}</h2>
         </div>
         <div class="modal-body">
         	<form class="category-form form-layout" [formGroup]='categoryForm'>
