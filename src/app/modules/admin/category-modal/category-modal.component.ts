@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
 import { CategoryService } from 'src/app/services/category.service';
 import { retry } from 'rxjs';
+import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
 
 @Component({
   selector: 'app-category-modal',
@@ -46,7 +47,9 @@ export class CategoryModalComponent implements OnInit {
 
     this.categoryModalService.editCategoryData.subscribe((data:any) =>{
       this.editCategoryData = data;
-      this.fillForm();
+      if(!isObjectEmpty(this.editCategoryData)){
+        this.fillForm();
+      }
     })
 
     this.categoryForm = this.fb.group({

@@ -1,5 +1,9 @@
 <td>{{i!+1}}</td>
-<td>{{item.category_name}}</td>
+<td>
+    <a class="edit-category-name-link cursor-pointer text-blue-600" (click)="toggleCategoryModal(item.cat_id)">
+        {{item.category_name}}
+    </a>
+</td>
 <td>{{item.product_count}}</td>
 <td>
 	<div class="options-dropdown">
