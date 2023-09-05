@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription, retry } from 'rxjs';
+import { Subscription, retry, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -31,10 +31,26 @@ export class OrdersComponent implements OnInit {
   orders?: Order[];
   pageSize: number = 10;
   getAllOrdersSubscriber?: Subscription;
+
+  // private userNameSubject = new Subject<string>();
+
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
     this.getAllOrders();
+    // this.userNameSubject.pipe(
+    //   debounceTime(1000),
+    //   distinctUntilChanged()
+    //   ).subscribe((userName:string) => {
+    //     this.http.get(`${environment.orderUrl}/search/user_name?name=${userName}`,{ withCredentials: true }).subscribe({
+    //       next: (data: any) => {
+    //         this.orders = data.orders
+    //       },
+    //       error: (err: any) => {
+    //         console.error(err);
+    //       }
+    //     })
+    //   })
   }
 
   getAllOrders(){
@@ -76,6 +92,36 @@ export class OrdersComponent implements OnInit {
   lastPage(event: number) {
     this.currentPage = event;
     this.getAllOrders();
+  }
+
+  searchByDate(event: string){
+    if(event == '' || event == null){
+      this.getAllOrders();
+      return;
+    }
+    this.http.get(`${environment.orderUrl}/search/date/${event}`,{ withCredentials: true }).subscribe({
+      next: (data: any) => {
+        this.orders = data.orders; 
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
+
+  searchByUserName(event: string){
+    if(event == '' || event == null || !event){
+      this.getAllOrders();
+      return;
+    }
+    this.http.get(`${environment.orderUrl}/search/user_name?name=${event}`,{withCredentials: true}).subscribe({
+      next: (data: any) => {
+        this.orders = data.orders;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
   }
 
   ngOnDestroy(){

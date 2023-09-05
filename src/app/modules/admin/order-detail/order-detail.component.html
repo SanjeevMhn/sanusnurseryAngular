@@ -29,19 +29,19 @@
                                 <td data-name="order number">
                                     <div class="order-number">
                                         <!-- <span class="label-text font-semibold">Order No:</span> -->
-                                        <span class="order-number-text pl-3 text-primary">{{order.order_number}}</span>
+                                        <span class="order-number-text pl-3 text-primary">{{order?.order_number}}</span>
                                     </div>
                                 </td>
                                 <td data-name="order status">
                                     <div class="order-status flex items-center">
                                       <!--   <div class="label-text font-semibold pr-3"> Order Status:
                                         </div> -->
-                                        <div class="status" [ngClass]="order.order_status === 'PENDING' ? 'pending' : order.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
-                                            {{order.order_status}}
+                                        <div class="status" [ngClass]="order?.order_status === 'PENDING' ? 'pending' : order?.order_status === 'COMPLETED' ? 'completed' : 'cancelled'">
+                                            {{order?.order_status}}
                                         </div>
                                     </div>
                                 </td>
-                                <td data-name="order date">{{order.order_date.split('T')[0]}}</td>
+                                <td data-name="order date">{{order?.order_date}}</td>
                                 <!-- td data-name="user name">{{order.user_name}}</td>
                                 <td data-name="user email">{{order.user_email}}</td>
                                 <td data-name="user type">
@@ -90,20 +90,20 @@
                                         <div class="img-container w-[90px] h-[90px] flex-[0_0_90px] rounded-md overflow-hidden flex items-center justify-center">
                                             <img class="w-full h-auto object-contain" src="{{item.image_url}}" alt=""> 
                                         </div>
-                                        <h2 class="product-name pl-[10px] flex-grow">{{item.prod_name}}</h2>
+                                        <h2 class="product-name pl-[10px] flex-grow">{{item?.prod_name}}</h2>
                                     </div>
                                 </td>
                                 <td>
-                                    {{item.prod_category}}
+                                    {{item?.prod_category}}
                                 </td>
                                 <td>
-                                    Rs.&nbsp;{{item.prod_price}}
+                                    Rs.&nbsp;{{item?.prod_price}}
                                 </td>
                                 <td>
-                                    {{item.product_quantity}}
+                                    {{item?.product_quantity}}
                                 </td>
                                 <td>
-                                    Rs.&nbsp;{{item.prod_price * item.product_quantity}}
+                                    Rs.&nbsp;{{item?.prod_price * item?.product_quantity}}
                                 </td>
                             </tr>                        
                         </tbody>
@@ -134,10 +134,10 @@
                         </thead> -->
                         <tbody>
                             <tr>
-                                <td data-name="payment date">{{paymentDetail.payment_date }}</td>
-                                <td data-name="total">Rs.&nbsp;{{paymentDetail.total_amount}}</td>
+                                <td data-name="payment date">{{paymentDetail?.payment_date }}</td>
+                                <td data-name="total">Rs.&nbsp;{{paymentDetail?.total_amount}}</td>
                                 <td data-name="payment type">
-                                    <div *ngIf="paymentDetail.payment_type === 'cash';else logoContainer">
+                                    <div *ngIf="paymentDetail?.payment_type === 'cash';else logoContainer">
                                         <div class="cash-on-delivery flex items-center gap-2">
                                             <span class="icon-container h-[24px] w-[24px] flex items-center justify-center">
                                                 <fa-icon [icon]="faCashWave"
@@ -151,14 +151,14 @@
                                     <ng-template #logoContainer>
                                         <div class="img-container-md">
                                             <div class="logo-container"
-                                                [ngClass]="paymentDetail.payment_type === 'esewa' ? 'esewa' : paymentDetail.payment_type === 'khalti' ? 'khalti' : ''"></div>
+                                                [ngClass]="paymentDetail?.payment_type === 'esewa' ? 'esewa' : paymentDetail?.payment_type === 'khalti' ? 'khalti' : ''"></div>
                                         </div>
                                     </ng-template>
                                 </td>
                                 <td data-name="payment status">
                                     <div class="status"
-                                        [ngClass]="paymentDetail.payment_status === 'PENDING' ? 'pending' : paymentDetail.payment_status === 'COMPLETED' ? 'completed' : paymentDetail.payment_status === 'CANCELLED' ? 'cancelled' : ''">
-                                        {{paymentDetail.payment_status}}
+                                        [ngClass]="paymentDetail?.payment_status === 'PENDING' ? 'pending' : paymentDetail?.payment_status === 'COMPLETED' ? 'completed' : paymentDetail?.payment_status === 'CANCELLED' ? 'cancelled' : ''">
+                                        {{paymentDetail?.payment_status}}
                                     </div>
                                 </td>
                             </tr>
@@ -181,13 +181,13 @@
                         <tbody>
                             <tr>
                                 <td data-name="user name">
-                                    {{order.user_name}}
+                                    {{order?.user_name}}
                                 </td>
                                 <td data-name="user email">
-                                    {{order.user_email}}
+                                    {{order?.user_email}}
                                 </td>
                                 <td data-name="user type">
-                                    <div class="" *ngIf="order.user_id === null; else registered">
+                                    <div class="" *ngIf="order?.user_id === null; else registered">
                                         Guest
                                     </div>
                                     <ng-template #registered>
@@ -195,10 +195,10 @@
                                     </ng-template>
                                 </td>
                                 <td data-name="user contact">
-                                    {{order.user_contact}}
+                                    {{order?.user_contact}}
                                 </td>
                                 <td data-name="delivery address">
-                                    {{order.delivery_address}}
+                                    {{order?.delivery_address}}
                                 </td>
                             </tr>
                         </tbody> 

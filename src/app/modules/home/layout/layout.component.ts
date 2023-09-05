@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { faClose, faSearch, faUserCircle, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { debounceTime, filter } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Subject } from 'rxjs';
@@ -84,7 +84,8 @@ export default class LayoutComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchSubject.pipe(
-      debounceTime(800)
+      debounceTime(1000),
+      distinctUntilChanged(),
     ).subscribe((searchText: string) => {
       this.product.searchPlants(searchText).subscribe({
         next: (data: any) => {

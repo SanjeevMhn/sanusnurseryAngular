@@ -1,10 +1,11 @@
 <td>{{i!+1}}</td>
-<td>{{item.order_date.split('T')[0]}}</td>
+<td>{{item.order_date}}</td>
 <td>
     <a [routerLink]="['/admin/order-detail/',item.order_id]" class="text-blue-700">
         {{item.order_number}}
     </a>
 </td>
+<td>{{item.user_name}}</td>
 <td>Rs.&nbsp;{{item.order_total}}</td>
 <td>
     <div class="status"

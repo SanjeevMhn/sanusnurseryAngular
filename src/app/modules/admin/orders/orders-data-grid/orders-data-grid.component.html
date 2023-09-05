@@ -5,6 +5,7 @@
                 <th>S.n</th>
                 <th>Order Date</th>
                 <th>Order Number</th>
+                <th>Name</th>
               <!--   <th>User Type</th>
                 <th>User Email</th> -->
                 <!-- <th>User Contact</th> -->
@@ -18,16 +19,18 @@
             <tr class="search-header-row">
                 <th></th>
                 <th>
-                    <input type="date" name="" id="" pattern="\d{4}-\d{2}-\d{2}">
+                    <input type="date" name="" id="" pattern="\d{4}-\d{2}-\d{2}" (change)="searchByDate($event)">
                 </th>
                 <!-- <th>
-                    <input type="text" name="" id="">
-                </th>
-                <th>
                     <input type="text" name="" id="">
                 </th> -->
                 <th>
                     <input type="text" name="" id="">
+                </th>
+                <th>
+                   
+                    <input type="text" name="" id="" (input)="searchByUserName($event)">    
+                    
                 </th>
                 <th>
                     <input type="text" name="" id="">
