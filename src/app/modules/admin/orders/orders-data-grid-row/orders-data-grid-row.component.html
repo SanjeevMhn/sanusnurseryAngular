@@ -14,6 +14,12 @@
     </div>
 </td>
 <td>
+    <div class="status"
+        [ngClass]="item.payment_status === 'PENDING' ? 'pending' : item.payment_status === 'COMPLETED' ? 'completed' : item.payment_status === 'CANCELLED' ? 'cancelled' : ''">
+        {{item.payment_status}}
+    </div>
+</td>
+<td>
     <div class="options-dropdown">
         <button type="button"
             (click)="toggleDropdown()">
