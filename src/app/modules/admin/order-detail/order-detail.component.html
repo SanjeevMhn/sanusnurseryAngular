@@ -7,9 +7,6 @@
         <div class="order-detail-card detail-card">
             <div class="detail-card-header flex items-center justify-between gap-3">
                 <h2 class="header-text text-[18px] md:text-[21px] ">Order</h2>
-                <button class="edit-order flex items-center justify-center">
-                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
-                </button>
             </div>
             <div class="detail-card-body">
                 <div class="table-container h-full">
@@ -65,9 +62,6 @@
                 <h2 class="header-text text-[18px] md:text-[21px]">
                     Order Items
                 </h2>
-                <button class="edit-order flex items-center justify-center">
-                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
-                </button>
             </div>
             <div class="detail-card-body overflow-y-auto h-full">
                 <div class="table-container h-full overflow-y-auto">
@@ -117,9 +111,6 @@
                 <h2 class="header-text text-[18px] md:text-[21px]">
                    Payment Detail 
                 </h2>
-                <button class="edit-order flex items-center justify-center">
-                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
-                </button>
             </div>
             <div class="detail-card-body">
                 <div class="table-container h-full">
@@ -171,9 +162,6 @@
         <div class="user-detail-card detail-card">
             <div class="detail-card-header flex items-center justify-between">
                 <h2 class="header-text text-[18px] md:text-[21px]">User Detail</h2>
-                <button class="edit-order flex items-center justify-center">
-                    <fa-icon [icon]="faPenToSquare" class="flex items-center justify-center text-[18px] text-black"></fa-icon> 
-                </button>
             </div>
             <div class="detail-card-body">
                 <div class="table-container h-full">
@@ -208,8 +196,17 @@
         </div>
 
         <div class="action-card detail-card">
-            <div class="flex items-center inner">
+            <div class="flex justify-center gap-3 inner">
+                <button class="flex items-center justify-center bg-outline-primary text-primary p-[10px_15px] rounded-md">
+                    <span class="icon-container flex items-center justify-center">
+                        <fa-icon [icon]="faPenToSquare" class="text-[18px]"></fa-icon>
+                    </span>
+                <span class="label-text pl-2">
+                    Edit
+                </span>
+            </button>
                 <button class="flex items-center justify-center bg-primary text-white p-[10px_15px] rounded-md">Download PDF</button>
+        
             </div>
         </div>
     </article> 

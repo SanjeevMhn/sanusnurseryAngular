@@ -20,6 +20,7 @@ import { AdminNavItemComponent } from './layout/admin-nav-item/admin-nav-item.co
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDataGridRowComponent } from './categories/category-data-grid-row/category-data-grid-row.component';
 import { CategoryModalComponent } from './category-modal/category-modal.component';
+import { AddOrderComponent } from './add-order/add-order.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CategoryModalComponent } from './category-modal/category-modal.componen
     AdminNavItemComponent,
     CategoriesComponent,
     CategoryDataGridRowComponent,
-    CategoryModalComponent
+    CategoryModalComponent,
+    AddOrderComponent
   ],
   imports: [
     CommonModule,
