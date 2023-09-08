@@ -1,0 +1,42 @@
+.add-order-form{
+	.form-row{
+		&:not(:last-child){
+			padding-bottom: 10px;
+			border-bottom: 1px solid #d1d5db;
+		}
+		gap: 0!important;
+		flex-direction: column!important;
+		.title-text{
+			font-size: 20px;
+			padding-bottom: 5px;
+			font-weight: 500;
+		}
+		.form-group-container{
+			display: flex;
+			flex-wrap: wrap;
+			// gap: 8px;
+			width: 100%;
+			.form-group{
+				flex: 0 0 100%;
+				padding-bottom: 8px;
+			}
+		}
+	}
+
+}
+
+@media screen and (min-width: 768px){
+	.add-order-form{
+		.form-row{
+			.form-group-container{
+				padding-left: 12px;
+				// gap: unset;
+				.form-group{
+					flex-grow: 0!important;
+					flex: 0 0 calc(100% / 5);
+					padding-left: 8px;
+				}
+			}
+		}
+	}
+}

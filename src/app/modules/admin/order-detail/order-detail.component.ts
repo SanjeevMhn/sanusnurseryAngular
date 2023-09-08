@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { faMoneyBillWave, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { retry } from 'rxjs';
+import { OrderDetailService } from 'src/app/services/order-detail.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -12,14 +13,16 @@ import { retry } from 'rxjs';
 })
 export class OrderDetailComponent implements OnInit {
 
-  orderId?: number;
   order?: any;
   orderItems?: any[];
   paymentDetail?:any;
 
   faCashWave = faMoneyBillWave;
   faPenToSquare = faPenToSquare;
-  constructor(private route: ActivatedRoute, private http:HttpClient) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private http:HttpClient,
+    private orderDetailService: OrderDetailService) { }
 
   ngOnInit(): void {
     const orderId = Number(this.route.snapshot.paramMap.get('id'));
@@ -29,7 +32,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderDetail(id:number){
-    this.http.get(`${environment.orderUrl}/id/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
+    this.orderDetailService.getOrderDetail(id).subscribe({
       next: (data: any) => {
         this.order = data.order;
       },
@@ -40,7 +43,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderItems(id:number){
-    this.http.get(`${environment.orderUrl}/id/items/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
+    this.orderDetailService.getOrderItems(id).subscribe({
       next: (data: any) => {
         this.orderItems = data.items;
       },
@@ -51,7 +54,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderPaymentDetail(id:number){
-    this.http.get(`${environment.orderUrl}/id/payment_detail/${id}`,{withCredentials: true}).pipe(retry(3)).subscribe({
+    this.orderDetailService.getOrderPaymentDetail(id).subscribe({
       next: (data: any) => {
         this.paymentDetail = data.payment_detail[0];
       },

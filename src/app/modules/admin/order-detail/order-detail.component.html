@@ -197,7 +197,7 @@
 
         <div class="action-card detail-card">
             <div class="flex justify-center gap-3 inner">
-                <button class="flex items-center justify-center bg-outline-primary text-primary p-[10px_15px] rounded-md">
+                <button class="flex items-center justify-center bg-outline-primary text-primary p-[10px_15px] rounded-md" [routerLink]="['/admin/add-order', order?.order_id]">
                     <span class="icon-container flex items-center justify-center">
                         <fa-icon [icon]="faPenToSquare" class="text-[18px]"></fa-icon>
                     </span>
