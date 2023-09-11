@@ -1,0 +1,119 @@
+<div class="order-detail-modal-wrapper modal-wrapper" *ngIf="orderDetailModal?.visible">
+	<div class="order-detail-modal modal-main modal-md">
+		<button class="circle-button modal-close-btn" (click)="close()" type="button">
+			<fa-icon [icon]="faClose" class="flex items-center"></fa-icon>
+		</button>
+		<div class="modal-header pb-[10px]">
+			<h2 class="modal-title text-primary company-name">
+				Edit&nbsp;{{orderDetailModal.title}} 
+			</h2>
+		</div>
+		<div class="modal-body">
+			<form class="order-detail-form form-layout" [formGroup]="orderForm" *ngIf="orderDetailModal.title === 'order'">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="order_number" class="form-label">
+							Order Number
+						</label>
+						<input type="text" name="order_number" id="order_number" class="form-control" formControlName="order_number">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="order_status" class="form-label">Order Status</label>
+						<select name="order_status" id="order_status" class="form-control" formControlName="order_status">
+							<option value="PENDING">PENDING</option>
+							<option value="COMPLETED">COMPLETED</option>
+							<option value="CANCELLED">CANCELLED</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="order_date" class="form-label">Order Date</label>
+						<input type="date" name="order_date" id="order_date" class="form-control" formControlName="order_date">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<button class="bg-primary text-white submit-btn" type="button" (click)="updateOrderForm()">Submit</button>
+					</div>
+				</div>
+			</form>
+
+
+			<form class="order-detail-form form-layout" [formGroup]="paymentDetailForm" *ngIf="orderDetailModal.title === 'payment detail'">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="payment_date" class="form-label">Payment Date</label>
+						<input type="date" name="payment_date" id="payment_date" class="form-control" formControlName="payment_date">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="total_amount" class="form-label">Total Amount</label>
+						<input type="text" name="total_amount" id="total_amount" class="form-control" formControlName="total_amount">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="payment_type" class="form-label">Payment Type</label>
+						<select name="payment_type" id="payment_type" class="form-control" formControlName="payment_type">
+							<option value="1">Cash on delivery</option>
+							<option value="2">Esewa</option>
+							<option value="3">Khalti</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="payment_status" class="form-label">Payment Status</label>
+						<select name="payment_status" id="payment_status" class="form-control" formControlName="payment_status">
+							<option value="PENDING">PENDING</option>
+							<option value="COMPLETED">COMPLETED</option>
+							<option value="CANCELLED">CANCELLED</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<button type="button" class="text-white bg-primary submit-btn" (click)="updatePaymentDetailForm()">Submit</button>
+					</div>
+				</div>
+			</form>
+
+
+			<form class="order-detail-form form-layout" [formGroup]="userDetailForm" *ngIf="orderDetailModal.title === 'user detail'">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="user_name" class="form-label">User Name</label>
+						<input type="text" name="user_name" id="user_name" class="form-control" formControlName="user_name">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="user_email" class="form-label">User Email</label>
+						<input type="email" name="user_email" id="user_email" class="form-control" formControlName="user_email">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="user_contact" class="form-label">User Contact</label>
+						<input type="tel" name="user_contact" id="user_contact" class="form-control" formControlName="user_contact">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="user_address" class="form-label">User Address</label>
+						<input type="text" name="user_address" id="user_address" class="form-control" formControlName="user_address">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<button type="button" class="bg-primary text-white submit-btn">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

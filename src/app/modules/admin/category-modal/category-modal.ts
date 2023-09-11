@@ -8,13 +8,4 @@ export class CategoryModal extends BaseModal {
 	constructor(visible: boolean){
 		super(visible);
 	}
-
-	submit(){
-		if(this.mode === 'add'){
-
-		}else{
-
-		}
-	}
-
 }

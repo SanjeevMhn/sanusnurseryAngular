@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { faMoneyBillWave, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { retry } from 'rxjs';
 import { OrderDetailService } from 'src/app/services/order-detail.service';
+import { OrderDetailModalService } from '../order-detail-modal/order-detail-modal.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -22,13 +23,18 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private http:HttpClient,
-    private orderDetailService: OrderDetailService) { }
+    private orderDetailService: OrderDetailService,
+    private orderDetailModalService: OrderDetailModalService) { }
 
   ngOnInit(): void {
     const orderId = Number(this.route.snapshot.paramMap.get('id'));
     this.getOrderDetail(orderId);
     this.getOrderItems(orderId);
     this.getOrderPaymentDetail(orderId);
+  }
+
+  showModal(id:number,title: string, items:any){
+    this.orderDetailModalService.show(id,title,items);
   }
 
   getOrderDetail(id:number){

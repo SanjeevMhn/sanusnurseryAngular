@@ -21,6 +21,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDataGridRowComponent } from './categories/category-data-grid-row/category-data-grid-row.component';
 import { CategoryModalComponent } from './category-modal/category-modal.component';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { OrderDetailModalComponent } from './order-detail-modal/order-detail-modal.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AddOrderComponent } from './add-order/add-order.component';
     CategoriesComponent,
     CategoryDataGridRowComponent,
     CategoryModalComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    OrderDetailModalComponent
   ],
   imports: [
     CommonModule,

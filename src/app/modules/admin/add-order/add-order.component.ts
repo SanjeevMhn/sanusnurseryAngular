@@ -92,7 +92,7 @@ export class AddOrderComponent implements OnInit {
       order_status: this.order?.order_status,
       order_date: this.order?.order_date,
       payment_date: this.paymentDetail?.payment_date,
-      payment_type: this.order?.payment_type,
+      payment_type: this.paymentDetail?.payment_type,
       payment_status: this.paymentDetail?.payment_status,
       payment_total: this.paymentDetail?.total_amount,
       user_name: this.order?.user_name,
