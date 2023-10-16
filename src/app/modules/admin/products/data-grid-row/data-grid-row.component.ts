@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../../shared/toast/toast.modal';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'src/app/services/confirmation.service';
 
 @Component({
   selector: 'app-data-grid-row',
@@ -20,7 +21,11 @@ export class DataGridRowComponent implements OnInit {
   faEllipsis = faEllipsis;
   showDropdown: boolean = false;
 
-  constructor(private http: HttpClient, private toastService: ToastService, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private toastService: ToastService, 
+    private router: Router,
+    private confirmService: ConfirmationService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +35,8 @@ export class DataGridRowComponent implements OnInit {
     // console.log(event.target);
   }
 
-  deleteProduct(id: number) {
-    if (window.confirm("Do you really want to delete this product?")) {
+  async deleteProduct(id: number) {
+    if( await this.confirmService.initialize({message: 'Do you want to delete this product'})){
       this.http.delete(`${environment.baseUrl}/id/${id}`, { withCredentials: true, observe: 'response' }).subscribe({
         next: (data: any) => {
           if (data.status === 200) {
@@ -45,6 +50,20 @@ export class DataGridRowComponent implements OnInit {
         }
       })
     }
+    // if (window.confirm("Do you really want to delete this product?")) {
+    //   this.http.delete(`${environment.baseUrl}/id/${id}`, { withCredentials: true, observe: 'response' }).subscribe({
+    //     next: (data: any) => {
+    //       if (data.status === 200) {
+    //         this.toastService.show("Product has been deleted", ToastType.success);
+    //         this.router.navigate(['/admin/products'])
+    //       }
+
+    //     },
+    //     error: (err: any) => {
+    //       console.error(err);
+    //     }
+    //   })
+    // }
   }
 
 }

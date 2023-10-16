@@ -13,6 +13,7 @@ import { v4 as uuid } from 'uuid';
 import { convertToPdf } from 'src/app/utils/functions/convertToPdf';
 import { ProductService } from 'src/app/services/product.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConfirmationService } from 'src/app/services/confirmation.service';
 
 interface PaymentBill {
   date: string | undefined,
@@ -75,7 +76,8 @@ export class CartComponent implements OnInit {
     private toastService: ToastService,
     private router: Router,
     private productService: ProductService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private confirmService: ConfirmationService) { }
 
 
   getProductCategoryName(cat_id: number) {
@@ -294,16 +296,19 @@ export class CartComponent implements OnInit {
     })
   }
 
-  removeCartItem(item: CartItem) {
-    this.deleteItemSubscription = this.cartService.removeCartItem(item).subscribe({
-      next: (data) => {
-        this.cartItems = data;
-        this.calculateSubTotal()
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
+  async removeCartItem(item: CartItem) {
+    if(await this.confirmService.initialize({message: 'Do you want to remove the item form cart?'})){
+      this.deleteItemSubscription = this.cartService.removeCartItem(item).subscribe({
+        next: (data) => {
+          this.cartItems = data;
+          this.calculateSubTotal()
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
+    
   }
 
   decreaseCartItemQuantity(item: CartItem) {

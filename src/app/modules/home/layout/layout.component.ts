@@ -14,7 +14,6 @@ import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
-import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-layout',
@@ -59,8 +58,7 @@ export default class LayoutComponent implements OnInit {
     private http: HttpClient,
     private loginService: LoginService,
     private authService: AuthService,
-    private toastService: ToastService,
-    private confirmService: ConfirmDialogService) {
+    private toastService: ToastService,) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;

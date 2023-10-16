@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ToastType } from 'src/app/modules/shared/toast/toast.modal';
+import { ConfirmationService } from 'src/app/services/confirmation.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { environment } from 'src/environments/environment';
 import { CategoryModalService } from '../../category-modal/category-modal.service';
@@ -13,7 +14,11 @@ import { CategoryModalService } from '../../category-modal/category-modal.servic
 })
 export class CategoryDataGridRowComponent implements OnInit {
 
-  constructor(private http: HttpClient, private toastService: ToastService, private categoryModalService: CategoryModalService) { }
+  constructor(
+    private http: HttpClient, 
+    private toastService: ToastService, 
+    private categoryModalService: CategoryModalService,
+    private confirmService: ConfirmationService) { }
 
   @Input() i?:number;
   @Input() item: any;
@@ -32,9 +37,9 @@ export class CategoryDataGridRowComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-  deleteCategory(cat_id:number){
+  async deleteCategory(cat_id:number){
     this.showDropdown = false;
-    if(window.confirm("Are you sure you want to delete this?")){
+    if(await this.confirmService.initialize({message: "Do you want to delete this category"})){
       this.deleteProductEvent.emit(cat_id);
     }
   }
