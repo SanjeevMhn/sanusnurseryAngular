@@ -1,11 +1,14 @@
 <ng-container *ngIf="this.confirmService.showBox$ | async as confirm">
-	<div class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] z-[999] p-[10px_15px] md:p-[25px] rounded-lg bg-[#e9e9e9] text-[#000] text-md border-2 border-slate-400" *ngIf="confirm.show" >
-		<div class="label-text text-lg pb-4">
-			{{ confirm.message }}
+	<div class="modal-wrapper" *ngIf="confirm.show">
+		<div class="modal-main border-2 border-slate-400" >
+			<div class="label-text text-lg pb-4">
+				{{ confirm.message }}
+			</div>	
+			<div class="action-section flex justify-end gap-2">
+				<button type="button" class="bg-admin-primary rounded-md text-white p-[5px_15px] text-base bg-outline-admin-primary" (click)="onConfirm()">Yes</button>
+				<button type="button" class="bg-outline-admin-primary rounded-md text-primary p-[5px_15px] text-base" (click)="onCancel()">Cancel</button>
+			</div>
 		</div>	
-		<div class="action-section flex justify-end gap-2">
-			<button type="button" class="bg-admin-primary rounded-md text-white p-[5px_15px] text-base bg-outline-admin-primary" (click)="onConfirm()">Yes</button>
-			<button type="button" class="bg-outline-admin-primary rounded-md text-primary p-[5px_15px] text-base" (click)="onCancel()">Cancel</button>
-		</div>
 	</div>
+	
 </ng-container>
