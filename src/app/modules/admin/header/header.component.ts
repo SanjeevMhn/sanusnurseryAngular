@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 }) 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
 
-  userData?:any;
+  userData$ = this.authService.getUserData();
 
   @Output() toggleAdminSidenavEvent = new EventEmitter();
 
@@ -26,16 +26,6 @@ export class HeaderComponent implements OnInit {
 
   showDropDown: boolean = false;
 
-  ngOnInit(): void {
-    this.authService.userData.subscribe({
-      next: (data: any) => {
-        this.userData = data;
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
-  }
 
   toggleDropDown(){
     this.showDropDown = !this.showDropDown;
@@ -49,9 +39,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout().subscribe({
       next: (data: any) => {
         AuthInterceptor.accessToken = '';
-        this.authService.removeUserData();
         this.toastService.show('User logged out', ToastType.success);
-        this.userData = {};
         this.router.navigate(['/home']);
       },
       error: (err: any) => {

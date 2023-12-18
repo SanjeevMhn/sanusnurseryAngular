@@ -25,6 +25,7 @@
         </div>
         <div class="modal-body main-login pt-[30px] absolute left-0 right-0 p-[15px] md:p-[25px] bg-white rounded-md" [ngClass]="showMainLogin ? 'top-[calc(100%-85px)] z-[1]' : 'top-0 z-[-1]'">
             <form class="login-form" [formGroup]="userLoginForm" (submit)="login()">
+                <h2 class="text-red-700 font-medium text-base text-center pb-2">{{errFormMessage}}</h2>
                 <div class="form-group mb-4">
                     <input type="text" name="user-email" id="user-email" class="form-control text-base p-[5px_10px] border  rounded-md w-full" placeholder="Email" [ngClass]="errorUserEmail ? 'border border-red-700' : 'border-slate-400'" formControlName="user_email">
                     <div class="invalid-msg text-red-700 font-medium text-sm" *ngIf="errorUserEmail">

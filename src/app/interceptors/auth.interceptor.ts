@@ -7,7 +7,7 @@ import {
   HttpErrorResponse,
   HttpClient
 } from '@angular/common/http';
-import { Observable, catchError, switchMap, throwError } from 'rxjs';
+import { Observable, catchError, switchMap, throwError, take, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 Authorization: `Bearer ${AuthInterceptor.accessToken}`
               }
             }))
-          })
+          }),
         )
       }
       this.refresh = false;

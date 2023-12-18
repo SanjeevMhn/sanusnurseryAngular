@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LoginModal } from './login-modal';
 import { LoginService } from 'src/app/services/login.service';
-import { Subscription } from 'rxjs';
+import { Subscription,Observable } from 'rxjs';
 import { faClose, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../../shared/toast/toast.modal';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -34,13 +35,15 @@ export class LoginComponent implements OnInit {
   errFormMessage: string = '';
 
   showMainLogin: boolean = false;
+  login$?: Observable<any>;
 
   constructor(
     private loginService: LoginService, 
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private authService: AuthService
     ) { }
   
   ngOnInit(): void {
@@ -62,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.errorUserPassword = false;
     this.userLoginForm.reset();
     this.showMainLogin = false;
+    this.errFormMessage = '';
   }
 
   toggleMainLogin():void{
@@ -95,19 +99,18 @@ export class LoginComponent implements OnInit {
     }
 
     let val = this.userLoginForm.value;
-    this.http.post(environment.authUrl,val,{withCredentials: true}).subscribe({
-      next: (res: any) =>{
-        this.close();
+    this.authService.login(val).subscribe({
+      next: (res: any) => {
         AuthInterceptor.accessToken = res.accessToken;
-        this.router.navigate(['/home']);
-        this.toastService.show('User logged in', ToastType.success);
+        this.toastService.show('User Logged In',ToastType.success);
+        window.location.reload();
+        this.close();
       },
       error: (err: any) => {
         console.error(err);
-        this.errFormMessage = err.message;
-        console.log(err.message);
+        this.errFormMessage = err.error.message;
       }
-    })  
+    })
   }
 
 }

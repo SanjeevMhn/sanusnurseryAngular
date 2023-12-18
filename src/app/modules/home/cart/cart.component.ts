@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { CartItem } from 'src/app/interface/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, scan, of, takeLast, last } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { ToastService } from 'src/app/services/toast.service';
@@ -31,17 +31,13 @@ interface PaymentBill {
 })
 export class CartComponent implements OnInit {
 
-  cartItems: CartItem[] = [];
+  cartDetail$?: Observable<any>;
+  cartTotal$?: Observable<any>;
+  cartItems?: any[] = []
 
   faMinus = faMinus;
   faPlus = faPlus;
   faClose = faClose;
-
-  getItemsSubscription?: Subscription;
-  deleteItemSubscription?: Subscription;
-  increaseQuantitySubscription?: Subscription;
-  decreaseQuantitySubscription?: Subscription;
-  setQuantitySubscription?: Subscription;
 
   subTotal: number = 0;
 
@@ -77,7 +73,11 @@ export class CartComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private authService: AuthService,
-    private confirmService: ConfirmationService) { }
+    private confirmService: ConfirmationService) {
+
+    
+
+    }
 
 
   getProductCategoryName(cat_id: number) {
@@ -100,7 +100,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     let date = new Date();
     this.billDate = `${date.getFullYear()}-${(1 + date.getMonth()).toString()}-${date.getDate().toString().padStart(2, '0')}`
-    this.getCartData();
+    // this.getCartData();
+    this.cartDetail$ = this.cartService.getCartDetails();
+    this.cartTotal$ = this.cartDetail$.pipe(map((items: CartItem[]) => {
+      return items.reduce((acc, item) => acc + item.total, 0);
+    }));
+
     this.checkoutForm = this.fb.group({
       ftname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
       ltname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[\S]/g)]],
@@ -226,7 +231,7 @@ export class CartComponent implements OnInit {
         name: customerName,
         phone: val.phone,
         address: val.address,
-        products: this.cartItems,
+        products: this.cartItems!,
         subTotal: this.subTotal
       }
 
@@ -283,64 +288,26 @@ export class CartComponent implements OnInit {
     }
   }
 
-  getCartData() {
-    this.getItemsSubscription = this.cartService.getCartDetails().subscribe({
-      next: (data) => {
-        this.cartItems = data;
-        // console.log(data);
-        this.calculateSubTotal();
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    })
-  }
-
   async removeCartItem(item: CartItem) {
     if(await this.confirmService.initialize({message: 'Do you want to remove the item form cart?'})){
-      this.deleteItemSubscription = this.cartService.removeCartItem(item).subscribe({
-        next: (data) => {
-          this.cartItems = data;
-          this.calculateSubTotal()
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      })
+      this.cartService.removeCartItem(item);
     }
     
   }
 
   decreaseCartItemQuantity(item: CartItem) {
-    this.decreaseQuantitySubscription = this.cartService.decreaseCartItemQuantity(item).subscribe({
-      next: (data) => {
-        this.cartItems = data;
-        this.calculateSubTotal()
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    this.cartService.decreaseCartItemQuantity(item);
   }
 
   increaseCartItemQuantity(item: CartItem) {
-    this.increaseQuantitySubscription = this.cartService.increaseCartItemQuantity(item).subscribe({
-      next: (data) => {
-        // console.log(data);
-        this.cartItems = data;
-        this.calculateSubTotal()
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    this.cartService.increaseCartItemQuantity(item);
   }
 
   calculateSubTotal(): void {
-    this.subTotal = 0;
-    this.cartItems.forEach((cart) => {
-      this.subTotal = this.subTotal + cart.total;
-    });
+    // this.subTotal = 0;
+    // this.cartItems.forEach((cart) => {
+    //   this.subTotal = this.subTotal + cart.total;
+    // });
   }
 
   clearCart() {
@@ -351,40 +318,11 @@ export class CartComponent implements OnInit {
 
   setProductQuantity(obj: any) {
     let { quantity, item } = obj;
-    if (quantity > 0 && quantity) {
-      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity).subscribe({
-        next: (data) => {
-          this.cartItems = data;
-          this.calculateSubTotal();
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      })
-    } else {
-      this.toastService.show("Product quantity cannot be less than 1", ToastType.error);
-      this.setQuantitySubscription = this.cartService.setCartItemQuantity(item, quantity = 1).subscribe({
-        next: (data) => {
-          this.cartItems = data;
-          // this.calculateSubTotal();
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      })
-    }
+    this.cartService.setCartItemQuantity(item, quantity);
   }
 
   closeBill() {
     this.showBill = false;
-  }
-
-  ngOnDestroy() {
-    this.getItemsSubscription?.unsubscribe();
-    this.deleteItemSubscription?.unsubscribe();
-    this.increaseQuantitySubscription?.unsubscribe();
-    this.decreaseQuantitySubscription?.unsubscribe();
-    this.setQuantitySubscription?.unsubscribe();
   }
 
 }

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { isObjectEmpty } from '../utils/functions/isObjectEmpty';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class AdminGuard implements CanActivate {
 
-  isAdmin?: boolean;
 
   constructor( private authService: AuthService, private router: Router){}
 
@@ -18,16 +16,15 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      this.authService.isAdmin().subscribe((data: boolean) => {
-        this.isAdmin = data;
-      })
-      
-      if(this.isAdmin){
-        return true;
-      }else{
-        return this.router.navigate(['/home']);
-      }
-
+      return this.authService.isAdmin().pipe(switchMap((res: any) => {
+        if(res){
+          return of(true);
+        }else{
+          this.router.navigate(['/home']);
+          return of(false);
+        }
+      }))
+        
   }
   
 }

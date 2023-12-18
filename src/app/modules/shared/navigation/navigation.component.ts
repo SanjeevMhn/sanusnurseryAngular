@@ -11,6 +11,7 @@ import { isObjectEmpty } from 'src/app/utils/functions/isObjectEmpty';
 import { ToastService } from 'src/app/services/toast.service';
 import { ToastType } from '../toast/toast.modal';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { catchError, ignoreElements, of } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
@@ -28,7 +29,7 @@ export class NavigationComponent implements OnInit {
   faChevronDown = faChevronDown
 
   cartList: Product[] = [];
-  public userData?: any;
+  userData$ = this.authService.getUserData();
 
   showDropDown: boolean = false;
 
@@ -45,14 +46,14 @@ export class NavigationComponent implements OnInit {
     private toastService: ToastService
   ) {
 
-    this.authService.userData.subscribe({
-      next: (data: any) => {
-        this.userData = data;
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
+    // this.authService.userData.subscribe({
+    //   next: (data: any) => {
+    //     this.userData = data;
+    //   },
+    //   error: (err: any) => {
+    //     console.error(err);
+    //   }
+    // })
 
   }
 
@@ -97,9 +98,9 @@ export class NavigationComponent implements OnInit {
     this.authService.logout().subscribe({
       next: (data: any) => {
         AuthInterceptor.accessToken = '';
-        this.authService.removeUserData();
+        // this.authService.removeUserData();
         this.toastService.show('User logged out', ToastType.success);
-        this.userData = {};
+        // this.userData = {};
       },
       error: (err: any) => {
         console.error(err);

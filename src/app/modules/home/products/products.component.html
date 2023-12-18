@@ -16,10 +16,19 @@
                         <a [routerLink]="['/home/products/',]" class="category-link flex px-[10px]"
                             [ngClass]="defaultLinkActive ? 'active' : '' ">All</a>
                     </li>
-                    <li class="category-item" *ngFor="let item of categories">
-                        <a [routerLink]="['/home/products/',item?.prod_cat_name]" routerLinkActive="active"
-                            class="category-link flex px-[10px] capitalize whitespace-nowrap">{{item?.prod_cat_name}}</a>
-                    </li>
+                    <ng-container *ngIf="categories$ | async as categories">
+                        <ng-container *ngIf="!categories.error;else error">
+                            <li class="category-item" *ngFor="let item of categories">
+                                <a [routerLink]="['/home/products/',item?.prod_cat_name]" routerLinkActive="active"
+                                    class="category-link flex px-[10px] capitalize whitespace-nowrap">{{item?.prod_cat_name}}</a>
+                            </li>   
+                        </ng-container>
+                        <ng-template #error>
+                            Error occured while getting categories
+                        </ng-template>
+                            
+                    </ng-container>
+                    
                   
                 </ul>
             </aside>
@@ -30,10 +39,18 @@
                             <a [routerLink]="['/home/products/',]" class="category-link flex px-[10px]"
                                 [ngClass]="defaultLinkActive ? 'active' : '' ">All</a>
                         </li>
-                        <li class="category-item" *ngFor="let item of categories">
-                            <a [routerLink]="['/home/products/',item?.prod_cat_name]" routerLinkActive="active"
-                                class="category-link flex px-[10px] capitalize">{{item?.prod_cat_name}}</a>
-                        </li>
+                        <ng-container *ngIf="categories$ | async as categories">
+                            <ng-container *ngIf="!categories.error;else error">
+                                <li class="category-item" *ngFor="let item of categories">
+                                    <a [routerLink]="['/home/products/',item?.prod_cat_name]" routerLinkActive="active"
+                                        class="category-link flex px-[10px] capitalize">{{item?.prod_cat_name}}</a>
+                                </li>   
+                            </ng-container>
+                            <ng-template #error>
+                                Error while getting categories
+                            </ng-template> 
+                        </ng-container>
+                        
                     </ul>
                     <form [formGroup]="sortForm">
                         <label for="list-filter" class="pr-2">Sort By:</label>

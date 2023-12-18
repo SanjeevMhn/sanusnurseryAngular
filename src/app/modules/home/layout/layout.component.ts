@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { faClose, faSearch, faUserCircle, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map, Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Subject } from 'rxjs';
@@ -46,6 +46,8 @@ export default class LayoutComponent implements OnInit {
   showDropDown: boolean = false;
 
   confirmationValue?: boolean;
+  userData$?: Observable<any>;
+
 
   @ViewChild('searchText') searchText?: ElementRef<HTMLInputElement>;
 
@@ -60,9 +62,10 @@ export default class LayoutComponent implements OnInit {
     private authService: AuthService,
     private toastService: ToastService,) {
 
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    }
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // }
+    this.userData$ = this.authService.getUserData();
   }
 
 
@@ -80,7 +83,7 @@ export default class LayoutComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.userData$ = this.authService.getUserData();
     this.searchSubject.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
@@ -106,23 +109,7 @@ export default class LayoutComponent implements OnInit {
       this.onRouteChanges();
     })
 
-    this.authService.getUserData().subscribe({
-      next: (data: any) => {
-        this.authService.setUserData(data.user[0]);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
 
-    this.authService.userData.subscribe({
-      next: (data: any) => {
-        this.userData = data;
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
 
 
   }
@@ -171,24 +158,14 @@ export default class LayoutComponent implements OnInit {
     this.showDropDown = !this.showDropDown;
   }
 
-  toggleConfirm(value: boolean){
+  toggleConfirm(value: boolean) {
     this.showConfirm = value;
   }
 
 
 
   logout() {
-    this.authService.logout().subscribe({
-      next: (data: any) => {
-        AuthInterceptor.accessToken = '';
-        this.authService.removeUserData();
-        this.toastService.show('User logged out', ToastType.success);
-        this.userData = {};
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
+    this.authService.logout()
   }
 
 }
